@@ -1,35 +1,82 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        crsGraph = defaultdict(list)
-        
-        for crs, pre in prerequisites:
-            crsGraph[crs].append(pre)
-        
-        visited, cycle = set(), set()
+        indegree = {}
+        adj_list = defaultdict(list)
         res = []
         
-        def dfs(crs):
-            if crs in visited:
-                return True
-            if crs in cycle:
-                return False
+        for crs, pre in prerequisites:
+            indegree[crs] = indegree.get(crs, 0) + 1
+            adj_list[pre].append(crs)
+        
+        queue =deque([c for c in range(numCourses) if c not in indegree])
+        
+        while queue:
+            pre = queue.popleft()
+            res.append(pre)
             
-            cycle.add(crs)
-            for pre in crsGraph[crs]:
-                if not dfs(pre):
-                    return False
+            for crs in adj_list[pre]:
+                indegree[crs] -=1
+                if indegree[crs] == 0:
+                    queue.append(crs)
+        
+        return res if len(res) == numCourses else []
+                    
+        
+        
             
-            crsGraph[crs] = []
-            cycle.remove(crs)
-            visited.add(crs)
-            res.append(crs)
-            return True
+            
+        
+        
+        
+        
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         crsGraph = defaultdict(list)
+        
+#         for crs, pre in prerequisites:
+#             crsGraph[crs].append(pre)
+        
+#         visited, cycle = set(), set()
+#         res = []
+        
+#         def dfs(crs):
+#             if crs in visited:
+#                 return True
+#             if crs in cycle:
+#                 return False
+            
+#             cycle.add(crs)
+#             for pre in crsGraph[crs]:
+#                 if not dfs(pre):
+#                     return False
+            
+#             crsGraph[crs] = []
+#             cycle.remove(crs)
+#             visited.add(crs)
+#             res.append(crs)
+#             return True
             
     
-        for crs in range(numCourses):
-            if not dfs(crs):
-                return []
-        return res
+#         for crs in range(numCourses):
+#             if not dfs(crs):
+#                 return []
+#         return res
             
         
         
