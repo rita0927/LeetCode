@@ -9,7 +9,6 @@ class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
         
         res = []
-        
         parents = {}
         
         def findParent(node, parent):
@@ -17,24 +16,94 @@ class Solution:
                 parents[node] = parent
                 findParent(node.left, node)
                 findParent(node.right, node)
-                
+            
         findParent(root, None)
+        
         
         visited = set()
         
-        def search(node, distance):
+        def helper(node, distance):
             
-            if not node or node.val in visited:
+            if not node or distance > k:
+                return
+            
+            if node.val in visited:
                 return 
+            
             visited.add(node.val)
-
-            if distance == k :
+            
+            if distance == k:
                 res.append(node.val)
-
-            for neighbor in [parents[node], node.left, node.right]:
-                search(neighbor, distance + 1)
-      
-        search(target, 0)       
-   
+            
+            for neightbor in [node.left, node.right, parents[node]]:
+                helper(neightbor, distance + 1)
+        
+        helper(target, 0)
+        
         return res
+                
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = []
+        
+#         parents = {}
+        
+#         def findParent(node, parent):
+#             if node:
+#                 parents[node] = parent
+#                 findParent(node.left, node)
+#                 findParent(node.right, node)
+                
+#         findParent(root, None)
+        
+#         visited = set()
+        
+#         def search(node, distance):
+            
+#             if not node or node.val in visited:
+#                 return 
+#             visited.add(node.val)
+
+#             if distance == k :
+#                 res.append(node.val)
+
+#             for neighbor in [parents[node], node.left, node.right]:
+#                 search(neighbor, distance + 1)
+      
+#         search(target, 0)       
+   
+#         return res
                 
