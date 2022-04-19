@@ -43,31 +43,56 @@
 
 class Solution:
     def depthSumInverse(self, nestedList: List[NestedInteger]) -> int:
+        res = []
+        maxDepth = 1
         
-        self.total = 0
-        maxDepth = 0
-        
-        stack1 = [(nestedList, 1)]
-        while stack1:
-            lst, level = stack1.pop()
+        def helper(nested, depth):
+            nonlocal maxDepth
             
-            for el in lst:
-                if el.isInteger(): 
-                    maxDepth = max(maxDepth, level)
+            maxDepth = max(maxDepth, depth)
+            
+            for lst in nested:
+                
+                if lst.isInteger():
+                    res.append((lst.getInteger(), depth))
                 else:
-                    stack1.append((el.getList(), level + 1))
+                    helper(lst.getList(), depth + 1)
                     
-        stack2 = [(nestedList,1)]
-        while stack2:
-            lst, level = stack2.pop()
+        helper(nestedList, 1)
+        
+        total = 0
+        
+        for integer, depth in res:
+            total +=integer * (maxDepth - depth + 1)
+        
+        return total 
+        
+        
+        
+#         self.total = 0
+#         maxDepth = 0
+        
+#         stack1 = [(nestedList, 1)]
+#         while stack1:
+#             lst, level = stack1.pop()
             
-            for el in lst:
-                if el.isInteger():
-                    self.total += el.getInteger() * (maxDepth - level + 1)
-                else:
-                    stack2.append((el.getList(), level + 1))
+#             for el in lst:
+#                 if el.isInteger(): 
+#                     maxDepth = max(maxDepth, level)
+#                 else:
+#                     stack1.append((el.getList(), level + 1))
+                    
+#         stack2 = [(nestedList,1)]
+#         while stack2:
+#             lst, level = stack2.pop()
+            
+#             for el in lst:
+#                 if el.isInteger():
+#                     self.total += el.getInteger() * (maxDepth - level + 1)
+#                 else:
+#                     stack2.append((el.getList(), level + 1))
                         
-        return self.total 
+#         return self.total 
 
         
         
