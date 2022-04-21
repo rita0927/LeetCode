@@ -7,23 +7,15 @@
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         
-        queue =deque([root.left, root.right])
-        
-        while queue:
-            
-            node1 = queue.popleft()
-            node2 = queue.popleft()
-            
-            if not node1 and not node2:
-                continue
-            if node1 and node2 and node1.val == node2.val:
-                queue.append(node1.left)
-                queue.append(node2.right)
-                queue.append(node1.right)
-                queue.append(node2.left)
+        def isMirror(left, right):
+            if not left and not right:
+                return True
+            if left and right:
+                return left.val == right.val and isMirror(left.left, right.right) and isMirror(left.right, right.left)
             else:
                 return False
-        return True
+            
+        return isMirror(root.left, root.right)
         
         
         
