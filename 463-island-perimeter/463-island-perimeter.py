@@ -6,30 +6,18 @@ class Solution:
         dir = [(-1,0), (1,0), (0,-1), (0,1)]
         visited = set()
         
-        def helper(r,c):
-            nonlocal res 
-  
-            if (r,c) in visited:
-                return
-            visited.add((r,c))
-            
-            for x,y in dir:
+        for r in range(m):
+            for c in range(n):
+                if grid[r][c] == 1:
+                    res +=4
                 
-                nr, nc = x + r, y + c
+                    for x,y in dir:
+                        nr, nc = x + r, y + c
+                        if 0 <= nr < m and 0<= nc < n and grid[nr][nc] == 1:
+                            res -=1
+        return res 
                 
-                if nr < 0  or nr >= m or nc < 0 or nc >= n or grid[nr][nc] == 0:
-                    res +=1
-                else:
-                    helper(nr, nc)
-                             
-            
-                   
-        for row in range(len(grid)):
-            for col in range(len(grid[0])):
-                
-                if grid[row][col] == 1:
-                    helper(row, col)
-                    return res 
+        
 
                     
                 
