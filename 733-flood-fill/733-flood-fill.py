@@ -1,26 +1,73 @@
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
-        
         if image[sr][sc] == newColor:
             return image
         
         m = len(image)
         n = len(image[0])
-        dir = [(-1,0), (1,0), (0,-1),(0,1)]
         color = image[sr][sc]
+        queue = deque([(sr,sc)])
         
-        def helper(r,c):
-            image[r][c] = newColor
-            
-            for x,y in dir:
-                nr = x + r
-                nc = y + c
+        while queue:
+            r,c = queue.popleft()
+            if image[r][c] == color:
+                image[r][c] = newColor
                 
-                if 0<= nr < m and 0 <=nc <n and image[nr][nc] == color:
-                    helper(nr, nc)
-        helper(sr, sc)
-        
+                if r- 1>=0:
+                    queue.append((r-1, c))
+                if r + 1 < m:
+                    queue.append((r + 1, c))
+                if c - 1 >=0:
+                    queue.append((r, c -1))
+                if c + 1 < n:
+                    queue.append((r, c + 1))
+                
         return image 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if image[sr][sc] == newColor:
+#             return image
+        
+#         m = len(image)
+#         n = len(image[0])
+#         dir = [(-1,0), (1,0), (0,-1),(0,1)]
+#         color = image[sr][sc]
+        
+#         def helper(r,c):
+#             image[r][c] = newColor
+            
+#             for x,y in dir:
+#                 nr = x + r
+#                 nc = y + c
+                
+#                 if 0<= nr < m and 0 <=nc <n and image[nr][nc] == color:
+#                     helper(nr, nc)
+#         helper(sr, sc)
+        
+#         return image 
         
         
         
