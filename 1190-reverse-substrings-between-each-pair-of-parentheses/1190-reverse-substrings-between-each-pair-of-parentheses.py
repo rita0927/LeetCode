@@ -12,9 +12,7 @@ class Solution:
                     temp +=stack.pop()
                 
                 stack.pop()
-                
-                for ch in temp:
-                    stack.append(ch)
+                stack.extend(list(temp))
                 
         return "".join(stack)
         
