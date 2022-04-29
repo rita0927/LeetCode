@@ -4,12 +4,7 @@ class Solution:
         
         while n not in seen:
             seen.add(n)
-            total = 0
-            
-            for d in str(n):
-                total += int(d) **2
-            
-            n = total
+            n = sum(int(d) ** 2 for d in str(n))
             
         return n == 1
                 
