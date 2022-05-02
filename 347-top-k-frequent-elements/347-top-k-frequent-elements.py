@@ -1,67 +1,82 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         
-      
+        count = Counter(nums) # [(1:3), (2:2), (3:1)]
+        unique = list(count.keys())
+        k = len(unique) - k
+        
+        def partition(l, r):
+            pivot = count[unique[r]]
+            p = l
+            
+            for i in range(l, r):
+                if count[unique[i]] < pivot:
+                    unique[i], unique[p]= unique[p], unique[i]
+                    p +=1
+            unique[r], unique[p] = unique[p], unique[r]
+            
+            return p 
+            
+        def quickSelect(l,r):
+            if l == r:
+                return 
+            
+            p = partition(l,r)
+            
+            if k == p:
+                return 
+            elif k < p:
+                quickSelect(l, p - 1)
+            else:
+                quickSelect(p + 1, r)
+        quickSelect(0, len(unique) - 1)
+        return unique[k:]
+                
+            
+            
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+             
+
         # bucket sort
         
-        count = Counter(nums)
-        freq = [[] for i in range(len(nums) + 1) ]
+#         count = Counter(nums)
+#         freq = [[] for i in range(len(nums) + 1) ]
 
-        for n, c in count.items():
-            freq[c].append(n)
+#         for n, c in count.items():
+#             freq[c].append(n)
         
-        res = []
+#         res = []
         
-        for i in range(len(freq)- 1, 0, -1):
+#         for i in range(len(freq)- 1, 0, -1):
             
-            for n in freq[i]:
-                res.append(n)
+#             for n in freq[i]:
+#                 res.append(n)
                 
-                if len(res) == k:
-                    return res
+#                 if len(res) == k:
+#                     return res
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+# O(n), O(n)
+# if all the elements are identical, then freq list has one element with value, the rest are empty. if all the elements are unique, then are the elements are in freq[1], then the time complexity is O(n) + O(n). Because the inner for loop won't be implemented on the empty list. It only loops through the freq[1], so the time complexity is 0(n): loop through the freq + O(n) :loop through freq[1]
         
 
-            
-            
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     
-        
-        
-        
-        
-        
-        
+
+    
+    
         
         
 #         count = Counter(nums)
