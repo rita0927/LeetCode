@@ -2,21 +2,49 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
         res = []
+        visited = set()
         
-        def backtrack(perm, counter):
+        if len(nums) == 1:
+            return [nums.copy()]
+        
+        for _ in range(len(nums)):
+            n = nums.pop(0)
             
-            if len(perm) == len(nums):
-                res.append(perm.copy())
-                return
+            if n not in visited:
+                visited.add(n)
+                perms = self.permuteUnique(nums)
+                
+                for perm in perms:
+                    perm.append(n)
+                res.extend(perms)
+            nums.append(n)
+              
+        return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = []
+        
+#         def backtrack(perm, counter):
             
-            for num in counter:
-                if counter[num]:
-                    perm.append(num)
-                    counter[num] -=1
-                    backtrack(perm, counter)
-                    perm.pop()
-                    counter[num] +=1
+#             if len(perm) == len(nums):
+#                 res.append(perm.copy())
+#                 return
             
-        backtrack([], Counter(nums))
-        return res
+#             for num in counter:
+#                 if counter[num]:
+#                     perm.append(num)
+#                     counter[num] -=1
+#                     backtrack(perm, counter)
+#                     perm.pop()
+#                     counter[num] +=1
+            
+#         backtrack([], Counter(nums))
+#         return res
         
