@@ -3,19 +3,16 @@ class Solution:
         res = ""
         
         def isPalindrome(l,r):
+            nonlocal res 
             while l >=0 and r <len(s) and s[l] == s[r]:
                 l -=1
                 r +=1
-            return s[l+1:r]
+            res = s[l + 1:r] if (r-l-1) > len(res) else res 
         
         for i in range(len(s)):
-            odd = isPalindrome(i, i)
-            even = isPalindrome(i, i+1)
+            isPalindrome(i, i)
+            isPalindrome(i, i+1)
             
-            if len(odd) > len(even):
-                res = odd if len(odd) > len(res) else res 
-            else:
-                res = even if len(even) >len(res) else res
         
         return res 
 
