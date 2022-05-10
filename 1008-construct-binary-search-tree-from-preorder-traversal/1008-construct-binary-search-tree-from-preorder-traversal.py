@@ -7,15 +7,32 @@
 class Solution:
     def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
         
-        def dfs(max_val):
-            if not preorder: return None
-            if not preorder[0] < max_val: return None
+        def buildBST(node, val):
+            if not node:
+                return TreeNode(val)
             
-            val = preorder.pop(0)
-            node = TreeNode(val)
-            node.left = dfs(val)
-            node.right = dfs(max_val)
+            if val < node.val:
+                node.left = buildBST(node.left, val)
+            else:
+                node.right = buildBST(node.right, val)
+            return node 
+        
+        root = None
+        for val in preorder:
+            root = buildBST(root, val)
+        return root 
+        
+        
+        
+#         def dfs(max_val):
+#             if not preorder: return None
+#             if not preorder[0] < max_val: return None
             
-            return node
-        return dfs(float('inf'))
+#             val = preorder.pop(0)
+#             node = TreeNode(val)
+#             node.left = dfs(val)
+#             node.right = dfs(max_val)
+            
+#             return node
+#         return dfs(float('inf'))
             
