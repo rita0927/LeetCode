@@ -6,20 +6,67 @@ class Solution:
         
         while r < len(nums):
             
-            while queue and nums[r] > nums[queue[-1]]:
+            while queue and nums[r] > queue[-1]:
                 queue.pop()
-            queue.append(r)
+            queue.append(nums[r])
             
-            if l > queue[0]:
-                queue.popleft()
-            
-            if r + 1>= k:
-                res.append(nums[queue[0]])
+            if r + 1>=k:
+                res.append(queue[0])
+                if nums[l] == queue[0]:
+                    queue.popleft()
                 l+=1
-            
-
             r +=1
         return res 
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # brute force 
+#         # Time: O((n-k+1) * k) where k elements in each window
+#         # Space: O(1)
+
+#         res = []
+#         for i in range(len(nums) - k + 1):
+#             res.append(max(nums[i: i + k]))  
+#         return res 
+        
+        
+#         res = []
+#         l,r = 0, 0 
+#         queue = deque()
+        
+#         while r <len(nums):
+            
+#             while queue and nums[r] > nums[queue[-1]]:
+#                 queue.pop()
+#             queue.append(r)
+            
+#             if l > queue[0]:
+#                 queue.popleft()
+            
+#             if r + 1>=k:
+#                 res.append(nums[queue[0]])
+#                 l +=1
+#             r +=1
+#         return res 
             
                 
         
