@@ -5,25 +5,90 @@ class Solution:
         k = len(unique) - k
         
         def quickSelect(l,r):
-
-            pivot = count[unique[r]] 
+            # pick the pivot randomly to avoid the worst-case of constantly bad chosen pivots
+            pivot_index = random.randint(l,r)
+            pivot = count[unique[pivot_index]]
+            unique[r], unique[pivot_index] = unique[pivot_index], unique[r]
             p = l
             
             for i in range(l,r):
                 if count[unique[i]] < pivot:
                     unique[i], unique[p] = unique[p], unique[i]
-                    p +=1
-            unique[p], unique[r] = unique[r], unique[p]
-
-            if p == k:
-                return
-            elif k <p:
-                quickSelect(l, p - 1)
-            else:
+                    p+=1
+            unique[r], unique[p] = unique[p], unique[r]
+            
+            if k < p:
+                quickSelect(l,p -1)
+            elif k > p:
                 quickSelect(p + 1, r)
+            else:
+                return 
             
         quickSelect(0, len(unique) - 1)
         return unique[k:]
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         count = Counter(nums)
+#         unique = list(count.keys())
+#         k = len(unique) - k
+        
+#         def quickSelect(l,r):
+
+#             pivot = count[unique[r]] 
+#             p = l
+            
+#             for i in range(l,r):
+#                 if count[unique[i]] < pivot:
+#                     unique[i], unique[p] = unique[p], unique[i]
+#                     p +=1
+#             unique[p], unique[r] = unique[r], unique[p]
+
+#             if p == k:
+#                 return
+#             elif k <p:
+#                 quickSelect(l, p - 1)
+#             else:
+#                 quickSelect(p + 1, r)
+            
+#         quickSelect(0, len(unique) - 1)
+#         return unique[k:]
                     
 
                 
@@ -76,33 +141,33 @@ class Solution:
 #         unique = list(count.keys())  # [1,2,3]
 #         k= len(unique) - k  # 1
         
-#         def partition(l,r):
+# #         def partition(l,r):
             
-#             pivot = count[unique[r]]  
-#             p = l  
-            
-#             for i in range(l,r):
-                
-#                 if count[unique[i]] < pivot:
-#                     unique[i], unique[p] = unique[p], unique[i]
-#                     p+=1
-#             unique[p], unique[r] = pivot, unique[p]  
-#             return p  
-            
-        
-#         def quickSelect(l,r):
-#             if r == l:
-#                 return 
-#             p = partition(l,r)
-# #             pivot = count[unique[r]]
-# #             p = l
+# #             pivot = count[unique[r]]  
+# #             p = l  
             
 # #             for i in range(l,r):
                 
 # #                 if count[unique[i]] < pivot:
 # #                     unique[i], unique[p] = unique[p], unique[i]
-# #                     p +=1
-# #             unique[p], unique[r] = pivot, unique[p]
+# #                     p+=1
+# #             unique[p], unique[r] = pivot, unique[p]  
+# #             return p  
+            
+        
+#         def quickSelect(l,r):
+#             if r == l:
+#                 return 
+#             # p = partition(l,r)
+#             pivot = count[unique[r]]
+#             p = l
+            
+#             for i in range(l,r):
+                
+#                 if count[unique[i]] < pivot:
+#                     unique[i], unique[p] = unique[p], unique[i]
+#                     p +=1
+#             unique[p], unique[r] = unique[r], unique[p]
             
 #             if k < p:
 #                 quickSelect(l, p - 1)
