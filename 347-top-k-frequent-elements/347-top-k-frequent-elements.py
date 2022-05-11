@@ -1,36 +1,151 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = Counter(nums)
         
-        count = Counter(nums) # [(1:3), (2:2), (3:1)]
-        unique = list(count.keys())
-        k = len(unique) - k
+        sortedCount = sorted(count.keys(), key = lambda x: count[x], reverse = True)
         
-        def partition(l, r):
-            pivot = count[unique[r]]
-            p = l
+        return [sortedCount[i] for i in range(k)]
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+
             
-            for i in range(l, r):
-                if count[unique[i]] < pivot:
-                    unique[i], unique[p]= unique[p], unique[i]
-                    p +=1
-            unique[r], unique[p] = unique[p], unique[r]
             
-            return p 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         count = Counter(nums)  # {1:3, 2:2, 3:1}
+#         unique = list(count.keys())  # [1,2,3]
+#         k= len(unique) - k  # 1
+        
+#         def partition(l,r):
             
-        def quickSelect(l,r):
-            if l == r:
-                return 
+#             pivot = count[unique[r]]  
+#             p = l  
             
-            p = partition(l,r)
+#             for i in range(l,r):
+                
+#                 if count[unique[i]] < pivot:
+#                     unique[i], unique[p] = unique[p], unique[i]
+#                     p+=1
+#             unique[p], unique[r] = pivot, unique[p]  
+#             return p  
             
-            if k == p:
-                return 
-            elif k < p:
-                quickSelect(l, p - 1)
-            else:
-                quickSelect(p + 1, r)
-        quickSelect(0, len(unique) - 1)
-        return unique[k:]
+        
+#         def quickSelect(l,r):
+#             if r == l:
+#                 return 
+#             p = partition(l,r)
+# #             pivot = count[unique[r]]
+# #             p = l
+            
+# #             for i in range(l,r):
+                
+# #                 if count[unique[i]] < pivot:
+# #                     unique[i], unique[p] = unique[p], unique[i]
+# #                     p +=1
+# #             unique[p], unique[r] = pivot, unique[p]
+            
+#             if k < p:
+#                 quickSelect(l, p - 1)
+#             elif k > p:
+#                 quickSelect(p + 1, r)  
+#             else:
+#                 return 
+            
+#         quickSelect(0, len(unique) - 1)
+#         return unique[k:]
+            
+
+            
+        
+   
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         count = Counter(nums) # {1:3, 2:2, 3:1}
+#         unique = list(count.keys()) # [1,2,3]
+#         k = len(unique) - k 
+        
+#         def partition(l, r):
+#             pivot = count[unique[r]]
+#             point = l
+            
+#             for i in range(l, r):
+#                 if count[unique[i]] < pivot:
+#                     unique[i], unique[point]= unique[point], unique[i]
+#                     point +=1
+#             unique[r], unique[point] = unique[point], unique[r]
+            
+#             return point 
+            
+#         def quickSelect(l,r):
+#             # base case: the list contains only one element
+#             if l == r:
+#                 return 
+            
+#             p_index = partition(l,r)
+            
+#             if k == p_index:
+#                 return 
+            
+#             elif k < p_index:
+#                 quickSelect(l, p_index - 1)
+#             else:
+#                 quickSelect(p_index + 1, r)
+                
+#         quickSelect(0, len(unique) - 1)
+        
+#         return unique[k:]
                 
             
             
