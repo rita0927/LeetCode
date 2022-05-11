@@ -1,9 +1,32 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         count = Counter(nums)
+        unique = list(count.keys())
+        k = len(unique) - k
         
-        return heapq.nlargest(k, count.keys(), count.get)
-        
+        def quickSelect(l,r):
+
+            pivot = count[unique[r]] 
+            p = l
+            
+            for i in range(l,r):
+                if count[unique[i]] < pivot:
+                    unique[i], unique[p] = unique[p], unique[i]
+                    p +=1
+            unique[p], unique[r] = unique[r], unique[p]
+
+            
+            if p == k:
+                return unique[k:]
+            elif k <p:
+                return quickSelect(l, p - 1)
+            else:
+                return quickSelect(p + 1, r)
+            
+        return quickSelect(0, len(unique) - 1)
+                    
+
+                
         
         
         
