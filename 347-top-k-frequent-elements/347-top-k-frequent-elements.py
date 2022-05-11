@@ -15,15 +15,15 @@ class Solution:
                     p +=1
             unique[p], unique[r] = unique[r], unique[p]
 
-            
             if p == k:
-                return unique[k:]
+                return
             elif k <p:
-                return quickSelect(l, p - 1)
+                quickSelect(l, p - 1)
             else:
-                return quickSelect(p + 1, r)
+                quickSelect(p + 1, r)
             
-        return quickSelect(0, len(unique) - 1)
+        quickSelect(0, len(unique) - 1)
+        return unique[k:]
                     
 
                 
