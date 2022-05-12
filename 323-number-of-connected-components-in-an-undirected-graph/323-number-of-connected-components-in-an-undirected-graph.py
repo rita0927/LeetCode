@@ -1,25 +1,34 @@
 class Solution:
      
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        parents = [i for i in range(n)]
+        rank = [1] * n
         
-        adj = defaultdict(list)
-        res = 0
-        visited = set()
+        def find(n1):
+            root = n1
+            while root != parents[root]:
+                parents[root] = parents[parents[root]]
+                root = parents[root]
+            return root
         
-        for a,b in edges:
-            adj[a].append(b)
-            adj[b].append(a)
-             
-        for i in range(n):
-            if i not in visited:
-                stack = [i]
-                while stack:
-                    node = stack.pop()
-                    visited.add(node)    
-                    for neighbor in adj[node]:
-                        if neighbor not in visited:
-                            stack.append(neighbor)
-                res +=1
+        def union(n1, n2):
+            p1, p2 = find(n1), find(n2)
+            
+            if p1 == p2:
+                return 0
+            
+            if rank[p2] > rank[p1]:
+                parents[p1] = p2
+                rank[p2] +=rank[p1]
+            else:
+                parents[p2] = p1
+                rank[p1] += rank[p2]
+            return 1
+        
+        res = n
+        for n1, n2 in edges:
+            res -= union(n1, n2)
+        
         return res 
         
         
@@ -34,6 +43,32 @@ class Solution:
         
         
         
+        
+        
+        
+        
+        
+        
+        
+#         adj = defaultdict(list)
+#         res = 0
+#         visited = set()
+        
+#         for a,b in edges:
+#             adj[a].append(b)
+#             adj[b].append(a)
+             
+#         for i in range(n):
+#             if i not in visited:
+#                 stack = [i]
+#                 while stack:
+#                     node = stack.pop()
+#                     visited.add(node)    
+#                     for neighbor in adj[node]:
+#                         if neighbor not in visited:
+#                             stack.append(neighbor)
+#                 res +=1
+#         return res 
         
         
         
