@@ -1,20 +1,75 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        res = ""
+        res = ''
         
         def isPalindrome(l,r):
             nonlocal res 
-            while l >=0 and r <len(s) and s[l] == s[r]:
-                l -=1
+            while l >=0 and r < len(s) and s[l] == s[r]:
+                l -= 1
                 r +=1
-            res = s[l + 1:r] if (r-l-1) > len(res) else res 
-        
+            if (r-l - 1) > len(res):
+                res = s[l + 1:r]
+            
+            
+            
         for i in range(len(s)):
-            isPalindrome(i, i)
+            isPalindrome(i,i)
             isPalindrome(i, i+1)
+        return res 
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = ""
+        
+#         def isPalindrome(l,r):
+#             nonlocal res 
+#             while l >=0 and r <len(s) and s[l] == s[r]:
+#                 l -=1
+#                 r +=1
+#             res = s[l + 1:r] if (r-l-1) > len(res) else res 
+        
+#         for i in range(len(s)):
+#             isPalindrome(i, i)
+#             isPalindrome(i, i+1)
             
         
-        return res 
+#         return res 
 
             
         
@@ -170,20 +225,20 @@ class Solution:
             
                   
         
-        def helper(l, r):
-            while l >= 0 and r < len(s) and s[l] == s[r]:
-                l -= 1
-                r += 1
-            return s[l + 1: r]
+#         def helper(l, r):
+#             while l >= 0 and r < len(s) and s[l] == s[r]:
+#                 l -= 1
+#                 r += 1
+#             return s[l + 1: r]
 
-        res = ""
-        for i in range(len(s)):
-            test = helper(i, i)
-            if len(test) > len(res):
-                res = test
-            test = helper(i, i + 1)
-            if len(test) > len(res):
-                res = test
-        return res
+#         res = ""
+#         for i in range(len(s)):
+#             test = helper(i, i)
+#             if len(test) > len(res):
+#                 res = test
+#             test = helper(i, i + 1)
+#             if len(test) > len(res):
+#                 res = test
+#         return res
 
         
