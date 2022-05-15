@@ -18,15 +18,11 @@ class Solution:
         ]
         
         for value, symbol in lst:
-            if num < value:
-                continue
-            n = num//value
-            for _ in range(n):
-                res+=symbol
-                
-            num = num % value
-            if not num:
-                return res
+            if num//value:
+                count = num//value
+                res += (symbol * count)
+                num %= value
+        return res 
                 
             
             
