@@ -17,19 +17,47 @@ class Solution:
         
         res = []
         
-        def backtrack(digits, sub):
-            
-            if not digits:
-                res.append(sub)
+        def backtrack(index, path):
+            if index == len(digits):
+                res.append(''.join(path))
                 return
             
-            digit = digits[0]
+            digit = digits[index]
             for ch in dic[digit]:
-                backtrack(digits[1:], sub + ch)
-            digits = digit + digits
-        
-        backtrack(digits, '')
+                path.append(ch)
+                backtrack(index + 1, path)
+                path.pop()
+        backtrack(0, [])
         return res 
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = []
+        
+#         def backtrack(digits, sub):
+            
+#             if not digits:
+#                 res.append(sub)
+#                 return
+            
+#             digit = digits[0]
+#             for ch in dic[digit]:
+#                 backtrack(digits[1:], sub + ch)
+#             digits = digit + digits
+        
+#         backtrack(digits, '')
+#         return res 
                 
             
         
