@@ -14,21 +14,73 @@ class Solution:
         if not digits:
             return []
         
-        
         res = []
         
         def backtrack(index, path):
             if index == len(digits):
-                res.append(''.join(path))
+                res.append(path)
                 return
             
             digit = digits[index]
             for ch in dic[digit]:
-                path.append(ch)
-                backtrack(index + 1, path)
-                path.pop()
-        backtrack(0, [])
+                backtrack(index + 1, path+ch)
+        
+        backtrack(0, '')
         return res 
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+     
+#     # Time: o(4 ^ N * N) where N is the length of digits, 4 refers to the max length of characters for each digit. Last N is the length of each output string (same as digits legnth), 4 ^ N is the number of output strings. 
+#     # Space: O(N) due to the recursion call stack    
+        
+        
+#         dic = {
+#             '2': "abc",
+#             '3': "def",
+#             '4': "ghi",
+#             '5': "jkl",
+#             '6': "mno",
+#             '7': "pqrs",
+#             '8': "tuv",
+#             '9': "wxyz", 
+#         }
+        
+#         if not digits:
+#             return []
+        
+#         res = []
+        
+#         def backtrack(index, path):
+#             if index == len(digits):
+#                 res.append(''.join(path))
+#                 return
+            
+#             digit = digits[index]
+#             for ch in dic[digit]:
+#                 path.append(ch)
+#                 backtrack(index + 1, path)
+#                 path.pop()
+#         backtrack(0, [])
+#         return res 
                 
         
         
