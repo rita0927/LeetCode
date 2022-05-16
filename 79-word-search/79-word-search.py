@@ -5,29 +5,30 @@ class Solution:
         dir = [[-1,0], [1,0], [0,-1], [0,1]]      
         
         
-        def backtrack(r,c,suffix):
-            
-            if not suffix:
+        def backtrack(r,c,index):
+            if index == len(word):
                 return True
             
-            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != suffix[0]:
+            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:
                 return False
-
+            
             board[r][c] = '#'
             for x,y in dir:
                 nr = x + r
                 nc = y + c
-                if backtrack(nr, nc, suffix[1:]):
+                
+                if backtrack(nr, nc, index + 1):
                     return True
-            board[r][c] = suffix[0]
+            board[r][c] = word[index]
             return False
-
+        
         for r in range(m):
             for c in range(n):
-                if backtrack(r,c,word):
+                if backtrack(r,c,0):
                     return True
-        return False
-        
+        return False 
+            
+
         
         
         
