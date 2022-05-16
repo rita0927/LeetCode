@@ -1,18 +1,18 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        
         m = len(board)
         n = len(board[0])
-        dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        dir = [[-1,0], [1,0], [0,-1], [0,1]]      
+        
         
         def backtrack(r,c,suffix):
             
             if not suffix:
                 return True
             
-            if r< 0 or r >=m or c < 0 or c >=n or suffix[0] != board[r][c]:
+            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != suffix[0]:
                 return False
-            
+
             board[r][c] = '#'
             for x,y in dir:
                 nr = x + r
@@ -21,13 +21,59 @@ class Solution:
                     return True
             board[r][c] = suffix[0]
             return False
-                   
-        
+
         for r in range(m):
             for c in range(n):
                 if backtrack(r,c,word):
                     return True
         return False
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         m = len(board)
+#         n = len(board[0])
+#         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        
+#         def backtrack(r,c,suffix):
+            
+#             if not suffix:
+#                 return True
+
+            # doing the boundary check within the function would allow us to reach the bottom case
+            # example: [["a"]], "a"
+        
+#             if r< 0 or r >=m or c < 0 or c >=n or suffix[0] != board[r][c]:
+#                 return False
+            
+#             board[r][c] = '#'
+#             for x,y in dir:
+#                 nr = x + r
+#                 nc = y + c
+#                 if backtrack(nr, nc, suffix[1:]):
+#                     return True
+#             board[r][c] = suffix[0]
+#             return False
+                   
+        
+#         for r in range(m):
+#             for c in range(n):
+#                 if backtrack(r,c,word):
+#                     return True
+#         return False
         
         
         
