@@ -10,23 +10,60 @@ class Solution:
         if not root:
             return []
         
-        queue = deque([root])
         res = []
-        temp = []
         
-        while queue:
-            level_size = len(queue)
-            for _ in range(level_size):
-                node = queue.popleft()
-                temp.append(node.val)
-                
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-            res.append(temp)
-            temp = []
+        def bfs(node, level):
+            if level == len(res):
+                res.append([])
+            
+            res[level].append(node.val)
+            
+            if node.left:
+                bfs(node.left, level + 1)
+            if node.right:
+                bfs(node.right, level + 1)
+        bfs(root, 0)
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(N), O(h) where h is the height of the tree (recursion stack)
+        
+#         if not root:
+#             return []
+#         res = []
+        
+#         def bfs(node, level):
+#             if level == len(res):
+#                 res.append([])
+            
+#             res[level].append(node.val)
+            
+#             if node.left:
+#                 bfs(node.left, level + 1)
+#             if node.right:
+#                 bfs(node.right, level + 1)
+#         bfs(root, 0)
+#         return res
+            
         
 
                 
@@ -62,7 +99,7 @@ class Solution:
         
         
         
-        
+    # O(N), O(N), space depends on the max number of nodes on a level. For a full tree, ignoring the constants, makes the space complexity of O(N)       
         
         
 #         if not root:
