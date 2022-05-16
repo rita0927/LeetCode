@@ -9,10 +9,10 @@ class Solution:
             
             if stack and stack[-1][1] >= start:
                 interval = stack.pop()
-                start = min(interval[0], start)
-                end = max(interval[1], end)
-                
-            stack.append([start, end])
+                end = max(end, interval[1])
+                stack.append([interval[0], end])
+            else:
+                stack.append([start, end])
             
         return stack 
                         
