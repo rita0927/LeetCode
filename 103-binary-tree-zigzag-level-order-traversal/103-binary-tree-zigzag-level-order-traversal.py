@@ -11,22 +11,68 @@ class Solution:
             return []
         
         res = []
+        queue = deque([(root, 0)])
         
-        def dfs(node, level):
-            if len(res) == level:
-                res.append(deque())
-            
-            if level%2:
-                res[level].appendleft(node.val)    
-            else:
-                res[level].append(node.val)
-            
-            if node.left:
-                dfs(node.left, level + 1)
-            if node.right:
-                dfs(node.right, level + 1)
-        dfs(root, 0)
+        while queue:
+            level_size = len(queue)
+            temp = deque()
+            for _ in range(level_size):
+                node, level = queue.popleft()
+                
+                if level%2:
+                    temp.appendleft(node.val)
+                else:
+                    temp.append(node.val)
+                    
+                if node.left:
+                    queue.append((node.left, level + 1))
+                if node.right:
+                    queue.append((node.right, level + 1))
+                
+            res.append(temp)
         return res 
+                
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(N), O(H)
+        
+#         if not root:
+#             return []
+        
+#         res = []
+        
+#         def dfs(node, level):
+#             if len(res) == level:
+#                 res.append(deque())
+            
+#             if level%2:
+#                 res[level].appendleft(node.val)    
+#             else:
+#                 res[level].append(node.val)
+            
+#             if node.left:
+#                 dfs(node.left, level + 1)
+#             if node.right:
+#                 dfs(node.right, level + 1)
+#         dfs(root, 0)
+#         return res 
                 
                 
                 
@@ -53,30 +99,7 @@ class Solution:
         
         
         
-        
-        
-        
-#         if not root:
-#             return []
-        
-#         res = []
-        
-#         def dfs(node, level):
-#             if level == len(res):
-#                 res.append([])
-                
-#             if level%2:
-#                 res[level] = [node.val] + res[level]
-#             else:
-#                 res[level].append(node.val)
-            
-#             if node.left:
-#                 dfs(node.left, level + 1)
-#             if node.right:
-#                 dfs(node.right, level + 1)
-#         dfs(root, 0)
-#         return res 
-                
+
                 
         
         
