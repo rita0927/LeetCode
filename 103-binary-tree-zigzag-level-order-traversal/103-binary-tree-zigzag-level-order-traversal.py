@@ -11,28 +11,27 @@ class Solution:
             return []
         
         res = []
-        queue = deque([(root, 0)])
         
-        while queue:
+        def dfs(node, level):
+            if len(res) == level:
+                res.append(deque())
             
-            level_size = len(queue)
-            temp = []
-            for _ in range(level_size):
-                node, level = queue.popleft()
-                if level%2:
-                    temp = [node.val] + temp
-                else:
-                    temp.append(node.val)
-                
-                if node.left:
-                    queue.append((node.left, level + 1))
-                if node.right:
-                    queue.append((node.right, level+ 1))
+            if level%2:
+                res[level].appendleft(node.val)    
+            else:
+                res[level].append(node.val)
             
-            res.append(temp)
-            
+            if node.left:
+                dfs(node.left, level + 1)
+            if node.right:
+                dfs(node.right, level + 1)
+        dfs(root, 0)
         return res 
                 
+                
+                
+                
+             
                 
                 
         
