@@ -1,33 +1,84 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        
         m = len(board)
         n = len(board[0])
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
         
-        
-        def backtrack(index, r,c):
-            if index == len(word):
+        def backtrack(r,c,suffix):
+            
+            if not suffix:
                 return True
             
-            if r < 0 or r >=m or c < 0 or c >=n or board[r][c] != word[index]:
+            if r< 0 or r >=m or c < 0 or c >=n or suffix[0] != board[r][c]:
                 return False
             
             board[r][c] = '#'
-            
             for x,y in dir:
                 nr = x + r
                 nc = y + c
-                if backtrack(index + 1, nr, nc):
+                if backtrack(nr, nc, suffix[1:]):
                     return True
-            board[r][c] = word[index]
-            return False        
-            
+            board[r][c] = suffix[0]
+            return False
+                   
+        
         for r in range(m):
             for c in range(n):
-                if backtrack(0, r,c):
+                if backtrack(r,c,word):
                     return True
+        return False
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         m = len(board)
+#         n = len(board[0])
+#         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        
+        
+#         def backtrack(index, r,c):
+#             if index == len(word):
+#                 return True
             
-        return False 
+#             if r < 0 or r >=m or c < 0 or c >=n or board[r][c] != word[index]:
+#                 return False
+            
+#             board[r][c] = '#'
+            
+#             for x,y in dir:
+#                 nr = x + r
+#                 nc = y + c
+#                 if backtrack(index + 1, nr, nc):
+#                     return True
+#             board[r][c] = word[index]
+#             return False        
+            
+#         for r in range(m):
+#             for c in range(n):
+#                 if backtrack(0, r,c):
+#                     return True
+            
+#         return False 
         
         
         
