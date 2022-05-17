@@ -4,6 +4,9 @@ class Solution:
         level = 0
         queue = deque([beginWord])
         
+        if endWord not in words:
+            return 0
+        
         while queue:
             level_size = len(queue)
             
