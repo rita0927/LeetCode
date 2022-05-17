@@ -2,45 +2,65 @@ from functools import lru_cache
 class Solution:
     
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        
         d = set(wordDict)
-        queue = deque([0])
-        visited = set()
         
-        while queue:
+        dp = [False] * (len(s) + 1)
+        dp[0] = True
+        
+        for i in range(1, len(s) + 1):
+            for j in range(i):
+                if dp[j] and s[j:i] in d:
+                    dp[i] = True
+                    # break
+        return dp[len(s)]
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(n^3), O(n)
+#         d = set(wordDict)
+#         queue = deque([0])
+#         visited = set()
+        
+#         while queue:
             
-            start = queue.pop()
-            visited.add(start)
+#             start = queue.popleft()
+#             visited.add(start)
             
-            if start == len(s):
-                return True
+#             if start == len(s):
+#                 return True
             
-            for end in range(start + 1, len(s) + 1):
-                if s[start:end] in d and end not in visited:
-                    queue.append(end)
-        return False 
+#             for end in range(start + 1, len(s) + 1):
+#                 if s[start:end] in d and end not in visited:
+#                     queue.append(end)
+#         return False 
         
         
-        
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
         
         
 #         # O(n^3) and the worst case is O(n^2)
@@ -61,64 +81,7 @@ class Solution:
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
 #         d = set(wordDict)
