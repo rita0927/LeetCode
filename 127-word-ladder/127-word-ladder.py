@@ -1,20 +1,19 @@
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        words = set(wordList)
-        level = 0
-        queue = deque([beginWord])
         
-        if endWord not in words:
-            return 0
+        words = set(wordList)
+        queue = deque([beginWord])
+        level = 0 
         
         while queue:
+            
             level_size = len(queue)
             
             for _ in range(level_size):
                 word = queue.popleft()
-                
                 if word == endWord:
                     return level + 1
+                
                 letters = list(word)
                 
                 for i in range(len(letters)):
@@ -30,6 +29,64 @@ class Solution:
                     letters[i] = temp
             level +=1
         return 0
+                        
+                    
+                
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         words = set(wordList)
+#         level = 0
+#         queue = deque([beginWord])
+        
+#         if endWord not in words:
+#             return 0
+        
+#         while queue:
+#             level_size = len(queue)
+            
+#             for _ in range(level_size):
+#                 word = queue.popleft()
+                
+#                 if word == endWord:
+#                     return level + 1
+#                 letters = list(word)
+                
+#                 for i in range(len(letters)):
+#                     temp = letters[i]
+                    
+#                     for ch in string.ascii_lowercase:
+#                         letters[i] = ch
+#                         newWord = ''.join(letters)
+                        
+#                         if newWord in words:
+#                             queue.append(newWord)
+#                             words.remove(newWord)
+#                     letters[i] = temp
+#             level +=1
+#         return 0
         
                         
                     
