@@ -1,26 +1,62 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         
-        # check if ch in s is a subset of ch in wordDict
-        if set(Counter(s).keys()) > set(Counter(''.join(wordDict)).keys()):
-            return []
+        d= set(wordDict)
+        res = set()
+        
+        def backtrack(i, path):
+            if i == len(s):
+                res.add(' '.join(path))
+                return
+            for j in range(i+1, len(s)+1):
+                if s[i:j] in d:
+                    path.append(s[i:j])
+                    backtrack(j, path)
+                    path.pop()
+        backtrack(0, [])
+        return res
+                
+            
         
         
-        d = set(wordDict)
-        dp = [[]] * (len(s) + 1)
-        dp[0] = ['']
         
-        for i in range(1, len(s) + 1):
-            sublist = []
-            for j in range(i):
-                word = s[j:i]
-                if word in d:
-                    for sub in dp[j]:
-                        temp = (sub + ' ' + word).strip()
-                        sublist.append(temp)
-            dp[i] = sublist
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # check if ch in s is a subset of ch in wordDict
+#         if set(Counter(s).keys()) > set(Counter(''.join(wordDict)).keys()):
+#             return []
+        
+        
+#         d = set(wordDict)
+#         dp = [[]] * (len(s) + 1)
+#         dp[0] = ['']
+        
+#         for i in range(1, len(s) + 1):
+#             sublist = []
+#             for j in range(i):
+#                 word = s[j:i]
+#                 if word in d:
+#                     for sub in dp[j]:
+#                         temp = (sub + ' ' + word).strip()
+#                         sublist.append(temp)
+#             dp[i] = sublist
               
-        return dp[len(s)]
+#         return dp[len(s)]
         
         
         
