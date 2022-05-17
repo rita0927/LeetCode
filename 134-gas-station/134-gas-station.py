@@ -1,18 +1,21 @@
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        tank = 0
+        cur_tank = 0
         start = 0
-        rem = 0
+        total_tank = 0
         
         for i in range(len(gas)):
-            tank += gas[i] - cost[i]
-            if tank < 0:
+            cur_tank += gas[i] - cost[i]
+            # If current start can't get there
+            if cur_tank < 0:
+                # Pick up the next station as the start
                 start = i+ 1
-                tank = 0
+                # Start with an empty tank
+                cur_tank = 0
                 
-            rem += gas[i] - cost[i]
+            total_tank += gas[i] - cost[i]
             
-        return start if rem >= 0 else -1
+        return start if total_tank >= 0 else -1
             
             
         
