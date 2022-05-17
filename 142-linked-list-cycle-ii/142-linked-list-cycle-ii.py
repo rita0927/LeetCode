@@ -11,24 +11,22 @@ class Solution:
             return head
         
         slow = head
-        fast = head
+        fast = head 
+        
         
         while fast.next and fast.next.next:
             slow = slow.next
             fast = fast.next.next
             if slow == fast:
-                break
-        if not fast.next or not fast.next.next:
-            return None
-        
-        fast = head
-        
-        while fast != slow:
-            slow = slow.next
-            fast = fast.next
-        return slow 
+                fast = head
+                
+                while fast != slow:
+                    fast = fast.next
+                    slow = slow.next
+                return slow
             
-        
+        return None 
+            
         
         
         
