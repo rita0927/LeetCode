@@ -4,17 +4,27 @@ class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         
         d = set(wordDict)
-        @lru_cache
-        def helper(start):
+        queue = deque([0])
+        visited = set()
+        
+        while queue:
+            
+            start = queue.pop()
+            visited.add(start)
             
             if start == len(s):
                 return True
-                
+            
             for end in range(start + 1, len(s) + 1):
-                if s[start:end] in d and helper(end):
-                    return True
-            return False
-        return helper(0)
+                if s[start:end] in d and end not in visited:
+                    queue.append(end)
+        return False 
+        
+        
+        
+
+
+
         
         
         
@@ -33,20 +43,37 @@ class Solution:
         
         
         
-        
-        
+#         # O(n^3) and the worst case is O(n^2)
+#         # O(n) depth of recursion tree
         
 #         d = set(wordDict)
-        
+#         @lru_cache
 #         def helper(start):
+            
 #             if start == len(s):
 #                 return True
-            
+#            # range needs to include the len(s) to reach the base case
 #             for end in range(start + 1, len(s) + 1):
 #                 if s[start:end] in d and helper(end):
 #                     return True
 #             return False
 #         return helper(0)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
     
         
