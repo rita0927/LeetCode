@@ -1,21 +1,57 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        
         d = set(wordDict)
         res = []
         
-        def backtrack(i, path):
+        def dfs(i, path):
             if i == len(s):
                 res.append(' '.join(path))
-                return
-
-            for j in range(i + 1, len(s) + 1):
+            
+            for j in range(i+1, len(s) + 1):
                 if s[i:j] in d:
-                    path.append(s[i:j])
-                    backtrack(j, path)
-                    path.pop()
-        backtrack(0, [])
-        
+                    dfs(j, path + [s[i:j]])
+        dfs(0, [])
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         d = set(wordDict)
+#         res = []
+        
+#         def backtrack(i, path):
+#             if i == len(s):
+#                 res.append(' '.join(path))
+#                 return
+
+#             for j in range(i + 1, len(s) + 1):
+#                 if s[i:j] in d:
+#                     path.append(s[i:j])
+#                     backtrack(j, path)
+#                     path.pop()
+#         backtrack(0, [])
+        
+#         return res 
         
         
         
