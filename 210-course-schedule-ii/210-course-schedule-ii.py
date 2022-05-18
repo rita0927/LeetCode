@@ -7,31 +7,30 @@ class Solution:
             adj[crs].append(pre)
 
         res = []
-        visited = set()
         cycle = set()
+        visited = set()
         
         def dfs(crs):
             if crs in cycle:
                 return False
             if crs in visited:
                 return True
-
-            cycle.add(crs)
             
+            cycle.add(crs)
             for pre in adj[crs]:
                 if not dfs(pre):
                     return False
-            res.append(crs)  
+            res.append(crs)
             visited.add(crs)
             cycle.remove(crs)
             return True
-      
-        
+            
+            
+  
         for crs in range(numCourses):
             if not dfs(crs):
                 return []
-        return res
-        
+        return res 
         
         
         
