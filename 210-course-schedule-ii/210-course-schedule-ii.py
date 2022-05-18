@@ -1,28 +1,95 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         
-        adj_list = defaultdict(list)
-        indegree = {}
-        res = []
+        adj = defaultdict(list)
         
         for crs, pre in prerequisites:
-            adj_list[pre].append(crs)
-            indegree[crs] = indegree.get(crs, 0) + 1
+            adj[crs].append(pre)
+
+        res = []
+        visited = set()
+        cycle = set()
         
-        queue = deque([c for c in range(numCourses) if c not in indegree])
-        
-        while queue:
-            pre = queue.popleft()
-            res.append(pre)
+        def dfs(crs):
+            if crs in cycle:
+                return False
+            if crs in visited:
+                return True
+
+            cycle.add(crs)
             
-            for crs in adj_list[pre]:
-                indegree[crs] -=1
+            for pre in adj[crs]:
+                if not dfs(pre):
+                    return False
+            res.append(crs)  
+            visited.add(crs)
+            cycle.remove(crs)
+            return True
+      
+        
+        for crs in range(numCourses):
+            if not dfs(crs):
+                return []
+        return res
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         adj_list = defaultdict(list)
+#         indegree = {}
+#         res = []
+        
+#         for crs, pre in prerequisites:
+#             adj_list[pre].append(crs)
+#             indegree[crs] = indegree.get(crs, 0) + 1
+        
+#         queue = deque([c for c in range(numCourses) if c not in indegree])
+        
+#         while queue:
+#             pre = queue.popleft()
+#             res.append(pre)
+            
+#             for crs in adj_list[pre]:
+#                 indegree[crs] -=1
                 
-                if indegree[crs] == 0:
-                    queue.append(crs)
+#                 if indegree[crs] == 0:
+#                     queue.append(crs)
             
                     
-        return res if len(res) == numCourses else []
+#         return res if len(res) == numCourses else []
         
         
         
