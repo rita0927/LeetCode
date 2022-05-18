@@ -2,24 +2,84 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         m = len(grid)
         n = len(grid[0])
-        dir = [[-1,0], [1,0],[0,-1], [0,1]]
         res = 0
+        dir = [[-1,0], [1,0], [0,-1], [0,1]]
         
         def dfs(r,c):
-            grid[r][c] = 0
+            grid[r][c] = '#'
             
             for x,y in dir:
-                nr, nc = x+r, y + c
+                nr = x + r
+                nc = y + c
                 
-                if 0<=nr<m and 0<=nc<n and grid[nr][nc] == "1":
+                if 0 <= nr < m and 0 <=nc < n and grid[nr][nc] == '1':
                     dfs(nr, nc)
+               
         
         for r in range(m):
             for c in range(n):
-                if grid[r][c] == "1":
-                    res +=1
+                if grid[r][c] == '1':
                     dfs(r,c)
+                    res +=1
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(mn), O(mn)
+        
+#         m = len(grid)
+#         n = len(grid[0])
+#         dir = [[-1,0], [1,0],[0,-1], [0,1]]
+#         res = 0
+        
+#         def dfs(r,c):
+#             grid[r][c] = 0
+            
+#             for x,y in dir:
+#                 nr, nc = x+r, y + c
+                
+#                 if 0<=nr<m and 0<=nc<n and grid[nr][nc] == "1":
+#                     dfs(nr, nc)
+        
+#         for r in range(m):
+#             for c in range(n):
+#                 if grid[r][c] == "1":
+#                     res +=1
+#                     dfs(r,c)
+#         return res 
             
             
         
