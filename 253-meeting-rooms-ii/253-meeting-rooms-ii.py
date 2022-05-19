@@ -1,17 +1,19 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        rooms = []
-        intervals.sort()
+        rooms = 0
+        starts = sorted([i[0] for i in intervals])
+        ends = sorted([i[1] for i in intervals])
         
-        heapq.heappush(rooms, intervals[0][1])
+        e = 0
         
-        for start, end in intervals[1:]:
-            if start >= rooms[0]:
-                heapq.heappop(rooms)
-            
-            heapq.heappush(rooms, end)
+        for s in range(len(intervals)):
+            if starts[s] >= ends[e]:
+                rooms -=1
+                e+=1
+            rooms +=1
         
-        return len(rooms)
+        return rooms 
+
         
         
         
