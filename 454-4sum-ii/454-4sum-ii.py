@@ -1,5 +1,11 @@
 class Solution:
     def fourSumCount(self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]) -> int:
+        
+        
+        
+        # O(n^2) for nested loops
+        # O(n^2) for the hashmap 
+        
         dic = defaultdict(int)
         res = 0
         for n1 in nums1:
