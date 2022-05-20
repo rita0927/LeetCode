@@ -5,15 +5,12 @@ class Solution:
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
         visited = set()
         
-        queue = deque([(start[0], start[1])])
-        
-        while queue:
-            r,c = queue.popleft()
+        def dfs(r,c):
             visited.add((r,c))
             
             if [r,c] == destination:
                 return True
-            
+                       
             for x,y in dir:
                 nr = r
                 nc = c
@@ -22,10 +19,67 @@ class Solution:
                     nr += x
                     nc += y
                 
-                if (nr, nc) not in visited:
-                    queue.append((nr, nc))
+                if (nr, nc) not in visited and dfs(nr, nc):
+                    return True
             
-        return False 
+       
+        
+        return dfs(start[0], start[1])
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         m = len(maze)
+#         n = len(maze[0])
+#         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+#         visited = set()
+        
+#         queue = deque([(start[0], start[1])])
+        
+#         while queue:
+#             r,c = queue.popleft()
+#             visited.add((r,c))
+            
+#             if [r,c] == destination:
+#                 return True
+            
+#             for x,y in dir:
+#                 nr = r
+#                 nc = c
+                
+#                 while 0<= nr + x < m and 0<= nc + y < n and maze[nr + x][nc + y] == 0:
+#                     nr += x
+#                     nc += y
+                
+#                 if (nr, nc) not in visited:
+#                     queue.append((nr, nc))
+            
+#         return False 
         
         
         
