@@ -10,30 +10,80 @@ class Solution:
         parents = {}
         res = []
         
-        def findParents(node, parent):
+        def findParents (node, parent):
             if node:
                 parents[node] = parent
                 findParents(node.left, node)
                 findParents(node.right, node)
         findParents(root, None)
         
+        queue = deque([(target, 0)])
         visited = set()
-        def helper(node, dis):
-            
-            if node.val in visited:
-                return 
-            visited.add(node.val)
-            
+        visited.add(target.val)
+        while queue: 
+            node, dis = queue.popleft()
             if dis == k:
                 res.append(node.val)
-                return 
+                continue
             
             for neighbor in [node.left, node.right, parents[node]]:
-                if neighbor:
-                    helper(neighbor, dis + 1)
-        
-        helper(target, 0)
+                if neighbor and neighbor.val not in visited:
+                    visited.add(neighbor.val)
+                    queue.append((neighbor, dis + 1))
         return res 
+                
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         parents = {}
+#         res = []
+        
+#         def findParents(node, parent):
+#             if node:
+#                 parents[node] = parent
+#                 findParents(node.left, node)
+#                 findParents(node.right, node)
+#         findParents(root, None)
+        
+#         visited = set()
+#         def helper(node, dis):
+            
+#             if node.val in visited:
+#                 return 
+#             visited.add(node.val)
+            
+#             if dis == k:
+#                 res.append(node.val)
+#                 return 
+            
+#             for neighbor in [node.left, node.right, parents[node]]:
+#                 if neighbor:
+#                     helper(neighbor, dis + 1)
+        
+#         helper(target, 0)
+#         return res 
             
                 
             
