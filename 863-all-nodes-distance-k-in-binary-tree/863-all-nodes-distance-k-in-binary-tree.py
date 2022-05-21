@@ -7,40 +7,106 @@
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        
-        res = []
         parents = {}
+        res = []
         
-        def findParent(node, parent):
+        def findParents(node, parent):
             if node:
                 parents[node] = parent
-                findParent(node.left, node)
-                findParent(node.right, node)
-            
-        findParent(root, None)
-        
+                findParents(node.left, node)
+                findParents(node.right, node)
+        findParents(root, None)
         
         visited = set()
-        
-        def helper(node, distance):
-            
-            if not node or distance > k:
-                return
+        def helper(node, dis):
             
             if node.val in visited:
                 return 
-            
             visited.add(node.val)
             
-            if distance == k:
+            if dis == k:
                 res.append(node.val)
+                return 
             
-            for neightbor in [node.left, node.right, parents[node]]:
-                helper(neightbor, distance + 1)
+            for neighbor in [node.left, node.right, parents[node]]:
+                if neighbor:
+                    helper(neighbor, dis + 1)
         
         helper(target, 0)
+        return res 
+            
+                
+            
+            
+            
         
-        return res
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = []
+#         parents = {}
+        
+#         def findParent(node, parent):
+#             if node:
+#                 parents[node] = parent
+#                 findParent(node.left, node)
+#                 findParent(node.right, node)
+            
+#         findParent(root, None)
+        
+        
+#         visited = set()
+        
+#         def helper(node, distance):
+            
+#             if not node or distance > k:
+#                 return
+            
+#             if node.val in visited:
+#                 return 
+            
+#             visited.add(node.val)
+            
+#             if distance == k:
+#                 res.append(node.val)
+            
+#             for neightbor in [node.left, node.right, parents[node]]:
+#                 helper(neightbor, distance + 1)
+        
+#         helper(target, 0)
+        
+#         return res
                 
             
             
