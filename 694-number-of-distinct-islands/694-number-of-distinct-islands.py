@@ -1,26 +1,21 @@
 class Solution:
     def numDistinctIslands(self, grid: List[List[int]]) -> int:
-        res = set()
-        m = len(grid)
-        n = len(grid[0])
+
         
-        def dfs(r,c,path):
-            if r < 0 or r >= m or c < 0 or c >= n or grid[r][c] == 0:
-                return 'e'
-            grid[r][c] = 0
-            u = dfs(r-1,c,'u')
-            d = dfs(r+1,c, 'd')
-            l = dfs(r, c-1, 'l')
-            r = dfs(r, c+1, 'r')
-            path = path + u + d + l + r
-            return path 
-       
-        for r in range(m):
-            for c in range(n):
-                if grid[r][c] == 1:
-                    res.add(dfs(r,c,'s'))
-        return len(res)
-                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -36,29 +31,63 @@ class Solution:
 #         res = set()
 #         m = len(grid)
 #         n = len(grid[0])
-#         visited = set()
-#         directions = [('u',-1, 0), ('d',1,0), ('l',0,-1), ('r',0,1)]
         
-#         def dfs(r,c):
-#             path = ''
-#             visited.add((r,c))
-            
-#             for dir, x,y in directions:
-#                 nr = r + x
-#                 nc = c + y
-                
-#                 if 0<= nr < m and 0<=nc < n and grid[nr][nc] == 1 and (nr,nc) not in visited:
-#                     path+=dir
-#                     dfs(nr, nc)            
-#             return path
-        
-        
-        
+#         def dfs(r,c,path):
+#             if r < 0 or r >= m or c < 0 or c >= n or grid[r][c] == 0:
+#                 return 'e'
+#             grid[r][c] = 0
+#             u = dfs(r-1,c,'u')
+#             d = dfs(r+1,c, 'd')
+#             l = dfs(r, c-1, 'l')
+#             r = dfs(r, c+1, 'r')
+#             path = path + u + d + l + r
+#             return path 
+       
 #         for r in range(m):
 #             for c in range(n):
-#                  if grid[r][c] == 1 and (r,c) not in visited:
-#                         res.add(dfs(r,c))
+#                 if grid[r][c] == 1:
+#                     res.add(dfs(r,c,'s'))
 #         return len(res)
+                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        res = set()
+        m = len(grid)
+        n = len(grid[0])
+        visited = set()
+        directions = [('u',-1, 0), ('d',1,0), ('l',0,-1), ('r',0,1)]
+        
+        def dfs(r,c, path):
+            
+            if r < 0 or r >= m or c < 0 or c >= n or (r,c) in visited or grid[r][c] == 0:
+                return 'e'
+
+            visited.add((r,c))
+    
+            for dir, x,y in directions:
+                nr = r + x
+                nc = c + y
+                path += dfs(nr, nc, dir)
+            print(path)
+            return path
+        
+        
+        
+        for r in range(m):
+            for c in range(n):
+                 if grid[r][c] == 1 and (r,c) not in visited:
+                        res.add(dfs(r,c, 's'))
+        return len(res)
                         
                         
         
