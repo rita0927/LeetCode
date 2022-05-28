@@ -1,31 +1,90 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
+        
         m = len(grid)
         n = len(grid[0])
-        res = 0
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
-        queue = deque()
-        visited = set()
         
+        def dfs(r,c):
+            grid[r][c] = 0
+            
+            for x,y in dir:
+                nr = x + r
+                nc = y + c
+                
+                if 0<= nr < m and 0 <= nc < n and grid[nr][nc] == '1':
+                    dfs(nr, nc)
+        res = 0
         for r in range(m):
             for c in range(n):
-                if grid[r][c] == '1' and (r,c) not in visited:
-                    res +=1
-                    queue.append((r,c))
+                if grid[r][c] == '1':
+                    dfs(r,c)
+                    res += 1
+        return res 
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         m = len(grid)
+#         n = len(grid[0])
+#         res = 0
+#         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+#         queue = deque()
+#         visited = set()
+        
+#         for r in range(m):
+#             for c in range(n):
+#                 if grid[r][c] == '1' and (r,c) not in visited:
+#                     res +=1
+#                     queue.append((r,c))
                     
-                    while queue:
-                        row, col = queue.popleft()
-                        visited.add((row, col))
+#                     while queue:
+#                         row, col = queue.popleft()
+#                         visited.add((row, col))
                         
-                        for x,y in dir:
-                            nr = x + row
-                            nc = y + col
+#                         for x,y in dir:
+#                             nr = x + row
+#                             nc = y + col
                             
-                            if 0<=nr<m and 0<=nc<n and (nr,nc) not in visited and grid[nr][nc] == '1':
-                                queue.append((nr,nc))
-                                visited.add((nr,nc))
+#                             if 0<=nr<m and 0<=nc<n and (nr,nc) not in visited and grid[nr][nc] == '1':
+#                                 queue.append((nr,nc))
+#                                 visited.add((nr,nc))
                 
-        return res       
+#         return res       
 
                 
         
