@@ -19,16 +19,20 @@ class Solution:
         
         res = []
         visited = set()
-        def findDistance(node, distance):
+        queue = deque([(target, 0)])
+        
+        while queue:
+            node, distance = queue.popleft()
             visited.add(node)
+            
             if distance == k:
                 res.append(node.val)
-                return
+                continue
             for next in [node.left, node.right, node.parent]:
                 if next and next not in visited:
-                    findDistance(next, distance+1)
-        findDistance(target, 0)
+                    queue.append((next, distance+1))
         return res 
+        
             
             
         
