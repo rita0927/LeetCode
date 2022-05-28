@@ -7,30 +7,84 @@
 
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        parents = {}
+        
+        
+        def findParent(node, parent):
+            node.parent = parent
+            if node.left:
+                findParent(node.left, node)
+            if node.right:
+                findParent(node.right, node)
+        findParent(root, None)
+        
         res = []
-        
-        def findParents (node, parent):
-            if node:
-                parents[node] = parent
-                findParents(node.left, node)
-                findParents(node.right, node)
-        findParents(root, None)
-        
-        queue = deque([(target, 0)])
         visited = set()
-        visited.add(target.val)
-        while queue: 
-            node, dis = queue.popleft()
-            if dis == k:
+        def findDistance(node, distance):
+            visited.add(node)
+            if distance == k:
                 res.append(node.val)
-                continue
-            
-            for neighbor in [node.left, node.right, parents[node]]:
-                if neighbor and neighbor.val not in visited:
-                    visited.add(neighbor.val)
-                    queue.append((neighbor, dis + 1))
+                return
+            for next in [node.left, node.right, node.parent]:
+                if next and next not in visited:
+                    findDistance(next, distance+1)
+        findDistance(target, 0)
         return res 
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         parents = {}
+#         res = []
+        
+#         def findParents (node, parent):
+#             if node:
+#                 parents[node] = parent
+#                 findParents(node.left, node)
+#                 findParents(node.right, node)
+#         findParents(root, None)
+        
+#         queue = deque([(target, 0)])
+#         visited = set()
+#         visited.add(target.val)
+#         while queue: 
+#             node, dis = queue.popleft()
+#             if dis == k:
+#                 res.append(node.val)
+#                 continue
+            
+#             for neighbor in [node.left, node.right, parents[node]]:
+#                 if neighbor and neighbor.val not in visited:
+#                     visited.add(neighbor.val)
+#                     queue.append((neighbor, dis + 1))
+#         return res 
                 
             
         
