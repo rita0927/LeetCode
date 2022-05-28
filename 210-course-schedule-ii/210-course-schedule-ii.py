@@ -1,30 +1,43 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        
         adj = defaultdict(list)
-        in_degree = defaultdict(int)
+        res = []
         
         for crs, pre in prerequisites:
-            adj[pre].append(crs)
-            in_degree[crs]+=1
+            adj[crs].append(pre)
         
-        res = []
         visited = set()
+        cycle = set()
         
-        queue = deque([c for c in range(numCourses) if c not in in_degree])
-        
-        while queue:
-            pre = queue.popleft()
-            visited.add(pre)
-            res.append(pre)
+        def dfs(crs):
+            if crs in visited:
+                return True
+            if crs in cycle:
+                return False
             
-            for crs in adj[pre]:
-                in_degree[crs]-=1
-                
-                if not in_degree[crs]:
-                    queue.append(crs)
+            cycle.add(crs)
+            
+            for pre in adj[crs]:
+                if not dfs(pre):
+                    return False
+            
+            visited.add(crs)
+            res.append(crs)
+            cycle.remove(crs)
+            return True
+            
         
-        return res if len(visited) == numCourses else []
+        for crs in range(numCourses):
+            if not dfs(crs):
+                return []
+        return res 
+            
+        
+        
+        
+        
+        
+
         
 
         
@@ -54,8 +67,11 @@ class Solution:
         
         
         
+
         
-        
+# # O(E + V), O(E + V)
+# # When there's a cycle, in_degree[cycled_crs] won't be 0 or added to the queue/res 
+
 #         adj_list = defaultdict(list)
 #         indegree = {}
 #         res = []
