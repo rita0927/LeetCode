@@ -1,14 +1,14 @@
 class Solution:
     def reverseWords(self, s: str) -> str:
-        l = 0
+        l = 0 
         r = len(s) - 1
-        # remove the leading space
+        
         while l < len(s) and s[l] == ' ':
-                l+=1
-        # remove the tailing space
+            l += 1
+        
         while r >= 0 and s[r] == ' ':
             r -=1
-            
+        
         queue = deque()
         temp = ''
         
@@ -18,11 +18,60 @@ class Solution:
                 temp = ''
             elif s[l] != ' ':
                 temp += s[l]
+            
+            if l == r:
+                queue.appendleft(temp)
+                
             l += 1
         
-        if temp:
-            queue.appendleft(temp)
         return ' '.join(queue)
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         l = 0
+#         r = len(s) - 1
+#         # remove the leading space
+#         while l < len(s) and s[l] == ' ':
+#                 l+=1
+#         # remove the tailing space
+#         while r >= 0 and s[r] == ' ':
+#             r -=1
+            
+#         queue = deque()
+#         temp = ''
+        
+#         while l <=r:
+#             if s[l] == ' ' and temp:
+#                 queue.appendleft(temp)
+#                 temp = ''
+#             elif s[l] != ' ':
+#                 temp += s[l]
+#             l += 1
+        
+#         if temp:
+#             queue.appendleft(temp)
+#         return ' '.join(queue)
         
                 
         
