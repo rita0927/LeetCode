@@ -3,16 +3,57 @@ class Solution:
         
         def helper(string):
             stack = []
-            
             for i in string:
-                if i != '#':
-                    stack.append(i)
-                # i == '#' and stack is not empty
-                elif stack:
+                if stack and i == '#':
                     stack.pop()
-
-            return ''.join(stack)
+                elif i != '#':
+                    stack.append(i)
                     
+            return ''.join(stack)
+        
         return helper(s) == helper(t)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         def helper(string):
+#             stack = []
+            
+#             for i in string:
+#                 if i != '#':
+#                     stack.append(i)
+#                 # i == '#' and stack is not empty
+#                 elif stack:
+#                     stack.pop()
+
+#             return ''.join(stack)
+                    
+#         return helper(s) == helper(t)
         
         
