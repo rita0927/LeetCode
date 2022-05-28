@@ -5,28 +5,27 @@ class Solution:
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
         
         queue = deque()
-        res = 0
+        res = 0 
         visited = set()
         
-        for r in range(m):
-            for c in range(n):
-                if grid[r][c] == '1' and (r,c) not in visited:
-                    res +=1
-                    visited.add((r,c))
-                    queue.append((r,c))
+        for row in range(m):
+            for col in range(n):
+                if grid[row][col] == '1' and (row, col) not in visited:
+                    visited.add((row, col))
+                    res += 1
+                    queue.append((row, col))
                     
                     while queue:
-                        row, col = queue.popleft()
-   
+                        r,c = queue.popleft()
+                        
                         for x,y in dir:
-                            nr = x + row
-                            nc = y + col
-
+                            nr = x + r
+                            nc = y + c
+                            
                             if 0<= nr < m and 0 <= nc < n and grid[nr][nc] == '1' and (nr,nc) not in visited:
-                                queue.append((nr,nc))
                                 visited.add((nr,nc))
+                                queue.append((nr,nc))
         return res 
-        
         
         
         
