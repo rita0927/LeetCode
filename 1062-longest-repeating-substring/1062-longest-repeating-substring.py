@@ -7,9 +7,10 @@ class Solution:
             
             for i in range(len(s)-length):
                 sub = s[i:i+length+1]
-                if sub in seen:
+                h = hash(sub)
+                if h in seen:
                     return True
-                seen.add(sub)
+                seen.add(h)
             return False 
         
    
