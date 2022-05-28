@@ -1,5 +1,8 @@
 class Solution:
     def longestRepeatingSubstring(self, s: str) -> int:
+        
+        # O(NlogN), O(N^2) (if L is the len of substring, average is O(N*L))
+        
         n = len(s) 
         """
         Search a substring of given length
@@ -11,9 +14,10 @@ class Solution:
             seen = set()
             for i in range(n-length):
                 sub = s[i:i+length+1]
-                if sub in seen:
+                h = hash(sub)
+                if h in seen:
                     return True
-                seen.add(sub)
+                seen.add(h)
             return False 
         
 
