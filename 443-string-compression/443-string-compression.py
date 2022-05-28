@@ -6,20 +6,65 @@ class Solution:
         while l < len(chars):
             chars[index] = chars[l]
             index +=1
+            r = l 
             
-            r = l
-            while r < len(chars) and chars[r] == chars[l]:
-                r+=1
-    
-            if r-l >1:
+            while r < len(chars) and chars[l] == chars[r]:
+                r +=1
+            
+            if r - l > 1:
                 count = str(r-l)
-                for n in count:     
-                    chars[index] = n
+                for digit in count:
+                    chars[index] = digit
                     index +=1
-                
+            
             l = r
+        return index 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         index = 0
+#         l = 0
+        
+#         while l < len(chars):
+#             chars[index] = chars[l]
+#             index +=1
+            
+#             r = l
+#             while r < len(chars) and chars[r] == chars[l]:
+#                 r+=1
+    
+#             if r-l >1:
+#                 count = str(r-l)
+#                 for n in count:     
+#                     chars[index] = n
+#                     index +=1
+                
+#             l = r
               
-        return index
+#         return index
         
         
         
