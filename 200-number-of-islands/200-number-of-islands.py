@@ -6,12 +6,12 @@ class Solution:
         
         queue = deque()
         res = 0 
-        visited = set()
+        # visited = set()
         
         for row in range(m):
             for col in range(n):
-                if grid[row][col] == '1' and (row, col) not in visited:
-                    visited.add((row, col))
+                if grid[row][col] == '1':
+                    grid[row][col] = '0'
                     res += 1
                     queue.append((row, col))
                     
@@ -22,8 +22,9 @@ class Solution:
                             nr = x + r
                             nc = y + c
                             
-                            if 0<= nr < m and 0 <= nc < n and grid[nr][nc] == '1' and (nr,nc) not in visited:
-                                visited.add((nr,nc))
+                            if 0<= nr < m and 0 <= nc < n and grid[nr][nc] == '1':
+                                # visited.add((nr,nc))
+                                grid[nr][nc] = '0'
                                 queue.append((nr,nc))
         return res 
         
