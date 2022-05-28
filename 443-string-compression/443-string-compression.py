@@ -4,22 +4,68 @@ class Solution:
         l = 0
         
         while l < len(chars):
-            r = l
-            while r < len(chars) and chars[r] == chars[l]:
-                r+=1
-
             chars[index] = chars[l]
             index +=1
             
+            r = l
+            while r < len(chars) and chars[r] == chars[l]:
+                r+=1
+    
             if r-l >1:
                 count = str(r-l)
-                for n in count:                    
+                for n in count:     
                     chars[index] = n
                     index +=1
-
+                
             l = r
               
         return index
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         index = 0
+#         l = 0
+        
+#         while l < len(chars):
+#             r = l
+#             while r < len(chars) and chars[r] == chars[l]:
+#                 r+=1
+
+#             chars[index] = chars[l]
+#             index +=1
+            
+#             if r-l >1:
+#                 count = str(r-l)
+#                 for n in count:                    
+#                     chars[index] = n
+#                     index +=1
+
+#             l = r
+              
+#         return index
         
         
         
