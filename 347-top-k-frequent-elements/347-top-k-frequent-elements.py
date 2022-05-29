@@ -1,31 +1,78 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         count = Counter(nums)
-        unique = list(count.keys())
-        k = len(unique) - k
+        return heapq.nlargest(k, count.keys(), count.get)
         
-        def quickSelect(l,r):
-            # pick the pivot randomly to avoid the worst-case of constantly bad chosen pivots
-            pivot_index = random.randint(l,r)
-            pivot = count[unique[pivot_index]]
-            unique[r], unique[pivot_index] = unique[pivot_index], unique[r]
-            p = l
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         count = Counter(nums)
+#         unique = list(count.keys())
+#         k = len(unique) - k
+        
+#         def quickSelect(l,r):
+
+#             # pick the pivot randomly to avoid the worst-case of constantly bad chosen pivots
+#             # pick an index between l and r (both included)
+#             pivot_index = random.randint(l,r)
+#             pivot = count[unique[pivot_index]]
+
+#             # move pivot to end
+#             unique[r], unique[pivot_index] = unique[pivot_index], unique[r]
+#             p = l
             
-            for i in range(l,r):
-                if count[unique[i]] < pivot:
-                    unique[i], unique[p] = unique[p], unique[i]
-                    p+=1
-            unique[r], unique[p] = unique[p], unique[r]
+#             for i in range(l,r):
+#                 if count[unique[i]] < pivot:
+#                     unique[i], unique[p] = unique[p], unique[i]
+#                     p+=1
+#             unique[r], unique[p] = unique[p], unique[r]
             
-            if k < p:
-                quickSelect(l,p -1)
-            elif k > p:
-                quickSelect(p + 1, r)
-            else:
-                return 
+#             if k < p:
+#                 quickSelect(l,p -1)
+#             elif k > p:
+#                 quickSelect(p + 1, r)
+#             else:
+#                 return 
             
-        quickSelect(0, len(unique) - 1)
-        return unique[k:]
+#         quickSelect(0, len(unique) - 1)
+#         return unique[k:]
         
         
         
@@ -98,30 +145,7 @@ class Solution:
 
         
         
-        
-        
-        
-        
-        
 
-            
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -184,17 +208,7 @@ class Solution:
         
    
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
         
         
         
