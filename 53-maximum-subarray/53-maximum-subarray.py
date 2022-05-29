@@ -3,16 +3,21 @@ class Solution:
         if max(nums) < 0:
             return max(nums)
         
-        localMax, globalMax = 0, 0
         
-        for num in nums:
-            localMax = max(0, localMax + num)
-            globalMax = max(globalMax, localMax)
-        return globalMax 
+        res = float('-inf')
+        temp = 0 
+        
+        for i in range(len(nums)):
+            if temp + nums[i] <0:
+                temp = 0 
+            else:
+                temp += nums[i]
+            res = max([res, temp, nums[i]])
+        
+        return res 
+        
         
 
-        
-        
         
         
         
