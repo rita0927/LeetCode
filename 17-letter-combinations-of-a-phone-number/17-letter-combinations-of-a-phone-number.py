@@ -1,5 +1,10 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
+        
+        if not digits:
+            return []
+        
+        
         dic = {
             '2': "abc",
             '3': "def",
@@ -11,22 +16,92 @@ class Solution:
             '9': "wxyz", 
         }
         
-        if not digits:
-            return []
-        
         res = []
         
-        def backtrack(index, path):
-            if index == len(digits):
-                res.append(path)
+        def backtrack(i, path):
+            
+            if i == len(digits):
+                res.append(''.join(path))
                 return
             
-            digit = digits[index]
+            digit = digits[i]
             for ch in dic[digit]:
-                backtrack(index + 1, path+ch)
-        
-        backtrack(0, '')
+                path.append(ch)
+                backtrack(i+1, path)
+                path.pop()
+            
+        backtrack(0, [])
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         dic = {
+#             '2': "abc",
+#             '3': "def",
+#             '4': "ghi",
+#             '5': "jkl",
+#             '6': "mno",
+#             '7': "pqrs",
+#             '8': "tuv",
+#             '9': "wxyz", 
+#         }
+        
+#         if not digits:
+#             return []
+        
+#         res = []
+        
+#         def backtrack(index, path):
+#             if index == len(digits):
+#                 res.append(path)
+#                 return
+            
+#             digit = digits[index]
+#             for ch in dic[digit]:
+#                 backtrack(index + 1, path+ch)
+        
+#         backtrack(0, '')
+#         return res 
             
         
         
