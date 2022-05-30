@@ -6,23 +6,65 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         
-        vals = []
-        cur = head
+        slow, fast = head, head
         
-        while cur:
-            vals.append(cur.val)
-            cur = cur.next
-            
-        l = 0
-        r = len(vals) - 1
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
         
-        while l <= r:
-            if vals[l] != vals[r]:
+        prev= None
+        while slow:
+            next = slow.next
+            slow.next = prev
+            prev = slow
+            slow = next
+        
+        left, right = head, prev
+        
+        while left and right:
+            if left.val != right.val:
                 return False
-            l += 1
-            r -= 1
-        
+            left = left.next
+            right = right.next
+            
         return True
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         #O(N), O(N)        
+        
+#         vals = []
+#         cur = head
+        
+#         while cur:
+#             vals.append(cur.val)
+#             cur = cur.next
+            
+#         l = 0
+#         r = len(vals) - 1
+        
+#         while l <= r:
+#             if vals[l] != vals[r]:
+#                 return False
+#             l += 1
+#             r -= 1
+        
+#         return True
         
         
         
