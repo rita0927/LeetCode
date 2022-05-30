@@ -1,22 +1,69 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         
-        if not s:
-            return 0
-        
-        l = 0
-        res = 0
         dic = defaultdict(int)
+        res = 0
+        l = 0
         
         for r in range(len(s)):
+            ch = s[r]
             
-            if s[r] in dic:
-                l = max(dic[s[r]] + 1, l) 
-                
-            dic[s[r]] = r
+            if ch in dic:
+                l = max(dic[ch] + 1, l)
+            
+            
+            dic[ch] = r
             res = max(res, r-l+1)
-            
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+# O(n), O(min(m,n)) for the dic m is the size of the alphabet 
+        
+#         if not s:
+#             return 0
+        
+#         l = 0
+#         res = 0
+#         dic = defaultdict(int)
+        
+#         for r in range(len(s)):
+            
+#             if s[r] in dic:
+#                 # s[r] may or may not be in the current substring (dic won't remove index before l)
+#                 # if s[r] is not in current substring, no need to move the l
+#                 # if s[r] in current substring, l needs to movee to the next of current s[r] index
+#                 l = max(dic[s[r]] + 1, l) 
+                
+#             dic[s[r]] = r
+#             res = max(res, r-l+1)
+            
+#         return res 
         
 
             
