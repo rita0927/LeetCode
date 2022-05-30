@@ -8,8 +8,8 @@ class Solution:
         for r in range(len(s)):
             ch = s[r]
             
-            if ch in dic:
-                l = max(dic[ch] + 1, l)
+            if ch in dic and dic[ch] >= l:
+                l = dic[ch] + 1
             
             
             dic[ch] = r
