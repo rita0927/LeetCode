@@ -11,14 +11,14 @@ class Solution:
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
-        
-        prev= None
+            
+        prev = None
         while slow:
             next = slow.next
             slow.next = prev
             prev = slow
             slow = next
-        
+            
         left, right = head, prev
         
         while left and right:
@@ -26,8 +26,52 @@ class Solution:
                 return False
             left = left.next
             right = right.next
+        
+        return True 
             
-        return True
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(N), O(1)
+        
+#         slow, fast = head, head
+        
+#         while fast and fast.next:
+#             fast = fast.next.next
+#             slow = slow.next
+        
+#         prev= None
+#         while slow:
+#             next = slow.next
+#             slow.next = prev
+#             prev = slow
+#             slow = next
+        
+#         left, right = head, prev
+        
+#         while left and right:
+#             if left.val != right.val:
+#                 return False
+#             left = left.next
+#             right = right.next
+            
+#         return True
         
         
         
