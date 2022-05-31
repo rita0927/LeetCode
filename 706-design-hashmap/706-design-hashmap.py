@@ -3,26 +3,25 @@ class MyHashMap:
     def __init__(self):
         self.size = 2069
         self.data = [[] for _ in range(self.size)]
-    
-    def hash_function(self, key):
-        return key % self.size 
+       
+    def hashing(self, key):
+        return key % self.size
 
     def put(self, key: int, value: int) -> None:
-        
-        hashed_key = self.hash_function(key)
+        hashed_key = self.hashing(key)
         bucket = self.data[hashed_key]
         
         for i in range(len(bucket)):
-            k, v = bucket[i]
+            k,v = bucket[i]
+            
             if k == key:
                 bucket[i][1] = value
                 return
-   
         bucket.append([key, value])
         
 
     def get(self, key: int) -> int:
-        hashed_key = self.hash_function(key)
+        hashed_key = self.hashing(key)
         bucket = self.data[hashed_key]
         
         for i in range(len(bucket)):
@@ -30,18 +29,91 @@ class MyHashMap:
             if k == key:
                 return v
         return -1
-        
 
     def remove(self, key: int) -> None:
-        hashed_key = self.hash_function(key)
+        hashed_key = self.hashing(key)
         bucket = self.data[hashed_key]
         
         for i in range(len(bucket)):
-            k, v = bucket[i]
+            k, val = bucket[i]
             
             if k == key:
                 bucket.pop(i)
-                return  
+                return 
+
+
+
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # With hash_function: better to be a prime number for the modulo, less collision
+
+# # https://leetcode.com/problems/design-hashmap/discuss/587463/Python-easy-to-understand-using-Chaining
+
+# class MyHashMap:
+
+#     def __init__(self):
+#         self.size = 2069
+#         self.data = [[] for _ in range(self.size)]
+    
+#     def hash_function(self, key):
+#         return key % self.size 
+
+#     def put(self, key: int, value: int) -> None:
+        
+#         hashed_key = self.hash_function(key)
+#         bucket = self.data[hashed_key]
+        
+#         for i in range(len(bucket)):
+#             k, v = bucket[i]
+#             if k == key:
+#                 bucket[i][1] = value
+#                 return
+   
+#         bucket.append([key, value])
+        
+
+#     def get(self, key: int) -> int:
+#         hashed_key = self.hash_function(key)
+#         bucket = self.data[hashed_key]
+        
+#         for i in range(len(bucket)):
+#             k,v = bucket[i]
+#             if k == key:
+#                 return v
+#         return -1
+        
+
+#     def remove(self, key: int) -> None:
+#         hashed_key = self.hash_function(key)
+#         bucket = self.data[hashed_key]
+        
+#         for i in range(len(bucket)):
+#             k, v = bucket[i]
+            
+#             if k == key:
+#                 bucket.pop(i)
+#                 return  
 
 
 
