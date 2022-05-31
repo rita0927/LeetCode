@@ -41,7 +41,7 @@ class MyHashMap:
             
             if k == key:
                 bucket.pop(i)
-                break 
+                return  
 
 
 
