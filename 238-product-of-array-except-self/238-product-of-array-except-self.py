@@ -3,16 +3,64 @@ class Solution:
         
         res = [1] * len(nums)
         
-        for i in range(1, len(nums)):
-            res[i] = res[i-1] * nums[i-1]
+        for l in range(1, len(nums)):
+            res[l] = res[l-1] * nums[l-1]
         
         right = 1
-        
-        for j in range(len(nums) - 1, -1, -1):
-            res[j] *=right
-            right*=nums[j]
+        for r in range(len(nums)-1, -1, -1):
+            res[r] *= right
+            right *= nums[r]
         
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#        # O(n), O(1)       
+        
+#         res = [1] * len(nums)
+        
+#         for i in range(1, len(nums)):
+#             res[i] = res[i-1] * nums[i-1]
+        
+#         right = 1
+        
+#         for j in range(len(nums) - 1, -1, -1):
+#             res[j] *=right
+#             right*=nums[j]
+        
+#         return res 
         
         
         
