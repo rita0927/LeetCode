@@ -3,22 +3,68 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        p0 = 0 
-        p2 = len(nums) - 1
-        cur = 0
         
-        while cur <= p2:
-            # index <= cur are sorted, no need to verify nums[cur] after the replacement
-            if nums[cur] == 0:
-                nums[p0], nums[cur] = nums[cur], nums[p0]
-                p0+=1
-                cur+=1
-            # replaced nums[cur] is not verified, can't increase cur
-            elif nums[cur] == 2:
-                nums[p2], nums[cur] = nums[cur], nums[p2]
-                p2 -=1
+        index = 0
+        p0 = 0
+        p2 = len(nums)-1
+        
+        while index <= p2:
+            if nums[index] == 0:
+                nums[index], nums[p0] = nums[p0], nums[index]
+                p0 += 1
+                index += 1
+            elif nums[index] == 2:
+                nums[index], nums[p2] = nums[p2], nums[index]
+                p2 -= 1
+            
             else:
-                cur += 1
+                index += 1
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         p0 = 0 
+#         p2 = len(nums) - 1
+#         cur = 0
+        
+#         while cur <= p2:
+#             # index <= cur are sorted, no need to verify nums[cur] after the replacement
+#             if nums[cur] == 0:
+#                 nums[p0], nums[cur] = nums[cur], nums[p0]
+#                 p0+=1
+#                 cur+=1
+#             # replaced nums[cur] is not verified, can't increase cur
+#             elif nums[cur] == 2:
+#                 nums[p2], nums[cur] = nums[cur], nums[p2]
+#                 p2 -=1
+#             else:
+#                 cur += 1
             
         
         
