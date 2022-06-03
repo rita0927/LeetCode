@@ -15,7 +15,7 @@ class Codec:
         """
         if not root:
             return 'N'
-
+        
         return f'{root.val} {self.serialize(root.left)} {self.serialize(root.right)}'
         
 
@@ -42,7 +42,6 @@ class Codec:
         
         arr = data.split()
         return dfs(arr)
-        
         
 
 # Your Codec object will be instantiated and called as such:
