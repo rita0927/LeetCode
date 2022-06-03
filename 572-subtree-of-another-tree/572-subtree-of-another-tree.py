@@ -16,15 +16,16 @@ class Solution:
             
             return helper(r1.left, r2.left) and helper(r1.right, r2.right)
         
-        def dfs(node):
-            if not node:
-                return False 
-            
-            if helper(node, subRoot):
+        def dfs(r1):
+            if not r1:
+                return False
+            if helper(r1, subRoot):
                 return True
-            return dfs(node.left) or dfs(node.right)
+            return dfs(r1.left) or dfs(r1.right)
         
         return dfs(root)
+        
+
         
         
         
