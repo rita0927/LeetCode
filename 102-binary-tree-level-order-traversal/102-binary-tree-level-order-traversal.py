@@ -6,25 +6,67 @@
 #         self.right = right
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        
+        
+        # O(n), O(h) or O(n) in the worst case of a skewed tree
         if not root:
-            return None 
+            return []
         
         res = []
         
-        queue = deque([root])
+        def bfs(node, level):
+            if len(res) == level:
+                res.append([])
+                
+            res[level].append(node.val)
+            
+            if node.left:
+                bfs(node.left, level+1)
+            if node.right:
+                bfs(node.right, level + 1)
         
-        while queue:
-            size = len(queue)
-            level = []
-            for _ in range(size):
-                node = queue.popleft()
-                level.append(node.val)
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-            res.append(level)
+        bfs(root, 0)
         return res 
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+#        # O(n), O(n) 
+#        # precise space complexity is O(max number of nodes on a level). For a complete tree, the last level has (n+1)/2 nodes. Ignoring the constant, it's O(n)
+        
+#         if not root:
+#             return None 
+        
+#         res = []
+        
+#         queue = deque([root])
+        
+#         while queue:
+#             size = len(queue)
+#             level = []
+#             for _ in range(size):
+#                 node = queue.popleft()
+#                 level.append(node.val)
+#                 if node.left:
+#                     queue.append(node.left)
+#                 if node.right:
+#                     queue.append(node.right)
+#             res.append(level)
+#         return res 
             
             
             
