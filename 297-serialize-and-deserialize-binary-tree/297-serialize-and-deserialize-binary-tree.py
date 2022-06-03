@@ -6,40 +6,110 @@
 #         self.right = None
 
 class Codec:
-    
+
     def serialize(self, root):
         """Encodes a tree to a single string.
-
+        
         :type root: TreeNode
         :rtype: str
         """
-        if root:
-            return f"{root.val} {self.serialize(root.left)} {self.serialize(root.right)}"
-        else:
-            return "N"
-    
+        if not root:
+            return 'N'
 
+        return f'{root.val} {self.serialize(root.left)} {self.serialize(root.right)}'
+        
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
-
+        
         :type data: str
         :rtype: TreeNode
         """
-        vals = data.split()
-        self.i = 0
         
-        def dfs():
-            if vals[self.i] == "N":
-                self.i+=1
+        def dfs(lst):
+            val = lst.pop(0)
+            
+            if val == 'N':
                 return None
-            node = TreeNode(int(vals[self.i]))
-            self.i +=1
-            node.left = dfs()
-            node.right = dfs()
-            return node
+            
+            node = TreeNode(val)
+            node.left = dfs(lst)
+            node.right = dfs(lst)
+            
+            return node 
+            
         
-        return dfs()
+        
+        arr = data.split()
+        return dfs(arr)
+        
+        
+
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#     def serialize(self, root):
+#         """Encodes a tree to a single string.
+
+#         :type root: TreeNode
+#         :rtype: str
+#         """
+#         if root:
+#             return f"{root.val} {self.serialize(root.left)} {self.serialize(root.right)}"
+#         else:
+#             return "N"
+    
+
+
+#     def deserialize(self, data):
+#         """Decodes your encoded data to tree.
+
+#         :type data: str
+#         :rtype: TreeNode
+#         """
+#         vals = data.split()
+#         self.i = 0
+        
+#         def dfs():
+#             if vals[self.i] == "N":
+#                 self.i+=1
+#                 return None
+#             node = TreeNode(int(vals[self.i]))
+#             self.i +=1
+#             node.left = dfs()
+#             node.right = dfs()
+#             return node
+        
+#         return dfs()
         
 
 
