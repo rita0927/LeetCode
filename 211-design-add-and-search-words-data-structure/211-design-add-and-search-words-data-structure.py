@@ -23,17 +23,19 @@ class WordDictionary:
             
             if index == len(word):
                 return True if 'isWord' in node else False
-
             
-            if word[index] not in node and word[index] !='.':
-                return False
-            elif word[index] == '.':
+            ch = word[index]
+            
+            if ch in node:
+                return dfs(node[ch], index + 1)
+            elif ch == '.':
                 for key in node:
-                    if key != 'isWord' and dfs(node[key], index+1):
+                    if key != 'isWord' and dfs(node[key], index + 1):
                         return True
             else:
-                return dfs(node[word[index]], index + 1)
-        
+                return False 
+
+            
         return dfs(trie, 0)
 
 # Your WordDictionary object will be instantiated and called as such:
