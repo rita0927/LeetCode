@@ -9,21 +9,54 @@ class Solution:
         
         res = float('-inf')
         
-        def findSum(node):
+        def helper(node):
             nonlocal res 
             
             if not node:
                 return 0
             
-            left = max(findSum(node.left), 0)
-            right = max(findSum(node.right), 0)
-
+            left = max(helper(node.left),0)
+            right = max(helper(node.right), 0)
+            
             res = max(res, left + right + node.val)
             
             return max(left, right) + node.val
         
-        findSum(root)
+        helper(root)
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = float('-inf')
+        
+#         def findSum(node):
+#             nonlocal res 
+            
+#             if not node:
+#                 return 0
+            
+#             left = max(findSum(node.left), 0)
+#             right = max(findSum(node.right), 0)
+
+#             res = max(res, left + right + node.val)
+            
+#             return max(left, right) + node.val
+        
+#         findSum(root)
+#         return res 
         
         
         
