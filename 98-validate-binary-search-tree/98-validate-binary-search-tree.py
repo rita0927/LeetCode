@@ -7,21 +7,64 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        stack = [(root, float('-inf'), float('inf'))]
-        
-        while stack:
-            node, low, high = stack.pop()
+        def helper(node, low, high):
+            if not node:
+                return True
             
             if node.val <= low or node.val >= high:
                 return False
             
-            if node.left:
-                stack.append((node.left, low, node.val))
+            return helper(node.left, low, node.val) and helper(node.right, node.val, high)
+        
+        return helper(root, float('-inf'), float('inf'))
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         stack = [(root, float('-inf'), float('inf'))]
+        
+#         while stack:
+#             node, low, high = stack.pop()
             
-            if node.right:
-                stack.append((node.right, node.val, high))
+#             if node.val <= low or node.val >= high:
+#                 return False
+            
+#             if node.left:
+#                 stack.append((node.left, low, node.val))
+            
+#             if node.right:
+#                 stack.append((node.right, node.val, high))
                 
-        return True 
+#         return True 
             
         
             
