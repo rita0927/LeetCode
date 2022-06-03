@@ -6,24 +6,63 @@
 #         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        
+        def convertToString(node):
+            if not node:
+                return 'N'
+            
+            return f'#{node.val} {convertToString(node.left)} {convertToString(node.right)}'
+        
+        return convertToString(subRoot) in convertToString(root)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
        
-        def helper(root1, root2):
-            if not root1 and not root2:
-                return True
-            if not root1 or not root2 or root1.val != root2.val:
-                return False
-            else:
-                return helper(root1.left, root2.left) and helper(root1.right, root2.right)
+#         def helper(root1, root2):
+#             if not root1 and not root2:
+#                 return True
+#             if not root1 or not root2 or root1.val != root2.val:
+#                 return False
+#             else:
+#                 return helper(root1.left, root2.left) and helper(root1.right, root2.right)
             
         
-        def dfs(node):
-            if node:
-                if node.val == subRoot.val:
-                    if helper(node, subRoot):
-                        return True
-                return dfs(node.left) or dfs(node.right)
+#         def dfs(node):
+#             if node:
+#                 if node.val == subRoot.val:
+#                     if helper(node, subRoot):
+#                         return True
+#                 return dfs(node.left) or dfs(node.right)
             
-        return dfs(root)
+#         return dfs(root)
         
         
         
