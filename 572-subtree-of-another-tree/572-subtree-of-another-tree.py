@@ -7,13 +7,34 @@
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         
-        def helper(node):
-            if not node:
-                return 'N'
+        def helper(n1, n2):
             
-            return f'#{node.val} {helper(node.left)} {helper(node.right)}'
+            if not n1 and not n2:
+                return True
+            
+            if not n1 or not n2 or n1.val != n2.val:
+                return False
+            
+            return helper(n1.left, n2.left) and helper(n1.right, n2.right)
         
-        return helper(subRoot) in helper(root)
+        stack = [root]
+        while stack:
+            n1 = stack.pop()
+            if not n1:
+                continue
+            
+            if helper(n1, subRoot):
+                return True
+            
+            stack.append(n1.left)
+            stack.append(n1.right)
+        return False 
+            
+        
+        
+            
+            
+
         
 
 
