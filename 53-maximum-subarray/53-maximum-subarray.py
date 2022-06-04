@@ -4,8 +4,8 @@ class Solution:
         if max(nums) < 0:
             return max(nums)
         
-        local_max = 0
         global_max = 0
+        local_max = 0
         
         for n in nums:
             local_max = max(local_max + n, 0)
@@ -13,6 +13,10 @@ class Solution:
         
         return global_max 
         
+        
+        
+        
+
         
         
         
