@@ -13,41 +13,128 @@ class Solution:
         
         m = len(board)
         n = len(board[0])
-        res = []
         dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-        
+        res = []
         
         def backtrack(r,c,parent):
             ch = board[r][c]
             node = parent[ch]
             
             isEnd = node.pop(end, False)
-            
             if isEnd:
                 res.append(isEnd)
-            
+                
             board[r][c] = '#'
             
             for x,y in dir:
-                nr = x + r
-                nc = y + c
+                nr = r + x
+                nc = c + y
                 
                 if nr < 0 or nr >= m or nc < 0 or nc >= n or not board[nr][nc] in node:
                     continue
-                
                 backtrack(nr, nc, node)
             
             board[r][c] = ch
             
             if not node:
                 parent.pop(ch)
-                      
-        
+            
+      
         for r in range(m):
             for c in range(n):
                 if board[r][c] in trie:
                     backtrack(r,c,trie)
-        return res
+        return res 
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#    # O(M(4*3^(L-1))) where M is the number of cells and L is the max length of the word in words. Starting from a cell, initially we have 4 directions to explore (for the first letter). Assume each direction is valid, any following letters, we'll have at most 3 neighbor cells (exluding the cell where we come from) to explore (3 ^ (L-1)). The total time to explore the longest word is 4⋅3 ^(L−1). If we apply the optimization to gradually remove the nodes in Trie, we could greatly improve the time complexity
+
+#     # O(N) N is the total number of letters in the dictionary. In the worst case where there is no overlapping of prefixes among the words, the Trie would have as many nodes as the letters of all words. 
+  
+        
+#         # add the key to mark the end of the word
+#         end = 'word_key'
+        
+#         trie = {}
+        
+#         for word in words:
+#             node = trie
+#             for ch in word:
+                
+#                 # use setdefault to insert the new key and return the new key value/default value
+#                 # can't use dict get method since it doesn't insert new key although return the default value
+#                 node = node.setdefault(ch, {})
+#             # mark the end of the word, and add the word itself as the value
+#             node[end] = word
+        
+#         m = len(board)
+#         n = len(board[0])
+#         res = []
+#         dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+        
+#         # pass down the parent node (start with trie) instead of the child node
+#         def backtrack(r,c,parent):
+#             ch = board[r][c]
+#             node = parent[ch]
+            
+#             # base case: if the end key exists in the node, isEnd = word; otherwise, return the default value False
+#             isEnd = node.pop(end, False)
+            
+#             if isEnd:
+#                 res.append(isEnd)
+                
+#             # mark the cell being visited 
+#             board[r][c] = '#'
+            
+#             for x,y in dir:
+#                 nr = x + r
+#                 nc = y + c
+                
+#                 # if the new letter doesn't esit in the node
+#                 if nr < 0 or nr >= m or nc < 0 or nc >= n or not board[nr][nc] in node:
+#                     continue
+                
+#                 backtrack(nr, nc, node)
+            
+#             # remove the mark on visited cell
+#             board[r][c] = ch
+            
+#             # important!!!  optimize the performance by removing the added word from the trie
+#             if not node:
+#                 parent.pop(ch)
+                           
+#         for r in range(m):
+#             for c in range(n):
+#                 # when the board letter in the trie
+#                 if board[r][c] in trie:
+#                     backtrack(r,c,trie)
+#         return res
 
 
 
