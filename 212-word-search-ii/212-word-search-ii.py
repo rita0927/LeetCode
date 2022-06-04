@@ -1,60 +1,133 @@
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
-        WORD_KEY = '$'
+        
+        end = 'word_key'
         
         trie = {}
+        
         for word in words:
             node = trie
             for ch in word:
-                # retrieve the next node; If not found, create a empty node.
                 node = node.setdefault(ch, {})
-            # mark the existence of a word in trie node
-            node[WORD_KEY] = word
+            node[end] = word
         
         m = len(board)
         n = len(board[0])
-        dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
         res = []
+        dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
         
-        def backtracking(row, col, parent):    
-            
-            ch = board[row][col]
+        
+        def backtrack(r,c,parent):
+            ch = board[r][c]
             node = parent[ch]
             
-            # check if we find a match of word
-            # return default value False if the WORD_KEY doesn't exist
-            word_match = node.pop(WORD_KEY, False)
-            if word_match:
-                # also we removed the matched word to avoid duplicates,
-                #   as well as avoiding using set() for results.
-                res.append(word_match)
-
+            isEnd = node.pop(end, False)
             
-            # Before the EXPLORATION, mark the cell as visited 
-            board[row][col] = '#'
+            if isEnd:
+                res.append(isEnd)
             
-            # Explore the neighbors in 4 directions, i.e. up, right, down, left
+            board[r][c] = '#'
+            
             for x,y in dir:
-                nr, nc = row + x, col + y     
+                nr = x + r
+                nc = y + c
+                
                 if nr < 0 or nr >= m or nc < 0 or nc >= n or not board[nr][nc] in node:
                     continue
-
-                backtracking(nr, nc, node)
-        
-            # End of EXPLORATION, we restore the cell
-            board[row][col] = ch
-        
-            # Optimization: incrementally remove the matched leaf node in Trie.
+                
+                backtrack(nr, nc, node)
+            
+            board[r][c] = ch
+            
             if not node:
                 parent.pop(ch)
-
-        for row in range(m):
-            for col in range(n):
-                # starting from each of the cells
-                if board[row][col] in trie:
-                    backtracking(row, col, trie)
+                      
         
-        return res    
+        for r in range(m):
+            for c in range(n):
+                if board[r][c] in trie:
+                    backtrack(r,c,trie)
+        return res
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class Solution:
+#     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+#         WORD_KEY = '$'
+        
+#         trie = {}
+#         for word in words:
+#             node = trie
+#             for ch in word:
+#                 # retrieve the next node; If not found, create a empty node.
+#                 node = node.setdefault(ch, {})
+#             # mark the existence of a word in trie node
+#             node[WORD_KEY] = word
+        
+#         m = len(board)
+#         n = len(board[0])
+#         dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+#         res = []
+        
+#         def backtracking(row, col, parent):    
+            
+#             ch = board[row][col]
+#             node = parent[ch]
+            
+#             # check if we find a match of word
+#             # return default value False if the WORD_KEY doesn't exist
+#             word_match = node.pop(WORD_KEY, False)
+#             if word_match:
+#                 # also we removed the matched word to avoid duplicates,
+#                 #   as well as avoiding using set() for results.
+#                 res.append(word_match)
+
+            
+#             # Before the EXPLORATION, mark the cell as visited 
+#             board[row][col] = '#'
+            
+#             # Explore the neighbors in 4 directions, i.e. up, right, down, left
+#             for x,y in dir:
+#                 nr, nc = row + x, col + y     
+#                 if nr < 0 or nr >= m or nc < 0 or nc >= n or not board[nr][nc] in node:
+#                     continue
+
+#                 backtracking(nr, nc, node)
+        
+#             # End of EXPLORATION, we restore the cell
+#             board[row][col] = ch
+        
+#             # Optimization: incrementally remove the matched leaf node in Trie.
+#             if not node:
+#                 parent.pop(ch)
+
+#         for row in range(m):
+#             for col in range(n):
+#                 # starting from each of the cells
+#                 if board[row][col] in trie:
+#                     backtracking(row, col, trie)
+        
+#         return res    
 
 
 
