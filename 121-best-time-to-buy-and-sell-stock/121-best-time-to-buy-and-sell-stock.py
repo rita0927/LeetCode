@@ -5,9 +5,7 @@ class Solution:
         res = 0
         
         for price in prices:
-            if price < buy:
-                buy = price
-            
+            buy = min(buy, price)
             res = max(res, price - buy)
         
         return res 
