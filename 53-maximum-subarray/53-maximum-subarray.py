@@ -1,18 +1,20 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
+        # if max(nums) < 0:
+        #     return max(nums)
         
-        if max(nums) < 0:
-            return max(nums)
+        local_max = nums[0]  #-1
+        global_max = nums[0] #-1
         
-        global_max = 0
-        local_max = 0
+        for n in nums[1:]:
+            local_max = max(local_max+n,n)  #-3
+            global_max = max(global_max, local_max)  # -1
+        return global_max
         
-        for n in nums:
-            local_max = max(local_max + n, 0)
-            global_max = max(global_max, local_max)
+
         
-        return global_max 
         
+
         
         
         
