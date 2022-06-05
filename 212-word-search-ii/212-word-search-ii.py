@@ -14,6 +14,7 @@ class Solution:
         m = len(board)
         n = len(board[0])
         res = []
+        visited = set()
         dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
         
         def backtrack(r,c,parent):
@@ -25,17 +26,18 @@ class Solution:
             if isEnd:
                 res.append(isEnd)
             
-            board[r][c] = '#'
+            visited.add((r,c))
             
             for x,y in dir:
                 nr = r + x
                 nc = c + y
                 
-                if nr < 0 or nr >= m or nc < 0 or nc >= n or not board[nr][nc] in node:
+                if nr < 0 or nr >= m or nc < 0 or nc >= n or not board[nr][nc] in node or (nr, nc) in visited:
                     continue
                 backtrack(nr, nc, node)
             
             board[r][c] = ch
+            visited.remove((r,c))
             
             if not node:
                 parent.pop(ch)
