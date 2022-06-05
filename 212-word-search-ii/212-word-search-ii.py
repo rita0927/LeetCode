@@ -13,17 +13,18 @@ class Solution:
         
         m = len(board)
         n = len(board[0])
-        dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
         res = []
+        dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
         
         def backtrack(r,c,parent):
             ch = board[r][c]
             node = parent[ch]
             
             isEnd = node.pop(end, False)
+            
             if isEnd:
                 res.append(isEnd)
-                
+            
             board[r][c] = '#'
             
             for x,y in dir:
@@ -38,13 +39,20 @@ class Solution:
             
             if not node:
                 parent.pop(ch)
-            
-      
+              
+        
         for r in range(m):
             for c in range(n):
                 if board[r][c] in trie:
                     backtrack(r,c,trie)
         return res 
+        
+        
+        
+        
+        
+        
+
         
 
         
