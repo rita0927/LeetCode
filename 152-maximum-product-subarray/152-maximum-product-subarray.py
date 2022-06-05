@@ -1,18 +1,24 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
+        
         max_product = nums[0]
         min_product = nums[0]
         res = max_product
         
         for n in nums[1:]:
             temp = max_product
-            max_product = max([max_product * n, min_product* n, n])
-            min_product = min([temp * n, min_product * n, n] )
+            
+            # add n to abandon previous product: example [-3,5], [0, 4]
+            max_product = max(max_product*n, min_product*n, n)
+            # example: 3* (-5), (-5) * 3, -5
+            min_product = min(temp*n, min_product*n, n)
             res = max(res, max_product)
+            
         return res 
-        
-        
-        
+            
+
+
+                
         
         
         
