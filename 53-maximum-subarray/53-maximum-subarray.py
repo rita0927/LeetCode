@@ -1,7 +1,7 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        # if max(nums) < 0:
-        #     return max(nums)
+        if max(nums) < 0:
+            return max(nums)
         
         local_max = nums[0]  #-1
         global_max = nums[0] #-1
