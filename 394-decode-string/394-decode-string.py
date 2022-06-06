@@ -4,22 +4,80 @@ class Solution:
         stack = []
         
         for i in s:
-            
             if i != ']':
                 stack.append(i)
             else:
                 substr = ''
                 
-                while stack[-1] !='[':
+                while stack[-1] != '[':
                     substr = stack.pop() + substr
-                # there's '[' before the string and number in the stack, pop out the '[' before start popping out the count 
+                
                 stack.pop()
+                
                 count = ''
+                
                 while stack and stack[-1].isdigit():
-                    count = stack.pop() + count
+                    count = stack.pop() + count 
                 
                 stack.append(int(count) * substr)
+                print(stack)
         return ''.join(stack)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+# # Time: O(n) as every element in the string is visited exactly once
+# # Space: O(nkm) Let the max size of a string within the parenthesis is n. for ex: "abc". Let the max number for string multiplication/count is 'k' and there are at the most 'm' of these. for ex: "3[abc]"
+
+
+# In that case, the upper bound on space has to be O(nkm).
+        
+#         stack = []
+        
+#         for i in s:
+            
+#             if i != ']':
+#                 stack.append(i)
+#             else:
+#                 substr = ''
+                
+#                 while stack[-1] !='[':
+#                     substr = stack.pop() + substr
+#                 # there's '[' before the string and number in the stack, pop out the '[' before start popping out the count 
+#                 stack.pop()
+#                 count = ''
+#                 while stack and stack[-1].isdigit():
+#                     count = stack.pop() + count
+                
+#                 stack.append(int(count) * substr)
+#         return ''.join(stack)
                 
                 
         
