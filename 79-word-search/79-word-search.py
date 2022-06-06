@@ -2,33 +2,57 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         m = len(board)
         n = len(board[0])
-        dir = [[-1,0], [1,0], [0,-1], [0,1]]      
+        dir = [[-1,0], [1,0], [0,-1], [0,1]]
         
         
-        def backtrack(r,c,index):
+        def dfs(r,c,index):
+            
             if index == len(word):
                 return True
             
-            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:
+            if r < 0 or r>= m or c < 0 or c >= n:
+                return False 
+            
+            ch = board[r][c]
+            
+            if ch != word[index]:
                 return False
             
             board[r][c] = '#'
+            
             for x,y in dir:
-                nr = x + r
-                nc = y + c
+                nr = r + x
+                nc = c + y
                 
-                if backtrack(nr, nc, index + 1):
+                if dfs(nr,nc,index+1):
                     return True
-            board[r][c] = word[index]
-            return False
-        
+                
+            board[r][c] = ch 
+            
         for r in range(m):
             for c in range(n):
-                if backtrack(r,c,0):
+                if dfs(r,c,0):
                     return True
         return False 
+                    
+
+        
+        
             
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
