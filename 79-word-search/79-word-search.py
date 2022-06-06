@@ -10,10 +10,14 @@ class Solution:
             if index == len(word):
                 return True
             
-            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:
+            if r < 0 or r >= m or c < 0 or c >= n:
                 return False
             
             ch = board[r][c]
+            
+            if ch != word[index]:
+                return False 
+            
             board[r][c] = '#'
             
             for x,y in dir:
