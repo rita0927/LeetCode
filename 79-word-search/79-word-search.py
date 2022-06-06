@@ -4,9 +4,6 @@ class Solution:
         n = len(board[0])
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
         
-        if len(word)> m*n:
-            return False
-        
         
         def dfs(r,c,index):
             
