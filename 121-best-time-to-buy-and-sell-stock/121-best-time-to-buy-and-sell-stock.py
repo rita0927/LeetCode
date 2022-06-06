@@ -5,13 +5,11 @@ class Solution:
         profit = 0
         
         for price in prices:
-            
-            buy = min(buy, price)  #1 
-            profit = max(profit, price - buy)  #5
+            buy = min(price, buy)
+            profit = max(price - buy, profit)
+        
         return profit 
-     
-# input: array of integers
-# output: max profit, integer
+        
 
         
         
