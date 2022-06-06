@@ -1,7 +1,18 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         count = Counter(nums)
-        return heapq.nlargest(k, count.keys(), count.get)
+        
+        return heapq.nlargest(k, count.keys(), key = count.get)
+        
+
+        
+
+        
+        
+                
+                
+                
+            
         
         
         
@@ -21,30 +32,16 @@ class Solution:
         
         
         
+      
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+     
+                 
         
         
 #         count = Counter(nums)
-#         unique = list(count.keys())
+#         unique = list(count.keys())  
 #         k = len(unique) - k
         
 #         def quickSelect(l,r):
@@ -56,6 +53,7 @@ class Solution:
 
 #             # move pivot to end
 #             unique[r], unique[pivot_index] = unique[pivot_index], unique[r]
+#             # partition pointer 
 #             p = l
             
 #             for i in range(l,r):
@@ -73,8 +71,8 @@ class Solution:
             
 #         quickSelect(0, len(unique) - 1)
 #         return unique[k:]
-        
-        
+
+
         
         
         
