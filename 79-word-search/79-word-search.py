@@ -1,10 +1,29 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        
+        
+        # O(N* 3^L) where N is the number of cells, L is the length of the word
+        # O(L) for the recursion call
+        
         m = len(board)
         n = len(board[0])
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
         
+        # use pruning to make the solution faster:
+        d = defaultdict(int)
+        for r in range(m):
+            for c in range(n):
+                d[board[r][c]] += 1
+        count = Counter(word)
         
+        # if the board doesn't have enough ch for the word
+        if len(word) > m*n:
+            return False
+        # if the ch in word doesn't exist in the board, or the board doesn't have enough ch
+        for ch in word:
+            if not ch in d or d[ch] < count[ch]:
+                return False
+             
         def dfs(r,c,index):
             
             if index == len(word):
@@ -18,6 +37,7 @@ class Solution:
             if ch != word[index]:
                 return False
             
+            # mark visited cell
             board[r][c] = '#'
             
             for x,y in dir:
@@ -26,7 +46,7 @@ class Solution:
                 
                 if dfs(nr,nc,index+1):
                     return True
-                
+               
             board[r][c] = ch 
             
         for r in range(m):
