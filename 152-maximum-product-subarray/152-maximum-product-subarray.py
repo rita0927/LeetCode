@@ -1,5 +1,7 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
+
+        
         
         max_product = nums[0]
         min_product = nums[0]
@@ -7,14 +9,62 @@ class Solution:
         
         for n in nums[1:]:
             temp = max_product
-            
-            # add n to abandon previous product: example [-3,5], [0, 4]
-            max_product = max(max_product*n, min_product*n, n)
-            # example: 3* (-5), (-5) * 3, -5
-            min_product = min(temp*n, min_product*n, n)
+            max_product = max(max_product * n, min_product * n, n)
+            min_product = min(min_product * n, temp * n, n)
             res = max(res, max_product)
-            
+        
         return res 
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         max_product = nums[0]
+#         min_product = nums[0]
+#         res = max_product
+        
+#         for n in nums[1:]:
+#             # max_product will be updated later (times n)
+#             temp = max_product
+            
+#             # add n to abandon previous product: example [-3,5], [0, 4]
+#             max_product = max(max_product*n, min_product*n, n)
+#             # example: 3* (-5), (-5) * 3, -5
+#             min_product = min(temp*n, min_product*n, n)
+#             res = max(res, max_product)
+            
+#         return res 
             
 
 
