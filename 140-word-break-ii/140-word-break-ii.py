@@ -1,32 +1,77 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        d = set(wordDict)
         
-        @functools.lru_cache
+        d = set(wordDict)
+        cache = {}
+        
+        # @functools.lru_cache
         def helper(s):
+            if s in cache:
+                return cache[s]
             res = []
-            
             for i in range(1, len(s) + 1):
                 word = s[:i]
                 if word in d:
                     if len(s) == len(word):
                         res.append(word)
                     else:
-                        for w in helper(s[i:]):
-                            res.append(word + ' ' + w)
+                        for words in helper(s[i:]):
+                            res.append(word + ' ' + words)
+            cache[s] = res 
             return res 
-            
-            
-            # for word in d:
-            #     if word == s[:len(word)]:
-            #         if len(s) == len(word):
-            #             res.append(word)
-            #         else:
-            #             for w in helper(s[len(word):]):
-            #                 res.append(word + ' ' + w)
-            # return res 
         
         return helper(s)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         d = set(wordDict)
+        
+#         @functools.lru_cache
+#         def helper(s):
+#             res = []
+            
+#             for i in range(1, len(s) + 1):
+#                 word = s[:i]
+#                 if word in d:
+#                     if len(s) == len(word):
+#                         res.append(word)
+#                     else:
+#                         for w in helper(s[i:]):
+#                             res.append(word + ' ' + w)
+#             return res 
+            
+            
+#             # for word in d:
+#             #     if word == s[:len(word)]:
+#             #         if len(s) == len(word):
+#             #             res.append(word)
+#             #         else:
+#             #             for w in helper(s[len(word):]):
+#             #                 res.append(word + ' ' + w)
+#             # return res 
+        
+#         return helper(s)
             
     
         
