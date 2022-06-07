@@ -1,12 +1,10 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        if set(s) > set(''.join(wordDict)):
-            return []
-        
+
         d = set(wordDict)
         res = []
         
-        def backtrack(l, path):
+        def dfs(l, path):
             
             if l == len(s):
                 res.append(' '.join(path))
@@ -15,14 +13,15 @@ class Solution:
             for r in range(l+1, len(s) + 1):
                 word = s[l:r]
                 if word in d:
-                    path.append(word)
-                    backtrack(r, path)
-                    path.pop()
-                    
+                    dfs(r, path+[word])
+
+        dfs(0, [])
+        return res 
             
-        backtrack(0, [])
-        return res                     
-            
+        
+        
+        
+
         
         
         
