@@ -1,5 +1,8 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        if set(s) > set(''.join(wordDict)):
+            return []
+        
         d = set(wordDict)
         res = []
         
@@ -55,7 +58,7 @@ class Solution:
         
         
         
-        
+# O(W + N^2 + 2^N) where N is the length of the string and W is the number of words in dictionary. O(W) to convert the wordDict to set.        
         
         
 #         d = set(wordDict)
