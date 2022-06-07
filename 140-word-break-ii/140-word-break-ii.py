@@ -1,24 +1,67 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        # cache = {}
-        
         @functools.lru_cache
+        
         def helper(s):
-#             if s in cache:
-#                 return cache[s]
-            
             res = []
-            
-            for w in wordDict:
-                if s[:len(w)] == w:
-                    if len(s) == len(w):
-                        res.append(w)
+            for word in wordDict:
+                if word == s[:len(word)]:
+                    if len(s) == len(word):
+                        res.append(word)
                     else:
-                        for word in helper(s[len(w):]):
-                            res.append(w+' '+word)
-            # cache[s] = res
+                        for w in helper(s[len(word):]):
+                            res.append(word + ' ' + w)
             return res 
+        
         return helper(s)
+            
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # cache = {}
+        
+#         @functools.lru_cache
+#         def helper(s):
+# #             if s in cache:
+# #                 return cache[s]
+            
+#             res = []
+            
+#             for w in wordDict:
+#                 if s[:len(w)] == w:
+#                     if len(s) == len(w):
+#                         res.append(w)
+#                     else:
+#                         for word in helper(s[len(w):]):
+#                             res.append(w+' '+word)
+#             # cache[s] = res
+
+#             return res 
+#         return helper(s)
             
                     
 
