@@ -3,19 +3,77 @@ class Solution:
         d = set(wordDict)
         res = []
         
-        def backtrack(i, path):
-            if i == len(s):
-                res.append(' '.join(path))
+        def backtrack(l, path):
             
-            for j in range(i + 1, len(s) + 1):
-                word = s[i:j]
+            if l == len(s):
+                res.append(' '.join(path))
+                return
+            
+            for r in range(l+1, len(s) + 1):
+                word = s[l:r]
                 if word in d:
                     path.append(word)
-                    backtrack(j, path)
+                    backtrack(r, path)
                     path.pop()
+                    
+            
         backtrack(0, [])
+        return res                     
+            
         
-        return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         d = set(wordDict)
+#         res = []
+        
+#         def backtrack(i, path):
+#             if i == len(s):
+#                 res.append(' '.join(path))
+            
+#             for j in range(i + 1, len(s) + 1):
+#                 word = s[i:j]
+#                 if word in d:
+#                     path.append(word)
+#                     backtrack(j, path)
+#                     path.pop()
+#         backtrack(0, [])
+        
+#         return res 
                 
         
         
