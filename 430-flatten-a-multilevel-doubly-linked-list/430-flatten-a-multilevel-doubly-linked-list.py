@@ -9,28 +9,82 @@ class Node:
 """
 
 class Solution:
-    def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
+    def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]': 
         
         if not head:
-            return None
+            return None 
+        
+        def dfs(prev, node):
+            
+            if not node:
+                return prev 
+ 
+            node.prev= prev
+            prev.next = node
+            
+            next = node.next 
+            
+            if node.child:
+                child = node.child
+                node.child = None
+                node = dfs(node, child)
+            if next:
+                node = dfs(node, next)
+            
+            return node 
+            
+            # tail= dfs(node, node.child)
+            # node.child = None
+            # tail = dfs(tail, next) 
+            # return tail  
         
         prev = dummy = Node()
-        stack = [head]
-        
-        while stack:
-            node = stack.pop()
-            prev.next = node
-            node.prev = prev
-            
-            if node.next:
-                stack.append(node.next)
-            if node.child:
-                stack.append(node.child)
-                node.child = None 
-            prev = node 
-        # detatch the dummy node from the head 
+        dfs(prev, head)
         dummy.next.prev = None
         return dummy.next 
+                
+                
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+#     # O(N), O(N)
+#         if not head:
+#             return None
+#         # use dummy to hold the position of the start
+#         prev = dummy = Node()
+#         stack = [head]
+        
+#         while stack:
+#             node = stack.pop()
+#             prev.next = node
+#             node.prev = prev
+            
+#             if node.next:
+#                 stack.append(node.next)
+#             if node.child:
+#                 stack.append(node.child)
+#                 node.child = None 
+#             prev = node 
+#         # detatch the dummy node from the head 
+#         dummy.next.prev = None
+#         return dummy.next 
             
         
         
