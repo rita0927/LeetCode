@@ -1,22 +1,65 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-
-        d = set(wordDict)
-        res = []
+        # cache = {}
         
-        def dfs(l, path):
+        @functools.lru_cache
+        def helper(s):
+#             if s in cache:
+#                 return cache[s]
             
-            if l == len(s):
-                res.append(' '.join(path))
-                return
+            res = []
             
-            for r in range(l+1, len(s) + 1):
-                word = s[l:r]
-                if word in d:
-                    dfs(r, path+[word])
+            for w in wordDict:
+                if s[:len(w)] == w:
+                    if len(s) == len(w):
+                        res.append(w)
+                    else:
+                        for word in helper(s[len(w):]):
+                            res.append(w+' '+word)
+            # cache[s] = res
+            return res 
+        return helper(s)
+            
+                    
 
-        dfs(0, [])
-        return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+#         d = set(wordDict)
+#         res = []
+        
+#         def dfs(l, path):
+            
+#             if l == len(s):
+#                 res.append(' '.join(path))
+#                 return
+            
+#             for r in range(l+1, len(s) + 1):
+#                 word = s[l:r]
+#                 if word in d:
+#                     dfs(r, path+[word])
+
+#         dfs(0, [])
+#         return res 
             
         
         
