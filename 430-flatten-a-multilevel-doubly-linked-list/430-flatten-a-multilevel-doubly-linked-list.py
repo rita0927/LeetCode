@@ -14,27 +14,69 @@ class Solution:
         if not head:
             return None
         
-        def dfs(prev, node):
-
+        prev = dummy = Node()
+        stack = [head]
+        
+        while stack:
+            node = stack.pop()
+            
+            if not node:
+                continue 
+            
+            stack.append(node.next)
+            stack.append(node.child)
+            node.child = None 
+            
             prev.next = node
             node.prev = prev
-            next = node.next
-            child = node.child
+            prev = node 
+        
+        dummy.next.prev = None 
+        return dummy.next 
             
-            if child:
-                node.child = None 
-                node = dfs(node, child)
-            if next:
-                node = dfs(node, next)
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if not head:
+#             return None
+        
+#         def dfs(prev, node):
+
+#             prev.next = node
+#             node.prev = prev
+#             next = node.next
+#             child = node.child
+            
+#             if child:
+#                 node.child = None 
+#                 node = dfs(node, child)
+#             if next:
+#                 node = dfs(node, next)
            
-            return node 
+#             return node 
             
  
         
-        prev = dummy = Node()
-        dfs(prev, head)
-        dummy.next.prev = None
-        return dummy.next 
+#         prev = dummy = Node()
+#         dfs(prev, head)
+#         dummy.next.prev = None
+#         return dummy.next 
         
         
         
