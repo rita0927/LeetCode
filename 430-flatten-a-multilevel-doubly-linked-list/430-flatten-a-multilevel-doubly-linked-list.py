@@ -12,36 +12,76 @@ class Solution:
     def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]': 
         
         if not head:
-            return None 
+            return None
         
         def dfs(prev, node):
-            
-            if not node:
-                return prev 
- 
-            node.prev= prev
+
             prev.next = node
+            node.prev = prev
+            next = node.next
+            child = node.child
             
-            next = node.next 
-            
-            if node.child:
-                child = node.child
-                node.child = None
+            if child:
+                node.child = None 
                 node = dfs(node, child)
             if next:
                 node = dfs(node, next)
-            
+           
             return node 
             
-            # tail= dfs(node, node.child)
-            # node.child = None
-            # tail = dfs(tail, next) 
-            # return tail  
+ 
         
         prev = dummy = Node()
         dfs(prev, head)
         dummy.next.prev = None
         return dummy.next 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if not head:
+#             return None 
+        
+#         def dfs(prev, node):
+            
+#             if not node:
+#                 return prev 
+ 
+#             node.prev= prev
+#             prev.next = node
+            
+#             next = node.next 
+            
+#             if node.child:
+#                 child = node.child
+#                 node.child = None
+#                 node = dfs(node, child)
+#             if next:
+#                 node = dfs(node, next)
+            
+#             return node 
+            
+#             # tail= dfs(node, node.child)
+#             # node.child = None
+#             # tail = dfs(tail, next) 
+#             # return tail  
+        
+#         prev = dummy = Node()
+#         dfs(prev, head)
+#         dummy.next.prev = None
+#         return dummy.next 
                 
                 
         
