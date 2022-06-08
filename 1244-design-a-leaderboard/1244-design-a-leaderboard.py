@@ -72,57 +72,57 @@
 
 
 
-class Leaderboard:
-
-    # Space: O(N) + O(K) where O(N) for dict and O(K) for heap 
-    
-    def __init__(self):
-        self.board = defaultdict(int)
-        
-
-    def addScore(self, playerId: int, score: int) -> None:
-        self.board[playerId] += score
-        
-    # Time: O(K + (N-K) * log(K)) where O(K) to construct the initial heap, for the rest of the (N-K) elements, push-pop requires log(K) for each element. If N >> K, then the final time complexity is O(NlogK)
-    
-    def top(self, K: int) -> int:
-        # heap = list(self.board.values())
-        # return sum(heapq.nlargest(K, heap))
-        
-        
-        heap = []
-        for score in self.board.values():
-            heapq.heappush(heap, score)
-            if len(heap) > K:
-                heapq.heappop(heap)
-        return sum(heap)
-        
-
-    def reset(self, playerId: int) -> None:
-        del self.board[playerId]
-        
-
-
-    
-    
-
-
 # class Leaderboard:
+
+#     # Space: O(N) + O(K) where O(N) for dict and O(K) for heap 
     
-#     # space: O(N)
 #     def __init__(self):
 #         self.board = defaultdict(int)
         
-#     # time: O(1)
+
 #     def addScore(self, playerId: int, score: int) -> None:
-#         self.board[playerId] = score
+#         self.board[playerId] += score
         
-#     # time: O(NlogN)
+#     # Time: O(K + (N-K) * log(K)) where O(K) to construct the initial heap, for the rest of the (N-K) elements, push-pop requires log(K) for each element. If N >> K, then the final time complexity is O(NlogK)
+    
 #     def top(self, K: int) -> int:
-#         values = sorted(self.board.values(), reverse = True)
-#         return sum(values[:K])
+#         # heap = list(self.board.values())
+#         # return sum(heapq.nlargest(K, heap))
         
-#     # time: O(1)
+        
+#         heap = []
+#         for score in self.board.values():
+#             heapq.heappush(heap, score)
+#             if len(heap) > K:
+#                 heapq.heappop(heap)
+#         return sum(heap)
+        
+
 #     def reset(self, playerId: int) -> None:
 #         del self.board[playerId]
+        
+
+
+    
+    
+
+
+class Leaderboard:
+    
+    # space: O(N)
+    def __init__(self):
+        self.board = defaultdict(int)
+        
+    # time: O(1)
+    def addScore(self, playerId: int, score: int) -> None:
+        self.board[playerId] += score
+        
+    # time: O(NlogN)
+    def top(self, K: int) -> int:
+        values = sorted(self.board.values(), reverse = True)
+        return sum(values[:K])
+        
+    # time: O(1)
+    def reset(self, playerId: int) -> None:
+        del self.board[playerId]
         
