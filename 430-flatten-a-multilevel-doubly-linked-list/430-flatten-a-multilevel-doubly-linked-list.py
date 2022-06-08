@@ -12,27 +12,70 @@ class Solution:
     def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]': 
         
         if not head:
-            return None
+            return None 
         
-        prev = dummy = Node()
-        stack = [head]
-        
-        while stack:
-            node = stack.pop()
-            
-            if not node:
-                continue 
-            
-            stack.append(node.next)
-            stack.append(node.child)
-            node.child = None 
-            
-            prev.next = node
+        def dfs(prev, node):
             node.prev = prev
-            prev = node 
-        
-        dummy.next.prev = None 
+            prev.next = node
+            
+            child = node.child 
+            next = node.next
+
+            if child:
+                node.child = None
+                node = dfs(node, child)
+            if next:
+                node = dfs(node, next)
+            return node  
+                
+
+        prev = dummy = Node()
+        dfs(prev, head)
+        dummy.next.prev = None
         return dummy.next 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if not head:
+#             return None
+        
+#         prev = dummy = Node()
+#         stack = [head]
+        
+#         while stack:
+#             node = stack.pop()
+            
+#             if not node:
+#                 continue 
+            
+#             stack.append(node.next)
+#             stack.append(node.child)
+#             node.child = None 
+            
+#             prev.next = node
+#             node.prev = prev
+#             prev = node 
+        
+#         dummy.next.prev = None 
+#         return dummy.next 
             
             
         
