@@ -7,19 +7,30 @@ class Solution:
             
             if not stack or stack[-1][0] != ch:
                 stack.append([ch, 1])
+                
             else:
                 stack[-1][1] += 1
                 
                 if stack[-1][1] == k:
                     stack.pop()
-        
         res = ''
-        
         for ch, count in stack:
-            res += ch * count 
-        
+            res += (ch * count)
         return res 
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
         
         
         
