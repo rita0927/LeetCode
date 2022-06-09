@@ -4,11 +4,12 @@ class RandomizedSet:
         self.map = {}
         self.arr = []
 
+
     def insert(self, val: int) -> bool:
         if val in self.map:
             return False
         
-        index = len(self.arr)
+        index= len(self.arr)
         self.map[val] = index
         self.arr.append(val)
         return True 
@@ -22,18 +23,21 @@ class RandomizedSet:
         last = self.arr[-1]
         
         self.arr[index] = last
-        self.map[last] = index
+        self.map[last] = index 
         self.arr.pop()
         del self.map[val]
         return True 
-        
-        
 
 
     def getRandom(self) -> int:
         return random.choice(self.arr)
+      
 
 
+        
+        
+        
+        
         
         
         
