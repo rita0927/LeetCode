@@ -3,12 +3,13 @@ from heapq import *
 class Leaderboard:
 
     def __init__(self):
-        self.board = defaultdict(int)
         
-
+        self.board= defaultdict(int)
+  
     def addScore(self, playerId: int, score: int) -> None:
-        self.board[playerId] += score
         
+        self.board[playerId] += score  
+
 
     def top(self, K: int) -> int:
         scores = list(self.board.values())
@@ -18,34 +19,35 @@ class Leaderboard:
             pivot_index = random.randint(l,r)
             pivot = scores[pivot_index]
             scores[pivot_index], scores[r] = scores[r], scores[pivot_index]
-            p = l 
+            
+            p = l
             
             for i in range(l,r):
                 if scores[i] < pivot:
-                    scores[p], scores[i] = scores[i], scores[p]
+                    scores[i], scores[p] = scores[p], scores[i]
                     p += 1
             scores[p], scores[r] = scores[r], scores[p]
             
-            if K< p:
+            if K < p:
                 return quickSelect(l, p - 1)
             elif K > p:
                 return quickSelect(p + 1, r)
             else:
-                return 
-           
+                return
+               
         quickSelect(0, len(scores) - 1)
         return sum(scores[K:])
         
         
-        
-        
-        
-
-        
-        
+     
 
     def reset(self, playerId: int) -> None:
         del self.board[playerId]
+
+        
+        
+        
+        
         
 
 
@@ -54,6 +56,13 @@ class Leaderboard:
 # obj.addScore(playerId,score)
 # param_2 = obj.top(K)
 # obj.reset(playerId)
+
+
+
+
+
+
+
 
 
 
