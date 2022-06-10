@@ -2,7 +2,14 @@ class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         
          
+        # O(M^2 * N) where M is the length of each word and N is the number of words in the wordList. For each word (max length M) in the wordList, we iterate over its length to find all the intermediate words, N words and each has the length of M, tht total numnber of iteration is M*N. Forming the intermediate word takes O(M) for the string operation. The total is O(M^2 * N)
+        
+        
         words = set(wordList)
+        
+        if endWord not in words:
+            return 0
+             
         level = 0
         queue = deque([beginWord])
         
@@ -27,40 +34,9 @@ class Solution:
         
 
                 
-                
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
         
         
         
