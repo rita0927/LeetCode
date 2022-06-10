@@ -1,15 +1,14 @@
 class DoubleLinkedList:
     
-    def __init__(self):
-        self.key = 0
-        self.value = 0
+    def __init__(self, val = 0, key = 0):
+        self.key = key
+        self.val = val
         self.prev = None
         self.next = None
 
 class LRUCache:
-
-    # use cache to store key, node pair 
     
+
     def __init__(self, capacity: int):
         self.capacity = capacity
         self.size = 0
@@ -17,63 +16,55 @@ class LRUCache:
         self.head = DoubleLinkedList()
         self.tail = DoubleLinkedList()
         self.head.next = self.tail
-        self.tail.prev = self.head
- 
-    
+        self.tail.prev = self.head 
+
     def _add_node(self, node):
         node.prev = self.head
-        node.next = self.head.next  
+        node.next = self.head.next
         self.head.next.prev = node
-        self.head.next = node
+        self.head.next = node 
         
-        
+    
     def _remove_node(self, node):
         node.prev.next = node.next
         node.next.prev = node.prev 
         
-    def _pop_from_tail(self):
-        last = self.tail.prev
-        self._remove_node(last)
-        return last
+    
+    def _pop_tail(self):
+        tail = self.tail.prev
+        self._remove_node(tail)
+        return tail 
+        
     
     def _move_to_head(self, node):
         self._remove_node(node)
         self._add_node(node)
-        
-
+              
     def get(self, key: int) -> int:
-        
-        if not key in self.cache:
+        if key not in self.cache:
             return -1
         
         node = self.cache[key]
         self._move_to_head(node)
-        return node.value
-        
+        return node.val
+
 
     def put(self, key: int, value: int) -> None:
         
         if key in self.cache:
-            node = self.cache[key]
-            node.value = value 
+            node = self.cache[key] 
+            node.val = value
             self._move_to_head(node)
-            
         else:
-            node = DoubleLinkedList()
-            node.key = key
-            node.value = value
-            
-            self._add_node(node)
-            self.size += 1
+            node = DoubleLinkedList(value, key)
             self.cache[key] = node
+            self.size += 1
+            self._add_node(node)
             
             if self.size > self.capacity:
-                last = self._pop_from_tail()
-                self.size -= 1
+                last = self._pop_tail()
                 del self.cache[last.key]
-        
-
-
+                self.size -= 1
 
 
 
@@ -84,11 +75,14 @@ class LRUCache:
         
         
         
-
-
-
-
-
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
@@ -107,6 +101,8 @@ class LRUCache:
 #         self.next = None
 
 # class LRUCache:
+
+# use cache to store key, node pair 
 
 #     def __init__(self, capacity: int):
 #         self.capacity = capacity
