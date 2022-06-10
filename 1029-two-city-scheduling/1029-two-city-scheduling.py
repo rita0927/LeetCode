@@ -1,0 +1,11 @@
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        
+        # sort by opportunity gain by sending to A instead of B
+        costs.sort(key = lambda x: x[0] - x[1])
+        
+        total = 0
+        mid = len(costs)//2
+        for i in range(mid):
+            total += costs[i][0] + costs[i + mid][1]
+        return total 
