@@ -10,11 +10,11 @@ class Node:
 
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
-        
         if not root:
-            return None
+            return None 
         
-        queue = deque([root])
+        queue= deque([root])
+        
         while queue:
             size = len(queue)
             
@@ -29,6 +29,9 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
         return root 
+        
+ 
+        
         
 
                 
