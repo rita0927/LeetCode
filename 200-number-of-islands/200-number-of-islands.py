@@ -8,18 +8,18 @@ class Solution:
         
         def dfs(r,c):
             
-            visited.add((r,c))
-            
             for x,y in dir:
                 nr = r + x
                 nc = c + y
                 
                 if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == '1' and (nr,nc) not in visited:
+                    visited.add((nr,nc))
                     dfs(nr,nc)     
         
         for r in range(m):
             for c in range(n):
                 if grid[r][c] == '1' and (r,c) not in visited:
+                    visited.add((r,c))
                     res += 1
                     dfs(r,c)
         return res 
