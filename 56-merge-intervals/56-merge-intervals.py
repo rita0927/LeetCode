@@ -4,13 +4,29 @@ class Solution:
         intervals.sort()
         stack = []
         
-        for start, end in intervals:
-            if stack and stack[-1][1] >= start:
-                stack[-1][1] = max(stack[-1][1], end)
+        for interval in intervals:
+            if not stack or stack[-1][1] < interval[0]:
+                stack.append(interval)
             else:
-                stack.append([start, end])
+                stack[-1][1] = max(stack[-1][1], interval[1])
+                
         return stack 
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
