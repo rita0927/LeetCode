@@ -1,6 +1,6 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
-        
+
         stack = []
         
         for ch in s:
@@ -9,13 +9,13 @@ class Solution:
             else:
                 stack[-1][1]+=1
                 
-                if stack[-1][1] >= k:
+                if stack[-1][1] == k:
                     stack.pop()
         res = ''
         for ch, count in stack:
-            res += (ch * count)
-        return res 
+            res += ch * count
         
+        return res 
         
         
 
