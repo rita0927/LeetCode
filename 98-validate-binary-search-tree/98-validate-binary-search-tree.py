@@ -12,11 +12,15 @@ class Solution:
                 return True
             
             if node.val <= l or node.val >= r:
-                return False
+                return False 
             
             return helper(node.left, l, node.val) and helper(node.right, node.val, r)
-   
+        
+        
+        
         return helper(root, float('-inf'), float('inf'))
+        
+
 
         
         
