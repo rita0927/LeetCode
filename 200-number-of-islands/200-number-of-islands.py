@@ -7,28 +7,25 @@ class Solution:
         visited = set()
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
         
+        def dfs(r,c):
+            visited.add((r,c))
+            for x,y in dir:
+                nr = x + r
+                nc = y + c
+                
+                if 0<=nr<m and 0<=nc<n and (nr,nc) not in visited and grid[nr][nc]=='1':
+                    dfs(nr,nc)
+       
         for r in range(m):
             for c in range(n):
                 if grid[r][c] == '1' and (r,c) not in visited:
-                    visited.add((r,c))
+                    dfs(r,c)
                     res += 1
-                    queue = deque([(r,c)])
-                    
-                    while queue:
-                        row, col = queue.popleft()
-                        
-                        for x,y in dir:
-                            nr = row + x
-                            nc = col + y
-                            
-                            if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == '1' and (nr, nc) not in visited:
-                                visited.add((nr,nc))
-                                queue.append((nr,nc))
         return res 
-                                
         
 
-           
+        
+        
         
         
         
