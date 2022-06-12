@@ -1,5 +1,6 @@
 class Solution:
     def decodeString(self, s: str) -> str:
+        
         stack = []
         
         for ch in s:
@@ -7,16 +8,17 @@ class Solution:
                 stack.append(ch)
             else:
                 string = ''
-                count = ''
                 while stack[-1] != '[':
                     string = stack.pop() + string 
                 stack.pop()
+                count = ''
                 while stack and stack[-1].isdigit():
-                    count = stack.pop() + count
+                    count = stack.pop() + count 
                 
                 stack.append(string * int(count))
-        
+                
         return ''.join(stack)
+
                     
         
    
