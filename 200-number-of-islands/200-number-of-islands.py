@@ -1,29 +1,29 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        
         m = len(grid)
         n = len(grid[0])
         res = 0
-        visited = set()
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        visited = set()
+        
+        def dfs(r,c):
+            
+            visited.add((r,c))
+            
+            for x,y in dir:
+                nr = r + x
+                nc = c + y
+                
+                if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == '1' and (nr,nc) not in visited:
+                    dfs(nr,nc)     
         
         for r in range(m):
             for c in range(n):
-                if grid[r][c]=='1' and (r,c) not in visited:
-                    visited.add((r,c))
-                    queue = deque([(r,c)])
+                if grid[r][c] == '1' and (r,c) not in visited:
                     res += 1
-                    while queue:
-                        row, col = queue.popleft()
-                        for x,y in dir:
-                            nr = row + x
-                            nc = col + y
-                            
-                            if 0<=nr<m and 0<=nc<n and grid[nr][nc]=='1'and (nr,nc) not in visited:
-                                visited.add((nr,nc))
-                                queue.append((nr,nc))
+                    dfs(r,c)
         return res 
-                    
+        
 
         
         
