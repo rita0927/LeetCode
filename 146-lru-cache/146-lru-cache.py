@@ -1,10 +1,9 @@
 class DoubleLinkedList:
-    
-    def __init__(self, val = 0, key = 0):
-        self.key = key
-        self.val = val
+    def __init__(self):
+        self.val = 0
+        self.key = 0
         self.prev = None
-        self.next = None
+        self.next = None 
 
 class LRUCache:
     
@@ -17,29 +16,32 @@ class LRUCache:
         self.tail = DoubleLinkedList()
         self.head.next = self.tail
         self.tail.prev = self.head 
-
+        
+        
+    # add node
     def _add_node(self, node):
         node.prev = self.head
-        node.next = self.head.next
+        node.next = self.head.next 
         self.head.next.prev = node
-        self.head.next = node 
-        
+        self.head.next = node
     
+    # remove node
     def _remove_node(self, node):
         node.prev.next = node.next
-        node.next.prev = node.prev 
-        
+        node.next.prev = node.prev
     
+    # move to head 
+    def _move_to_head(self, node):
+        self._remove_node(node)
+        self._add_node(node)
+    
+    # pop tail 
     def _pop_tail(self):
         tail = self.tail.prev
         self._remove_node(tail)
         return tail 
-        
     
-    def _move_to_head(self, node):
-        self._remove_node(node)
-        self._add_node(node)
-              
+                    
     def get(self, key: int) -> int:
         if key not in self.cache:
             return -1
@@ -48,23 +50,26 @@ class LRUCache:
         self._move_to_head(node)
         return node.val
 
-
     def put(self, key: int, value: int) -> None:
-        
         if key in self.cache:
-            node = self.cache[key] 
+            node = self.cache[key]
             node.val = value
             self._move_to_head(node)
         else:
-            node = DoubleLinkedList(value, key)
-            self.cache[key] = node
-            self.size += 1
+            node = DoubleLinkedList()
+            node.val = value
+            node.key = key
             self._add_node(node)
+            self.size += 1
+            self.cache[key] = node 
             
             if self.size > self.capacity:
                 last = self._pop_tail()
                 del self.cache[last.key]
                 self.size -= 1
+                
+            
+        
 
 
 
