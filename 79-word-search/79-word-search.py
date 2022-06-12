@@ -4,37 +4,101 @@ class Solution:
         n = len(board[0])
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
         
-        
-        def dfs(r,c,index):
-            
+        def backtrack(r,c,index):
             if index == len(word):
-                return True
+                return True 
             
-            if r < 0 or r >= m or c < 0 or c >= n:
+            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:
                 return False
             
-            ch = board[r][c]
-            
-            if ch != word[index]:
-                return False 
-            
+            temp = board[r][c]
             board[r][c] = '#'
             
             for x,y in dir:
-                nr = r + x
+                nr = r + x 
                 nc = c + y
-                
-                if dfs(nr,nc,index+1):
-                    return True
-            board[r][c] = ch
-            
-     
+                if backtrack(nr,nc,index+1):
+                    return True 
+            board[r][c] = temp
         
         for r in range(m):
             for c in range(n):
-                if dfs(r,c,0):
+                if backtrack(r,c,0):
                     return True
         return False 
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         m = len(board)
+#         n = len(board[0])
+#         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        
+        
+#         def dfs(r,c,index):
+            
+#             if index == len(word):
+#                 return True
+            
+#             if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:
+#                 return False
+            
+#             ch = board[r][c]
+#             board[r][c] = '#'
+            
+#             for x,y in dir:
+#                 nr = r + x
+#                 nc = c + y
+                
+#                 if dfs(nr,nc,index+1):
+#                     return True
+#             board[r][c] = ch
+            
+     
+        
+#         for r in range(m):
+#             for c in range(n):
+#                 if dfs(r,c,0):
+#                     return True
+#         return False 
         
         
         
