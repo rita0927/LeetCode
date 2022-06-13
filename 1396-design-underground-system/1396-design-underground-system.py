@@ -3,35 +3,39 @@ class UndergroundSystem:
     def __init__(self):
         self.checkIn_data = {}
         self.journey_data = defaultdict(lambda: [0,0])
-
-        
+  
     def checkIn(self, id, stationName, t):
         self.checkIn_data[id] = [stationName, t]
-        
-        
+
+   
     def checkOut(self, id, stationName, t):
         start_station, start_time = self.checkIn_data.pop(id)
-        time = t-start_time 
         avg_time, count = self.journey_data[(start_station, stationName)]
+        time = t - start_time
         avg_time = (avg_time * count + time)/(count + 1)
-        self.journey_data[(start_station, stationName)] = [avg_time, (count+1)]
-
+        self.journey_data[(start_station, stationName)] = [avg_time, count+1]
 
     def getAverageTime(self, startStation, endStation):
         return self.journey_data[(startStation, endStation)][0]
+       
         
       
         
-
-      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
 
-"""
-"undergroundSystem", checkin,   checkin   , checkout, getAverage(A, B), checkout, getAverage 
-                     [1, A, t1] [2, A, t2], [1, B, t3], (t3-t1)/1      [2, B, t4] ((t3-t1) + (t4-t2))/2
-"""
-        
-        
 
 
 
