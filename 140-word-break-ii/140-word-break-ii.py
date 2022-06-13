@@ -1,28 +1,26 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         
-        d = set(wordDict)
-        cache = {}
+        words = set(wordDict)
+        res = []
         
-        # @functools.lru_cache
-        def helper(s):
-            if s in cache:
-                return cache[s]
-            res = []
-            for i in range(1, len(s) + 1):
-                word = s[:i]
-                if word in d:
-                    if len(s) == len(word):
-                        res.append(word)
-                    else:
-                        for words in helper(s[i:]):
-                            res.append(word + ' ' + words)
-            cache[s] = res 
-            return res 
-        
-        return helper(s)
-        
-        
+        def backtrack(index, path):
+            if index == len(s):
+                res.append(' '.join(path))
+                return
+            
+            temp = ''
+            for i in range(index, len(s)):
+                temp += s[i]
+                if temp in words:
+                    path.append(temp)
+                    backtrack(i+1, path)
+                    path.pop()
+                    
+        backtrack(0, [])
+        return res 
+                
+            
         
         
         
@@ -41,6 +39,51 @@ class Solution:
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(N^2+2^N+W) where N is the len of string, and W is len wor wordDict 
+#         # O(2^N*N+W)
+#         d = set(wordDict)
+#         cache = {}
+        
+#         # either use cache or use functools.lru_cache
+        
+#         # @functools.lru_cache
+#         def helper(s):
+#             if s in cache:
+#                 return cache[s]
+#             res = []
+#             for i in range(1, len(s) + 1):
+#                 word = s[:i]
+#                 if word in d:
+#                     if len(s) == len(word):
+#                         res.append(word)
+#                     else:
+#                         for words in helper(s[i:]):
+#                             res.append(word + ' ' + words)
+#             cache[s] = res 
+#             return res 
+        
+#         return helper(s)
+        
+        
+        
+     
         
         
         
