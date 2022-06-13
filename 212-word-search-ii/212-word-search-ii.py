@@ -1,9 +1,12 @@
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
-        
         end = 'word_key'
-        
         trie = {}
+        m = len(board)
+        n = len(board[0])
+        visited = set()
+        res = set()
+        dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
         
         for word in words:
             node = trie
@@ -11,43 +14,105 @@ class Solution:
                 node = node.setdefault(ch, {})
             node[end] = word
         
-        m = len(board)
-        n = len(board[0])
-        res = []
-        visited = set()
-        dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-        
         def backtrack(r,c,parent):
             ch = board[r][c]
             node = parent[ch]
             
             isEnd = node.pop(end, False)
-            
             if isEnd:
-                res.append(isEnd)
+                res.add(isEnd)
             
             visited.add((r,c))
             
             for x,y in dir:
-                nr = r + x
-                nc = c + y
+                nr=r+x
+                nc=c+y
                 
-                if nr < 0 or nr >= m or nc < 0 or nc >= n or not board[nr][nc] in node or (nr, nc) in visited:
-                    continue
-                backtrack(nr, nc, node)
-            
-            board[r][c] = ch
+                if 0<=nr<m and 0<=nc<n and (nr,nc) not in visited and board[nr][nc] in node:
+                    backtrack(nr,nc,node)
             visited.remove((r,c))
             
             if not node:
                 parent.pop(ch)
-              
-        
+                
         for r in range(m):
             for c in range(n):
                 if board[r][c] in trie:
                     backtrack(r,c,trie)
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         end = 'word_key'
+        
+#         trie = {}
+        
+#         for word in words:
+#             node = trie
+#             for ch in word:
+#                 node = node.setdefault(ch, {})
+#             node[end] = word
+        
+#         m = len(board)
+#         n = len(board[0])
+#         res = []
+#         visited = set()
+#         dir = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+        
+#         def backtrack(r,c,parent):
+#             ch = board[r][c]
+#             node = parent[ch]
+            
+#             isEnd = node.pop(end, False)
+            
+#             if isEnd:
+#                 res.append(isEnd)
+            
+#             visited.add((r,c))
+            
+#             for x,y in dir:
+#                 nr = r + x
+#                 nc = c + y
+                
+#                 if nr < 0 or nr >= m or nc < 0 or nc >= n or not board[nr][nc] in node or (nr, nc) in visited:
+#                     continue
+#                 backtrack(nr, nc, node)
+            
+#             board[r][c] = ch
+#             visited.remove((r,c))
+            
+#             if not node:
+#                 parent.pop(ch)
+              
+        
+#         for r in range(m):
+#             for c in range(n):
+#                 if board[r][c] in trie:
+#                     backtrack(r,c,trie)
+#         return res 
         
         
         
