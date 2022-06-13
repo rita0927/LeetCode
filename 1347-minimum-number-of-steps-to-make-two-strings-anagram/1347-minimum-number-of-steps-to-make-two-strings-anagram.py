@@ -2,42 +2,84 @@ class Solution:
     def minSteps(self, s: str, t: str) -> int:
         
         count = Counter(s)
-        
         for ch in t:
-            if ch in count and count[ch]:
+            if count[ch]:
                 count[ch] -= 1
+            
+        return sum(count.values()) 
         
-        return sum(count.values())
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         count = Counter(s)
+        
+#         for ch in t:
+#             if count[ch]:
+#                 count[ch] -= 1
+        
+#         return sum(count.values())
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+  
+        
+        
+#         count = Counter(s)
+        
+#         for ch in t:
+#             if ch in count and count[ch]:
+#                 count[ch] -= 1
+        
+#         return sum(count.values())
                 
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+      
+       
         
         
         
