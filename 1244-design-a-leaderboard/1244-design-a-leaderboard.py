@@ -11,13 +11,33 @@ class Leaderboard:
         
 
     def top(self, K: int) -> int:
+        scores = list(self.board.values())
+        K = len(scores) - K
         
-        heap = []
-        for score in self.board.values():
-            heapq.heappush(heap, score)
-            if len(heap) > K:
-                heapq.heappop(heap)
-        return sum(heap)
+        def quickSelect(l,r):
+            pivot_index = random.randint(l,r)
+            pivot = scores[pivot_index]
+            scores[pivot_index], scores[r] = scores[r], scores[pivot_index]
+            p = l
+            
+            for i in range(l,r):
+                if scores[i] < pivot:
+                    scores[i], scores[p] = scores[p], scores[i]
+                    p+= 1
+            scores[r], scores[p] = scores[p], pivot 
+            
+            if K < p:
+                return quickSelect(l, p - 1)
+            elif K> p:
+                return quickSelect(p+1, r)
+            else:
+                return     
+        
+        quickSelect(0, len(scores) - 1)
+        return sum(scores[K:])
+        
+        
+
 
      
 
