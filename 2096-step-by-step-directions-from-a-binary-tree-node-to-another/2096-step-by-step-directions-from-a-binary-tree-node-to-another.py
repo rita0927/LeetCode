@@ -7,34 +7,86 @@
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
         
-        #O(N), O(N)
-        graph = defaultdict(list)
-        queue = deque([root])
-        
-        while queue:
-            node = queue.popleft()
-            if node.left:
-                graph[node.val].append([node.left.val, 'L'])
-                graph[node.left.val].append([node.val, 'U'])
-                queue.append(node.left)
-            if node.right:
-                graph[node.val].append([node.right.val, 'R'])
-                graph[node.right.val].append([node.val, 'U'])
-                queue.append(node.right)
-        
-        queue = deque([(startValue, '')])
-        visited = set()
-        # visited.add(startValue)
-        while queue:
-            val, path = queue.popleft()
-            visited.add(val)
-            if val == destValue:
-                return path
+        parents = {}
+        self.start = None 
+        def findParent(parent, node):
+            parents[node] = parent
+            if node.val == startValue:
+                self.start = node
             
-            for next, dir in graph[val]:
-                if next not in visited:
-                    # visited.add(next)
-                    queue.append((next, path+dir))
+            if node.left:
+                findParent(node, node.left)
+            if node.right:
+                findParent(node, node.right)
+        findParent(None, root)
+        
+        queue = deque([(self.start, '')])
+        visited = set()
+        
+        while queue:
+            node, path = queue.popleft()
+            
+            if node.val in visited:
+                continue
+            visited.add(node.val)
+            
+            if node.val == destValue:
+                return path 
+            
+            if node.left and node.left.val not in visited:
+                queue.append((node.left, path+'L'))
+            if node.right and node.right.val not in visited:
+                queue.append((node.right, path+'R'))
+            if parents[node] and parents[node].val not in visited:
+                queue.append((parents[node], path+'U'))
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         #O(N), O(N)
+#         graph = defaultdict(list)
+#         queue = deque([root])
+        
+#         while queue:
+#             node = queue.popleft()
+#             if node.left:
+#                 graph[node.val].append([node.left.val, 'L'])
+#                 graph[node.left.val].append([node.val, 'U'])
+#                 queue.append(node.left)
+#             if node.right:
+#                 graph[node.val].append([node.right.val, 'R'])
+#                 graph[node.right.val].append([node.val, 'U'])
+#                 queue.append(node.right)
+        
+#         queue = deque([(startValue, '')])
+#         visited = set()
+#         visited.add(startValue)
+#         while queue:
+#             val, path = queue.popleft()
+            
+#             if val == destValue:
+#                 return path
+            
+#             for next, dir in graph[val]:
+#                 if next not in visited:
+#                     visited.add(next)
+#                     queue.append((next, path+dir))
                 
        
         
