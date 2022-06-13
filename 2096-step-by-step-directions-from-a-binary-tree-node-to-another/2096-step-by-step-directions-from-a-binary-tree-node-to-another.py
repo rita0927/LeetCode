@@ -23,23 +23,24 @@ class Solution:
         findNode(None, root)
         queue = deque([(self.start, '')])
         visited = set()
-        visited.add(self.start.val)
+        # visited.add(self.start.val)
         
         while queue:
 
             node, path = queue.popleft()
+            visited.add(node.val)
             
             if node.val == destValue:
                 return path
             if node.left and node.left.val not in visited:
                 queue.append((node.left, path+'L'))
-                visited.add(node.left.val)
+                # visited.add(node.left.val)
             if node.right and node.right.val not in visited:
                 queue.append((node.right, path+'R'))
-                visited.add(node.right.val)
+                # visited.add(node.right.val)
             if parents[node] and parents[node].val not in visited:
                 queue.append((parents[node], path+'U'))
-                visited.add(parents[node].val)
+                # visited.add(parents[node].val)
                     
         
                         
