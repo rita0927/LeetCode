@@ -1,6 +1,6 @@
 class Solution:
     def unhappyFriends(self, n: int, preferences: List[List[int]], pairs: List[List[int]]) -> int:
-        
+
         pairMap = {}
         preferMap = defaultdict(dict)
         
@@ -10,22 +10,21 @@ class Solution:
             
         for x in range(n):
             for index, y in enumerate(preferences[x]):
-                preferMap[x][y] = index
-        
+                preferMap[x][y] = index 
+         
         res = 0
         for x in range(n):
             pair = pairMap[x]
             
             for y in preferences[x]:
                 y_pair = pairMap[y]
+                
                 if preferMap[x][y] < preferMap[x][pair] and preferMap[y][x] < preferMap[y][y_pair]:
                     res += 1
                     break
         return res 
-                
-                
-        
-        
+            
+            
         
 
         
