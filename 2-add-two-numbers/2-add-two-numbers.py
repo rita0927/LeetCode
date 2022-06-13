@@ -8,23 +8,71 @@ class Solution:
         
         dummy = head = ListNode()
         carry = 0
+        
         while l1 or l2:
             val1 = l1.val if l1 else 0
             val2 = l2.val if l2 else 0
-            
-            val = (val1 + val2 + carry)%10
-            node = ListNode(val)
-            carry = (val1 + val2 + carry)//10
-            head.next = node
-            head = node 
+            val = carry + val1 + val2
+            dummy.next = ListNode(val%10)
+            dummy = dummy.next 
+            carry = val//10
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None 
         
         if carry:
-            node = ListNode(carry)
-            head.next = node
+            dummy.next = ListNode(carry)
+        
+        return head.next 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         dummy = head = ListNode()
+#         carry = 0
+#         while l1 or l2:
+#             val1 = l1.val if l1 else 0
+#             val2 = l2.val if l2 else 0
             
-        return dummy.next 
+#             val = (val1 + val2 + carry)%10
+#             node = ListNode(val)
+#             carry = (val1 + val2 + carry)//10
+#             head.next = node
+#             head = node 
+#             l1 = l1.next if l1 else None
+#             l2 = l2.next if l2 else None 
+        
+#         if carry:
+#             node = ListNode(carry)
+#             head.next = node
+            
+#         return dummy.next 
             
         
         
