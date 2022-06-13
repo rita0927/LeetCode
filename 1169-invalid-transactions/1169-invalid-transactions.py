@@ -1,26 +1,35 @@
 class Solution:
     def invalidTransactions(self, transactions: List[str]) -> List[str]:
         
-        d = defaultdict(list)
         res = set()
+        d = defaultdict(list)
         
-        for i1, t1 in enumerate(transactions):
+        for index1, t1 in enumerate(transactions):
             name, time1, amt1, city1 = t1.split(',')
             
             if int(amt1) > 1000:
-                res.add((i1, t1))
+                res.add((index1, t1))
             
-            for i2, t2 in d[name]:
-                name, time2, amt2, city2 = t2.split(',')
+            for index2, t2 in d[name]:
+                name, time2, amt, city2 = t2.split(',')
                 
-                if abs(int(time2) - int(time1)) <= 60 and city1 != city2:
-                    res.add((i2, t2))
-                    res.add((i1, t1))
-            
-            d[name].append((i1, t1))
+                if abs(int(time1) - int(time2)) <= 60 and city1 != city2:
+                    res.add((index1, t1))
+                    res.add((index2, t2))
+
+            d[name].append((index1, t1))
         
         return [x[1] for x in res]
+                
+            
         
+        
+        
+        
+        
+        
+        
+
         
         
         
