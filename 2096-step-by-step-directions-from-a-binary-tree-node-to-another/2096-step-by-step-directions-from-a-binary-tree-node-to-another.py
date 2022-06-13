@@ -7,6 +7,7 @@
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
         
+        #O(N), O(N)
         graph = defaultdict(list)
         queue = deque([root])
         
@@ -23,16 +24,16 @@ class Solution:
         
         queue = deque([(startValue, '')])
         visited = set()
-        visited.add(startValue)
+        # visited.add(startValue)
         while queue:
             val, path = queue.popleft()
-            
+            visited.add(val)
             if val == destValue:
                 return path
             
             for next, dir in graph[val]:
                 if next not in visited:
-                    visited.add(next)
+                    # visited.add(next)
                     queue.append((next, path+dir))
                 
        
