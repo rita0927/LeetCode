@@ -7,7 +7,7 @@
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
         
-        res = []
+        res = defaultdict(list)
         
         def dfs(node):
             if not node:
@@ -16,13 +16,11 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             level = max(left, right) + 1
-            if len(res) == level:
-                res.append([])
             res[level].append(node.val)
             return level 
         
         dfs(root)
-        return res 
+        return res.values()
         
         
         
