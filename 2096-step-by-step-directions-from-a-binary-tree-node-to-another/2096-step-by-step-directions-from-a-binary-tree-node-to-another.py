@@ -7,38 +7,94 @@
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
         
-        parents = {}
-        self.start = None 
-        def findParent(parent, node):
+        parents = defaultdict(int)
+        
+        start = None 
+        queue = deque([(None, root)])
+        while queue:
+            parent, node = queue.popleft()
             parents[node] = parent
             if node.val == startValue:
-                self.start = node
+                start = node
             
             if node.left:
-                findParent(node, node.left)
+                queue.append((node, node.left))
             if node.right:
-                findParent(node, node.right)
-        findParent(None, root)
-        
-        queue = deque([(self.start, '')])
+                queue.append((node, node.right))
+                
         visited = set()
-        
+        queue = deque([(start, '')])
         while queue:
             node, path = queue.popleft()
-            
+            if node.val == destValue:
+                return path 
             if node.val in visited:
                 continue
             visited.add(node.val)
-            
-            if node.val == destValue:
-                return path 
-            
-            if node.left and node.left.val not in visited:
+
+            if node.left:
                 queue.append((node.left, path+'L'))
-            if node.right and node.right.val not in visited:
+            if node.right:
                 queue.append((node.right, path+'R'))
-            if parents[node] and parents[node].val not in visited:
+            if parents[node]:
                 queue.append((parents[node], path+'U'))
+                
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         parents = {}
+#         self.start = None 
+#         def findParent(parent, node):
+#             parents[node] = parent
+#             if node.val == startValue:
+#                 self.start = node
+            
+#             if node.left:
+#                 findParent(node, node.left)
+#             if node.right:
+#                 findParent(node, node.right)
+#         findParent(None, root)
+        
+#         queue = deque([(self.start, '')])
+#         visited = set()
+        
+#         while queue:
+#             node, path = queue.popleft()
+            
+#             if node.val in visited:
+#                 continue
+#             visited.add(node.val)
+            
+#             if node.val == destValue:
+#                 return path 
+            
+#             if node.left and node.left.val not in visited:
+#                 queue.append((node.left, path+'L'))
+#             if node.right and node.right.val not in visited:
+#                 queue.append((node.right, path+'R'))
+#             if parents[node] and parents[node].val not in visited:
+#                 queue.append((parents[node], path+'U'))
         
         
         
