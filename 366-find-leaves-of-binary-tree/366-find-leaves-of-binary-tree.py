@@ -12,16 +12,15 @@ class Solution:
         def dfs(node):
             if not node:
                 return -1
-            
             left = dfs(node.left)
             right = dfs(node.right)
             level = max(left, right) + 1
             res[level].append(node.val)
             return level 
-        
         dfs(root)
         return res.values()
         
+
         
         
         
