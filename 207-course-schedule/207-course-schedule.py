@@ -1,29 +1,76 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        
         adj = defaultdict(list)
-        indegree = defaultdict(int)
         
         for crs, pre in prerequisites:
-            adj[pre].append(crs)
-            indegree[crs]+=1
+            adj[crs].append(pre)
         
-        queue = deque([])
-        seen = set()
+        visited = set()
+        
+        def dfs(crs):
+            
+            if crs in visited:
+                return False
+            visited.add(crs)   
+            for pre in adj[crs]:
+                if not dfs(pre):
+                    return False 
+            adj[crs] = []
+            visited.remove(crs)
+            return True 
         
         for i in range(numCourses):
-            if i not in indegree:
-                queue.append(i)
+            if not dfs(i):
+                return False
+        return True 
+            
+            
         
-        while queue:
-            pre = queue.popleft()
-            seen.add(pre)
-            for crs in adj[pre]:
-                indegree[crs] -= 1
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         adj = defaultdict(list)
+#         indegree = defaultdict(int)
+        
+#         for crs, pre in prerequisites:
+#             adj[pre].append(crs)
+#             indegree[crs]+=1
+        
+#         queue = deque([])
+#         seen = set()
+        
+#         for i in range(numCourses):
+#             if i not in indegree:
+#                 queue.append(i)
+        
+#         while queue:
+#             pre = queue.popleft()
+#             seen.add(pre)
+#             for crs in adj[pre]:
+#                 indegree[crs] -= 1
                 
-                if not indegree[crs]:
-                    queue.append(crs)
+#                 if not indegree[crs]:
+#                     queue.append(crs)
                     
-        return len(seen) == numCourses     
+#         return len(seen) == numCourses     
         
         
         
