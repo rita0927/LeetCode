@@ -23,15 +23,17 @@ class SnakeGame:
         if self.r < 0 or self.r >= self.m or self.c < 0 or self.c >= self.n:
             return -1
         
-        if (self.r, self.c) in self.snake and (self.r,self.c) != self.snake[0]:
+        if [self.r, self.c] in self.snake and [self.r,self.c] != self.snake[0]:
             return -1
 
-        self.snake.append((self.r, self.c))
+
+        self.snake.append([self.r, self.c])
+
         if self.food and [self.r, self.c] == self.food[0]:
             self.food.pop(0)
             self.score += 1
         else:
-            self.snake.pop(0)
+            tail = self.snake.pop(0)
         return self.score 
         
 
