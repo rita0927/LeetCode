@@ -1,27 +1,100 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        adj_list = defaultdict(list)
-        indegree = {}
+        adj = defaultdict(list)
+        indegree = defaultdict(int)
         
         for crs, pre in prerequisites:
-            adj_list[pre].append(crs)
-            indegree[crs] = indegree.get(crs, 0) + 1
-            
-        queue = deque([c for c in range(numCourses) if c not in indegree ])
-        visited = set()
+            adj[pre].append(crs)
+            indegree[crs]+=1
+        
+        queue = deque([])
+        seen = set()
+        
+        for i in range(numCourses):
+            if i not in indegree:
+                queue.append(i)
         
         while queue:
-            
             pre = queue.popleft()
-            visited.add(pre)
-            
-            for crs in adj_list[pre]:
-                indegree[crs] -=1
+            seen.add(pre)
+            for crs in adj[pre]:
+                indegree[crs] -= 1
                 
-                if indegree[crs] == 0:
-                    queue.append(crs)               
+                if not indegree[crs]:
+                    queue.append(crs)
+                    
+        return len(seen) == numCourses     
         
-        return len(visited) == numCourses 
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#  O(V+E), O(V+E)       
+#         adj_list = defaultdict(list)
+#         indegree = {}
+        
+#         for crs, pre in prerequisites:
+#             adj_list[pre].append(crs)
+#             indegree[crs] = indegree.get(crs, 0) + 1
+            
+#         queue = deque([c for c in range(numCourses) if c not in indegree ])
+#         visited = set()
+        
+#         while queue:
+            
+#             pre = queue.popleft()
+#             visited.add(pre)
+            
+#             for crs in adj_list[pre]:
+#                 indegree[crs] -=1
+                
+#                 if indegree[crs] == 0:
+#                     queue.append(crs)               
+        
+#         return len(visited) == numCourses 
             
         
         
@@ -29,20 +102,9 @@ class Solution:
         
         
         
+     
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+# O(V+ E), O(V+E)      
         
 #         adj_list = defaultdict(list)
 #         visited = set()
