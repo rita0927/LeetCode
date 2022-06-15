@@ -3,7 +3,7 @@ class Solution:
         food = defaultdict(list)
         indegree = defaultdict(int)
         res = []
-        recipe_set = set(recipes)
+        # recipe_set = set(recipes)
         
         for i in range(len(recipes)):
             recipe = recipes[i]
@@ -19,7 +19,7 @@ class Solution:
                 
                 if not indegree[recipe]:
                     queue.append(recipe)
-                    if recipe in recipe_set:
+                    if recipe in recipes:
                         res.append(recipe)
         return res
             
