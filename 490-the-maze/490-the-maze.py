@@ -5,29 +5,27 @@ class Solution:
         n = len(maze[0])
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
         visited = set()
+        visited.add((start[0], start[1]))
+        queue = deque([start])
         
-        def dfs(r,c):
-            
-            visited.add((r,c))
+        while queue:
+            r,c = queue.popleft()
             
             if [r,c] == destination:
-                return True
+                return True 
             
             for x,y in dir:
-                nr = r 
-                nc = c 
+                nr, nc = r, c
                 
-                while 0 <= nr + x < m and 0 <= nc + y < n and maze[nr+x][nc+y] == 0:
+                while 0 <= nr + x < m and 0 <= nc + y < n and maze[nr + x][nc + y] == 0:
                     nr += x
                     nc += y
-                if (nr, nc) not in visited and dfs(nr, nc):
-                    return True 
-                
-        return dfs(start[0], start[1])
-        
-                
-        
-
+                if (nr,nc) not in visited:
+                    visited.add((nr,nc))
+                    queue.append((nr,nc))
+            
+        return False 
+    
             
         
         
