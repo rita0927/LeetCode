@@ -5,15 +5,13 @@ class Solution:
         dir = [[-1,0],[1,0],[0,-1],[0,1]]  
         visited = set()
         visited.add((0,0,k))
-        step = -1
-        queue = deque([(0,0,k)])
+        queue = deque([(0,0,k,0)])
         
         while queue:
             size = len(queue)
-            step += 1
-            
+
             for _ in range(size):
-                r,c,eliminator = queue.popleft()
+                r,c,eliminator,step = queue.popleft()
                 if [r,c] == [m-1,n-1]:
                     return step
                 
@@ -24,7 +22,7 @@ class Solution:
                     if 0 <= nr < m and 0 <= nc < n:
                         new_eliminator = eliminator - grid[nr][nc]
                         if (nr,nc,new_eliminator) not in visited and new_eliminator >=0:
-                            queue.append((nr,nc,new_eliminator))
+                            queue.append((nr,nc,new_eliminator, step+1))
                             visited.add((nr,nc,new_eliminator))
 
         return -1
