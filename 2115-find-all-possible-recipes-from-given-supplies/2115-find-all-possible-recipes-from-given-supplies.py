@@ -1,28 +1,29 @@
 class Solution:
     def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
+        
         food = defaultdict(list)
         indegree = defaultdict(int)
         res = []
         
         for i in range(len(recipes)):
-            recipe= recipes[i]
+            recipe = recipes[i]
             for ingredient in ingredients[i]:
                 food[ingredient].append(recipe)
                 indegree[recipe] += 1
         
         queue = deque(supplies)
-        
         while queue:
             ingredient = queue.popleft()
-            
-            if ingredient in recipes:
-                res.append(ingredient)
-            
             for recipe in food[ingredient]:
                 indegree[recipe] -= 1
+                
                 if not indegree[recipe]:
                     queue.append(recipe)
+                    if recipe in recipes:
+                        res.append(recipe)
+                        
         return res 
+
             
         
         
