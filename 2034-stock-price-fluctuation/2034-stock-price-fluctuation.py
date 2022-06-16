@@ -4,36 +4,43 @@ class StockPrice:
     def __init__(self):
         self.records = {}
         self.latest = 0
-        self.min_heap = []
-        self.max_heap = []
-
+        self.max = []
+        self.min = []
 
     def update(self, timestamp: int, price: int) -> None:
         self.records[timestamp] = price 
         self.latest = max(self.latest, timestamp)
-        heappush(self.min_heap, [price, timestamp])
-        heappush(self.max_heap, [-price, timestamp])
-   
+        heappush(self.max, [-price, timestamp])
+        heappush(self.min, [price, timestamp])
+
     def current(self) -> int:
         return self.records[self.latest]
+
         
     def maximum(self) -> int:
-        price, time = heappop(self.max_heap)
+        price, time = heappop(self.max)
         while -price != self.records[time]:
-            price, time = heappop(self.max_heap)
+            price, time = heappop(self.max)
+        heappush(self.max, [price, time])
+        return -price
         
-        heappush(self.max_heap, [price, time])
-        return -price 
 
     def minimum(self) -> int:
-        price, time = heappop(self.min_heap)
+        price, time = heappop(self.min)
         while price != self.records[time]:
-            price, time = heappop(self.min_heap)
-        heappush(self.min_heap, [price, time])
+            price, time = heappop(self.min)
+        heappush(self.min, [price, time])
         return price 
+
         
-        
-        
+       
+    
+    
+    
+   
+
+
+    
         
         
 
@@ -46,6 +53,8 @@ class StockPrice:
 
 
 
+
+# https://leetcode.com/problems/stock-price-fluctuation/discuss/1514631/Python-SortedList-and-2-heaps-solutions
 
 
 # class StockPrice:
@@ -69,7 +78,7 @@ class StockPrice:
 #     def current(self) -> int:
 #         return self.records[self.latest]
         
-
+#     # time complexity: O(logN)   
 #     def maximum(self) -> int:
 #         price, time = heapq.heappop(self.max_heap)
         
