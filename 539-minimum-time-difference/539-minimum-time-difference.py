@@ -1,30 +1,39 @@
 class Solution:
     def findMinDifference(self, timePoints: List[str]) -> int:
-        
         def convert(t):
             h,m = t.split(':')
-            return int(h) * 60 + int(m)
+            return int(h)*60 + int(m)
         
         times = [False] * 1440
+        res = 0
+        
         for t in timePoints:
             m = convert(t)
+            
             if times[m]:
                 return 0
-            times[m] = True
-            
+            times[m] = True 
+        
         prev = 0
-        min_m = float('inf')
-        max_m = float('-inf')
+        l = float('inf')
+        r = float('-inf')
         res = float('inf')
-        for m in range(len(times)):
+        for m in range(1440):
             if times[m]:
-                
-                if min_m != float('inf'):
-                    res = min(res, m-prev)     
+                if l != float('inf'):
+                    res = min(res, m-prev)    
+                l = min(l, m)
+                r = max(r, m)
                 prev = m
-                min_m = min(min_m, m)
-                max_m = max(max_m, m)
-        return min(res, 1440+min_m-max_m)
+        return min(res, 1440+l-r)       
+        
+                
+                
+            
+        
+        
+            
+
                 
         
         
