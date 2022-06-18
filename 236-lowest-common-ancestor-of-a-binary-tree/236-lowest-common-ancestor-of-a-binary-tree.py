@@ -7,18 +7,60 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        if not root or root == p or root == q:
-            return root
         
-        l = self.lowestCommonAncestor(root.left, p, q)
-        r = self.lowestCommonAncestor(root.right, p, q)
+        parents = {root: None}
+        stack = [root]
         
-        if l and r:
-            return root
-        elif l:
-            return l
-        else:
-            return r
+        while stack:
+            node = stack.pop()
+            
+            if node.left:
+                parents[node.left] = node
+                stack.append(node.left)
+            if node.right:
+                parents[node.right] = node
+                stack.append(node.right)
+        ancestors = set()
+        while p:
+            ancestors.add(p)
+            p = parents[p]
+        while q not in ancestors:
+            q = parents[q]
+        
+        return q 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if not root or root == p or root == q:
+#             return root
+        
+#         l = self.lowestCommonAncestor(root.left, p, q)
+#         r = self.lowestCommonAncestor(root.right, p, q)
+        
+#         if l and r:
+#             return root
+#         elif l:
+#             return l
+#         else:
+#             return r
         
         
         
