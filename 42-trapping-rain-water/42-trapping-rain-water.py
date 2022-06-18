@@ -1,26 +1,26 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
         
-        peak = 0
+        res = 0 
+        l_idx = 0
+        r_idx = len(height) - 1
+        l = height[l_idx]
+        r = height[r_idx]
         
-        for i in range(len(height)):
-            if height[i] >= height[peak]:
-                peak = i
-        res= 0
-        l = height[0]
-        for i in range(peak):
-            if height[i] < l:
-                res += l- height[i]
+        while l_idx < r_idx:
+            if l < r:
+                res += l - height[l_idx]
+                l_idx+=1
+                l = max(l, height[l_idx])
             else:
-                l = height[i]
-            
-        r = height[-1]
-        for i in range(len(height)-1, peak, -1):
-            if height[i] < r:
-                res += r - height[i]
-            else:
-                r = height[i]
+                res += r - height[r_idx]
+                r_idx -= 1
+                r = max(r, height[r_idx])
         return res 
+                
+                
+        
+
         
         
         
