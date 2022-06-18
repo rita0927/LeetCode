@@ -1,23 +1,76 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
         
-        res = 0
-        l = 0
-        r = len(height) - 1
-        l_max = height[l]
-        r_max = height[r]
+        peak = 0
         
-        while l < r:
-            
-            if l_max < r_max:
-                res += (l_max - height[l])
-                l +=1
-                l_max = max(l_max, height[l])
+        for i in range(len(height)):
+            if height[i] >= height[peak]:
+                peak = i
+        res= 0
+        l = height[0]
+        for i in range(peak):
+            if height[i] < l:
+                res += l- height[i]
             else:
-                res += (r_max - height[r])
-                r -=1
-                r_max = max(r_max, height[r])
+                l = height[i]
+            
+        r = height[-1]
+        for i in range(len(height)-1, peak, -1):
+            if height[i] < r:
+                res += r - height[i]
+            else:
+                r = height[i]
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = 0
+#         l = 0
+#         r = len(height) - 1
+#         l_max = height[l]
+#         r_max = height[r]
+        
+#         while l < r:
+            
+#             if l_max < r_max:
+#                 res += (l_max - height[l])
+#                 l +=1
+#                 l_max = max(l_max, height[l])
+#             else:
+#                 res += (r_max - height[r])
+#                 r -=1
+#                 r_max = max(r_max, height[r])
+#         return res 
         
         
         
