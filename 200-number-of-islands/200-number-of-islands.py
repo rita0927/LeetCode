@@ -1,35 +1,36 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
+        
         m = len(grid)
         n = len(grid[0])
-        res = 0
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        res = 0
         visited = set()
         
         for row in range(m):
             for col in range(n):
                 if grid[row][col] == '1' and (row, col) not in visited:
                     visited.add((row, col))
-                    queue = deque([(row, col)])
                     res += 1
+                    queue = deque([(row, col)])
+                    
                     while queue:
-                        r, c = queue.popleft()
+                        r,c = queue.popleft()
                         
                         for x,y in dir:
                             nr = r + x
                             nc = c + y
                             
-                            if 0<=nr<m and 0<=nc<n and (nr,nc) not in visited and grid[nr][nc] == '1':
+                            if 0 <= nr < m and 0 <= nc < n and (nr,nc) not in visited and grid[nr][nc] == '1':
                                 visited.add((nr,nc))
                                 queue.append((nr,nc))
         return res 
 
+                
         
         
         
-        
-        
-        
+
         
         
         
