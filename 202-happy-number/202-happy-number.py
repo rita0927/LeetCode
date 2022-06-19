@@ -1,17 +1,68 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        
         seen = set()
         
-        while n not in seen:
+        while n != 1 and n not in seen:
             seen.add(n)
             temp = 0
+            
             while n:
-                # temp += (n%10)**2
-                temp += pow(n%10,2)
-                n= n//10
-            n = temp
-        return n == 1
+                n, rem = divmod(n,10)
+                temp += rem ** 2
+            n = temp 
+            
+        return n == 1 
+
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(logn), O(logn)
+        
+#         seen = set()
+        
+#         while n not in seen:
+#             seen.add(n)
+#             temp = 0
+#             while n:
+#                 # temp += (n%10)**2
+#                 temp += pow(n%10,2)
+#                 n= n//10
+#             n = temp
+#         return n == 1
                 
         
         
