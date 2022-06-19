@@ -1,19 +1,58 @@
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
         
-        def helper(s_idx, t_idx):
-            
-            if s_idx == len(s):
+        if not s:
+            return True   
+        i = 0
+        for j in range(len(t)):
+
+            if s[i] == t[j]:
+                i += 1        
+            if i == len(s):
                 return True
-            if t_idx == len(t):
-                return False 
             
-            if s[s_idx] == t[t_idx]:
-                s_idx += 1
-            t_idx += 1
-            return helper(s_idx, t_idx)
+        return False 
+
         
-        return helper(0,0)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(T) where T is the length of the target string (t). Has to iterate the entire target string. Even when the souce string is longer, iteration stops when target string is exhasted. 
+#         # O(T) due to the call stack
+#         def helper(s_idx, t_idx):
+            
+#             if s_idx == len(s):
+#                 return True
+#             if t_idx == len(t):
+#                 return False 
+            
+#             if s[s_idx] == t[t_idx]:
+#                 s_idx += 1
+#             t_idx += 1
+#             return helper(s_idx, t_idx)
+        
+#         return helper(0,0)
             
             
         
