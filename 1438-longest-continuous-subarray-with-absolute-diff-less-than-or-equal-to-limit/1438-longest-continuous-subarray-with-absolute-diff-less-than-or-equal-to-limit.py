@@ -1,35 +1,32 @@
 class Solution:
     def longestSubarray(self, nums: List[int], limit: int) -> int:
-        
-        max_stack = []
-        min_stack = []
+        minQ = deque()
+        maxQ = deque()
         res = 0
-        l = 0
+        l = 0 
         
         for r in range(len(nums)):
             
-            while max_stack and nums[r] > nums[max_stack[-1]]:
-                max_stack.pop()
-            max_stack.append(r)
+            while minQ and nums[r] < nums[minQ[-1]]:
+                minQ.pop()
+            minQ.append(r)
             
-            while min_stack and nums[r] < nums[min_stack[-1]]:
-                min_stack.pop()
-            min_stack.append(r)
+            while maxQ and nums[r] > nums[maxQ[-1]]:
+                maxQ.pop()
+            maxQ.append(r)
             
-            
-            while nums[max_stack[0]] - nums[min_stack[0]] > limit:
+            while nums[maxQ[0]] - nums[minQ[0]] > limit:
                 
-                if max_stack[0] == l:
-                    max_stack.pop(0)
-                
-                if min_stack[0] == l:
-                    min_stack.pop(0)
-                    
-                l += 1
-                
+                if maxQ[0] == l:
+                    maxQ.popleft()
+                if minQ[0] == l:
+                    minQ.popleft()
+                l+=1
             res = max(res, r-l+1)
         return res 
         
+        
+
         
         
         
