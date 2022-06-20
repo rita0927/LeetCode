@@ -3,29 +3,30 @@ class Solution:
         
         def convert(t):
             h,m = t.split(':')
-            return int(h)*60 + int(m)
+            return int(h) * 60 + int(m)
         
         buckets = [False] * 1440
         
         for t in timePoints:
             m = convert(t)
+            
             if buckets[m]:
                 return 0
-            buckets[m] = True             
-            
+            buckets[m] = True 
+        l = float('inf')
+        r = float('-inf')
         res = float('inf')
-        high = float('-inf')
-        low = float('inf')
-        prev = 0      
-        for m in range(1440):
-            if buckets[m]:
-                if low != float('inf'):
-                    res = min(res, m - prev)     
-                low = min(low, m)
-                high = max(high, m)
-                prev = m 
-        return min(res, 1440+low-high)
+        prev = 0
+        for i in range(1439, -1, -1):
+            if buckets[i]:
+                if l != float('inf'):
+                    res = min(res, prev - i)
                 
+                l = min(l, i)
+                r = max(r, i)
+                prev = i
+        return min(res, l+1440-r)
+
         
         
         
