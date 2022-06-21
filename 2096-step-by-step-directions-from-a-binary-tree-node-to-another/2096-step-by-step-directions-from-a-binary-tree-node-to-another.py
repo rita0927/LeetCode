@@ -28,19 +28,16 @@ class Solution:
         while queue:
             node, path = queue.popleft()
             
-            if node.val in visited:
+            if not node or node.val in visited:
                 continue 
             visited.add(node.val)
             
             if node.val == destValue:
                 return path 
             
-            if node.left:
-                queue.append((node.left, path+'L'))
-            if node.right:
-                queue.append((node.right, path+'R'))
-            if parents[node]:
-                queue.append((parents[node], path +'U'))
+            queue.append((node.left, path+'L'))
+            queue.append((node.right, path+'R'))
+            queue.append((parents[node], path +'U'))
             
             
             
