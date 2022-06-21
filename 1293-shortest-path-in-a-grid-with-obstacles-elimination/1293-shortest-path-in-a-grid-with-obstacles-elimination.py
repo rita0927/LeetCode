@@ -1,31 +1,52 @@
 class Solution:
     def shortestPath(self, grid: List[List[int]], k: int) -> int:
+        
         m = len(grid)
         n = len(grid[0])
-        dir = [[-1,0],[1,0],[0,-1],[0,1]]  
+        dir = [[-1,0],[1,0],[0,-1],[0,1]]
         visited = set()
         visited.add((0,0,k))
+        
         queue = deque([(0,0,k,0)])
         
         while queue:
-            size = len(queue)
-
-            for _ in range(size):
-                r,c,eliminator,step = queue.popleft()
-                if [r,c] == [m-1,n-1]:
-                    return step
+            r,c,e,step = queue.popleft()
+            
+            if [r,c] == [m-1, n-1]:
+                return step
+            
+            for x,y in dir:
+                nr = r + x
+                nc = c + y
                 
-                for x,y in dir:
-                    nr = r + x
-                    nc = c + y
-                    
-                    if 0 <= nr < m and 0 <= nc < n:
-                        new_eliminator = eliminator - grid[nr][nc]
-                        if (nr,nc,new_eliminator) not in visited and new_eliminator >=0:
-                            queue.append((nr,nc,new_eliminator, step+1))
-                            visited.add((nr,nc,new_eliminator))
+                if 0 <= nr < m and 0 <= nc < n:
+                    ne = e - grid[nr][nc]
+                    if ne >= 0 and (nr,nc,ne) not in visited:
+                        queue.append((nr,nc,ne,step+1))
+                        visited.add((nr,nc,ne))
+            
+        return -1        
+                
+                
+                
+            
+            
+            
 
-        return -1
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
