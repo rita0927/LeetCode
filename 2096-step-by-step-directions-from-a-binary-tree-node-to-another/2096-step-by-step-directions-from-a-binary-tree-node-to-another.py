@@ -6,39 +6,61 @@
 #         self.right = right
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
-        
-        parents = defaultdict(int)
-        
+        parents = {}
         start = None 
-        queue = deque([(None, root)])
+        
+        queue = deque([(root, None)])
         while queue:
-            parent, node = queue.popleft()
+            node, parent = queue.popleft()
             parents[node] = parent
+            
             if node.val == startValue:
                 start = node
             
             if node.left:
-                queue.append((node, node.left))
+                queue.append((node.left, node))
             if node.right:
-                queue.append((node, node.right))
-                
-        visited = set()
+                queue.append((node.right, node))
+        
         queue = deque([(start, '')])
+        visited = set()
+        
         while queue:
             node, path = queue.popleft()
+            
+            if node.val in visited:
+                continue 
+            visited.add(node.val)
+            
             if node.val == destValue:
                 return path 
-            if node.val in visited:
-                continue
-            visited.add(node.val)
-
+            
             if node.left:
                 queue.append((node.left, path+'L'))
             if node.right:
                 queue.append((node.right, path+'R'))
             if parents[node]:
-                queue.append((parents[node], path+'U'))
+                queue.append((parents[node], path +'U'))
+            
+            
+            
+            
+        
+            
+            
+            
+        
+
                 
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
         
