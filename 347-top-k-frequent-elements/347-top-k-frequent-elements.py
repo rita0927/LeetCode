@@ -1,33 +1,26 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = Counter(nums)
         
-        count  = Counter(nums)
-        keys = list(count.keys())
-        k = len(keys) - k
+        buckets = [[] for _ in range(len(nums) + 1)]
         
-        def quickSelect(l,r):
-            
-            pivot_index = random.randint(l,r)
-            pivot = count[keys[pivot_index]]
-            keys[pivot_index], keys[r] = keys[r], keys[pivot_index]
-            p = l
-            
-            for i in range(l,r):
-                if count[keys[i]] < pivot:
-                    keys[p], keys[i] = keys[i], keys[p]
-                    p+=1
-            keys[p], keys[r] = keys[r], keys[p]
-            
-            if k < p:
-                return quickSelect(l,p-1)
-            elif k > p:
-                return quickSelect(p+1,r)
-            else:
-                return
-            
-        quickSelect(0, len(keys) - 1)
-        return keys[k:]
-            
+        for n, c in count.items():
+            buckets[c].append(n)
+        
+        res = []
+        for c in range(len(buckets) - 1, -1, -1):
+            for n in buckets[c]:
+                res.append(n)
+                
+                if len(res) == k:
+                    return res 
+        
+                
+                
+        
+        
+
+
             
             
             
