@@ -12,25 +12,41 @@ class Solution:
             
             if buckets[m]:
                 return 0
-            buckets[m] = True 
+            
+            buckets[m] = True
+        
         l = float('inf')
         r = float('-inf')
+        prev = 0 
         res = float('inf')
-        prev = 0
-        for i in range(1439, -1, -1):
-            if buckets[i]:
+        
+        for m in range(1439, -1, -1):
+            if buckets[m]:
                 if l != float('inf'):
-                    res = min(res, prev - i)
+                    res = min(res, prev - m)
                 
-                l = min(l, i)
-                r = max(r, i)
-                prev = i
-        return min(res, l+1440-r)
+                l = min(l, m)
+                r = max(r, m)
+                prev = m 
+                
+        return min(res, 1440 + l - r)
+            
+            
 
         
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
         
         
         
