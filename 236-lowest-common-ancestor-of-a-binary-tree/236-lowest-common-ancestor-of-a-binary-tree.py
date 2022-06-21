@@ -8,17 +8,18 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         
-        parents = {}
+        parents = {root: None}
         
-        stack = [(root, None)]
-        while stack:
-            node, parent = stack.pop()
-            parents[node] = parent
-            
+        stack = [root]
+        while p not in parents or q not in parents:
+            node= stack.pop()
+ 
             if node.left:
-                stack.append((node.left, node))
+                parents[node.left] = node
+                stack.append(node.left)
             if node.right:
-                stack.append((node.right, node))
+                parents[node.right] = node
+                stack.append(node.right)
         
         ancestors = set()
         while p:
