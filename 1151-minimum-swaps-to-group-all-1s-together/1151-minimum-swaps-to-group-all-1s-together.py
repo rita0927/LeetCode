@@ -2,7 +2,6 @@ class Solution:
     def minSwaps(self, data: List[int]) -> int:
         
         ones = sum(data)
-        
         maxOnes = 0
         curOnes = 0
         l = 0
@@ -13,8 +12,12 @@ class Solution:
             if r-l+1 == ones:
                 maxOnes = max(maxOnes, curOnes)
                 curOnes -= data[l]
-                l += 1
+                l+= 1
         return ones - maxOnes 
+                
+        
+
+        
         
         
         
