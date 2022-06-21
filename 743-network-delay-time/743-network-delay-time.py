@@ -2,27 +2,83 @@ class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         
         adj = defaultdict(list)
-        
         for s,e,t in times:
             adj[s].append((e,t))
-            
         
-        res = 0
         heap = [(0,k)]
-        visited = set()
+        res = 0
+        visited =set()
         
         while heap:
             t1,n1 = heapq.heappop(heap)
-            if n1 in visited:
-                continue
-            visited.add(n1)
             
+            if n1 in visited:
+                continue 
+            visited.add(n1)
             res = max(res, t1)
+            
             for n2,t2 in adj[n1]:
                 if n2 not in visited:
-                    heapq.heappush(heap, (t1 + t2, n2))
-        
+                    heapq.heappush(heap, (t1+t2, n2))
         return res if len(visited) == n else -1
+                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(ElogV) where E is the number of edges and v is the number of Vectors
+#         # O(V+E) where both adj and heap take O(E), visited takes O(V) space 
+        
+#         adj = defaultdict(list)
+        
+#         for s,e,t in times:
+#             adj[s].append((e,t))
+            
+#         res = 0
+#         heap = [(0,k)]
+#         visited = set()
+        
+#         while heap:
+#             t1,n1 = heapq.heappop(heap)
+#             # if the node has been visited, there's a better path to get there quicker, no need to visit again
+#             if n1 in visited:
+#                 continue
+#             visited.add(n1)
+#             # update the result to get the max time for all the paths 
+#             res = max(res, t1)
+#             for n2,t2 in adj[n1]:
+#                 if n2 not in visited:
+#                     # can't add to visited here because the heap needs to sort all the nodes first 
+#                     heapq.heappush(heap, (t1 + t2, n2))
+        
+#         return res if len(visited) == n else -1
         
         
         
