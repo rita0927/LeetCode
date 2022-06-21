@@ -1,22 +1,33 @@
 class Solution:
     def triangleNumber(self, nums: List[int]) -> int:
-        
         nums.sort(reverse = True)
         res = 0
-        for a in range(len(nums)-2):
-            b = a + 1
-            c = len(nums) - 1
+        for i in range(len(nums) - 2):
+            cur = nums[i]
+            l = i+1
+            r = len(nums) - 1
             
-            while b < c:
-                if nums[b] + nums[c] > nums[a]:
-                    res += c-b
-                    b += 1
+            while l < r:
+                if nums[l] + nums[r] > cur:
+                    res += r - l
+                    l += 1
                 else:
-                    c -= 1
-        return res 
+                    r -= 1
             
+        return res 
+        
+
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+
         
         
         
