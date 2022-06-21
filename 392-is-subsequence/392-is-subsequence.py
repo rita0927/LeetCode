@@ -2,16 +2,109 @@ class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
         
         if not s:
-            return True   
-        i = 0
-        for j in range(len(t)):
-
-            if s[i] == t[j]:
-                i += 1        
-            if i == len(s):
+            return True 
+        
+        s_idx = 0
+        for ch in t:
+            if ch == s[s_idx]:
+                s_idx += 1
+            
+            if s_idx == len(s):
                 return True
             
         return False 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         d = defaultdict(list)
+#         for i, ch in enumerate(t):
+#             d[ch].append(i)
+        
+#         # stores the index of the target string where we found the previous character match
+#         cur = -1
+        
+#         for ch in s:
+#             if ch not in d:
+#                 return False 
+#             lst = d[ch]
+#             match_idx = bisect_right(lst, cur)
+            
+#             if match_idx != len(lst):
+#                 cur = lst[match_idx]
+#             else:
+#                 return False 
+            
+#         return True 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # for the edge case of s == ''
+#         if not s:
+#             return True   
+#         i = 0
+#         for j in range(len(t)):
+
+#             if s[i] == t[j]:
+#                 i += 1        
+#             if i == len(s):
+#                 return True
+            
+#         return False 
 
         
         
