@@ -8,17 +8,24 @@ class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
         
         res = defaultdict(list)
+        
         def dfs(node):
+            
             if not node:
                 return -1
-            left = dfs(node.left)
-            right = dfs(node.right)
-            height = max(left, right) + 1
-            res[height].append(node.val)
-            return height 
+            l = dfs(node.left)
+            r = dfs(node.right)
+            level = max(l,r) + 1
+            res[level].append(node.val)
+            return level 
+        
         dfs(root)
         return res.values()
+            
         
+        
+        
+
 
         
 
