@@ -2,38 +2,49 @@ from heapq import *
 class StockPrice:
 
     def __init__(self):
-        self.records = {}
+        self.stock = {}
         self.latest = 0
         self.max = []
         self.min = []
 
+
     def update(self, timestamp: int, price: int) -> None:
-        self.records[timestamp] = price 
+        self.stock[timestamp] = price
         self.latest = max(self.latest, timestamp)
-        heappush(self.max, [-price, timestamp])
         heappush(self.min, [price, timestamp])
+        heappush(self.max, [-price, timestamp])
+
 
     def current(self) -> int:
-        return self.records[self.latest]
-
-        
+        return self.stock[self.latest]
+  
     def maximum(self) -> int:
         price, time = heappop(self.max)
-        while -price != self.records[time]:
+        
+        while -price != self.stock[time]:
             price, time = heappop(self.max)
+        
         heappush(self.max, [price, time])
         return -price
-        
 
     def minimum(self) -> int:
         price, time = heappop(self.min)
-        while price != self.records[time]:
+        
+        while price != self.stock[time]:
             price, time = heappop(self.min)
+        
         heappush(self.min, [price, time])
         return price 
 
-        
        
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
