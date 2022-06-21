@@ -4,42 +4,99 @@ class Solution:
         m = len(maze)
         n = len(maze[0])
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
-        visited = set()
-        visited.add((start[0], start[1]))
-        queue = deque([start])
+        visited =set()
         
-        while queue:
-            r,c = queue.popleft()
+        def dfs(r,c):
             
             if [r,c] == destination:
                 return True 
             
+            visited.add((r,c))
+            
             for x,y in dir:
-                nr, nc = r, c
+                nr = r
+                nc = c
                 
-                while 0 <= nr + x < m and 0 <= nc + y < n and maze[nr + x][nc + y] == 0:
+                while 0 <= nr + x < m and 0 <= nc + y < n and maze[nr+x][nc+y] == 0:
                     nr += x
                     nc += y
-                if (nr,nc) not in visited:
-                    visited.add((nr,nc))
-                    queue.append((nr,nc))
+                    
+                if (nr,nc) not in visited and dfs(nr,nc):
+                    return True 
+                    
+        return dfs(start[0], start[1])
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         m = len(maze)
+#         n = len(maze[0])
+#         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+#         visited = set()
+#         visited.add((start[0], start[1]))
+#         queue = deque([start])
+        
+#         while queue:
+#             r,c = queue.popleft()
             
-        return False 
+#             if [r,c] == destination:
+#                 return True 
+            
+#             for x,y in dir:
+#                 nr, nc = r, c
+                
+#                 while 0 <= nr + x < m and 0 <= nc + y < n and maze[nr + x][nc + y] == 0:
+#                     nr += x
+#                     nc += y
+#                 if (nr,nc) not in visited:
+#                     visited.add((nr,nc))
+#                     queue.append((nr,nc))
+            
+#         return False 
     
             
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
         
         
         
