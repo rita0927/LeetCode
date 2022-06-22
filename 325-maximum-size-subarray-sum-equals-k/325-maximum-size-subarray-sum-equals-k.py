@@ -1,23 +1,25 @@
 class Solution:
     def maxSubArrayLen(self, nums: List[int], k: int) -> int:
-        indices= {}
+        
+        d = {}
         prefix = 0
         res = 0
         
-        for i, n in enumerate(nums):
-            
-            prefix +=n
+        for i in range(len(nums)):
+            prefix += nums[i]
             
             if prefix == k:
                 res = i + 1
             
-            if (prefix - k) in indices:
-                res = max(res, i -indices[prefix-k])
+            if (prefix - k) in d:
+                res = max(res, i - d[prefix - k])
             
-            if prefix not in indices:
-                indices[prefix] = i
+            if prefix not in d:
+                d[prefix] = i
+                
         return res 
         
+
         
         
         
@@ -57,25 +59,49 @@ class Solution:
         
         
         
+        
+#         indices= {}
+#         prefix = 0
 #         res = 0
-#         pre = 0
-#         d = {}
         
-#         for i, num in enumerate(nums):
+#         for i, n in enumerate(nums):
             
-#             pre += num
+#             prefix +=n
             
-#             if pre == k:
-#                 res=i+1
+#             if prefix == k:
+#                 res = i + 1
             
-#             if pre - k in d:
-#                 res = max(res, i-d[pre-k])
-          
-#             if pre not in d:
-#                 d[pre] = i
+#             if (prefix - k) in indices:
+#                 res = max(res, i -indices[prefix-k])
             
+#             if prefix not in indices:
+#                 indices[prefix] = i
 #         return res 
-            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
             
         
         
