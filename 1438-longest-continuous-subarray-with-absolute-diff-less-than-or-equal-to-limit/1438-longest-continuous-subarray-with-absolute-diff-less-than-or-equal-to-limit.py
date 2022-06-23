@@ -7,19 +7,19 @@ class Solution:
         l = 0
         
         for r in range(len(nums)):
-            
-            while maxQ and nums[r] > nums[maxQ[-1]]:
+            num = nums[r]
+            while maxQ and num > maxQ[-1]:
                 maxQ.pop()
-            maxQ.append(r)
+            maxQ.append(num)
             
-            while minQ and nums[r] < nums[minQ[-1]]:
+            while minQ and num < minQ[-1]:
                 minQ.pop()
-            minQ.append(r)
+            minQ.append(num)
             
-            while nums[maxQ[0]] - nums[minQ[0]] > limit:
-                if l == maxQ[0]:
+            while maxQ[0] - minQ[0] > limit:
+                if nums[l] == maxQ[0]:
                     maxQ.popleft()
-                if l == minQ[0]:
+                if nums[l] == minQ[0]:
                     minQ.popleft()
                 l+=1 
             
