@@ -2,17 +2,18 @@ class Solution:
     def minFlipsMonoIncr(self, s: str) -> int:
         ones = 0
         flips = 0
+        
         for digit in s:
             if digit == '1':
                 ones += 1
             else:
                 flips += 1
-            flips = min(flips, ones)
-        return flips
+            
+            flips = min(ones, flips)
+        
+        return flips 
+        
 
-                
-        
-        
         
         
         
