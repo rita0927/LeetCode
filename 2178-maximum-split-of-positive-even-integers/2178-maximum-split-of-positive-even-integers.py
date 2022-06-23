@@ -17,7 +17,7 @@ class Solution:
             return res 
         else:
             # res.remove(cur_sum - finalSum)
-            res.pop(res.index(cur_sum-finalSum))
+            res.pop((cur_sum-finalSum)//2 -1)
         
         return res 
         
