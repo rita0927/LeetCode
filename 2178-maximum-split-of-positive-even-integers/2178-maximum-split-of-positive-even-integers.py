@@ -16,7 +16,8 @@ class Solution:
         if cur_sum == finalSum:
             return res 
         else:
-            res.remove(cur_sum - finalSum)
+            # res.remove(cur_sum - finalSum)
+            res.pop(res.index(cur_sum-finalSum))
         
         return res 
         
