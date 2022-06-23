@@ -1,27 +1,30 @@
+from heapq import *
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         
         adj = defaultdict(list)
-        for s,e,t in times:
-            adj[s].append((e,t))
+        
+        for s,e,w in times:
+            adj[s].append((e,w))
         
         heap = [(0,k)]
         res = 0
-        visited =set()
-        
+        visited = set()
         while heap:
-            t1,n1 = heapq.heappop(heap)
-            
+            w1,n1 = heappop(heap)
             if n1 in visited:
                 continue 
             visited.add(n1)
-            res = max(res, t1)
+            res = max(res, w1)
             
-            for n2,t2 in adj[n1]:
+            for n2,w2 in adj[n1]:
                 if n2 not in visited:
-                    heapq.heappush(heap, (t1+t2, n2))
+                    heappush(heap, (w1+w2, n2))
         return res if len(visited) == n else -1
-                    
+            
+        
+        
+
         
         
         
