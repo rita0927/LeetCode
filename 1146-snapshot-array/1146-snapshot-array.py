@@ -1,6 +1,8 @@
 class SnapshotArray:
 
     def __init__(self, length: int):
+        # create a list of list, the outter list refers to the array of given length, each element (inner list) is the initial & updates on that element
+        # the tuple refers to the snap_id and val stored in that snap_id
         self.snaps = [[(0,0)] for _ in range(length)]
         self.snap_id = 0
 
@@ -20,18 +22,39 @@ class SnapshotArray:
 
     def get(self, index: int, snap_id: int) -> int:
         lst = self.snaps[index]
-        l = 0
-        r = len(lst)-1
+        l = -1
+        r = len(lst)
         
-        while l <= r:
-            mid = l + (r-l)//2
-            if snap_id < lst[mid][0]:
-                r = mid - 1
-            elif snap_id >= lst[mid][0]:
-                l = mid + 1
+        while l+1 != r:
+            
+            mid = (l+r)//2
+            
+            if lst[mid][0] <= snap_id:
+                l = mid
+            else:
+                r = mid
+        return lst[l][1] if l != -1 else 0
+                
+                
+        
+        
+        
+        
+        
+#         lst = self.snaps[index]
+#         l = 0
+#         r = len(lst)-1
+    
+        
+#         while l <= r:
+#             mid = l + (r-l)//2
+#             if snap_id < lst[mid][0]:
+#                 r = mid - 1
+#             elif snap_id >= lst[mid][0]:
+#                 l = mid + 1
 
-        if r == -1: return 0
-        return lst[r][1] 
+#         if r == -1: return 0
+#         return lst[r][1] 
 
             
         
