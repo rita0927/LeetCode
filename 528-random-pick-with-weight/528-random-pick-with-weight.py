@@ -23,9 +23,10 @@ class Solution:
         
         while l+1 != r:
             mid = (l+r)//2
-            
-            if self.prefix[mid] < num:
+            # l is the ending of previous segment
+            if self.prefix[mid] <= num:
                 l = mid
+            # find the segment that contains the num, self.prefix[l] <= num < self.prefix[r]
             else:
                 r = mid 
         return r 
