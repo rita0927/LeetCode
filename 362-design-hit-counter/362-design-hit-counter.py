@@ -1,22 +1,26 @@
 class HitCounter:
 
+    # space: O(N) in the case of repetitions in the same timestamp, the space required for storing those values O(1)
     def __init__(self):
         self.queue = deque()
-        
+        self.count = 0
 
     def hit(self, timestamp: int) -> None:
         if self.queue and timestamp == self.queue[-1][0]:
             self.queue[-1][1] += 1
         else:
             self.queue.append([timestamp, 1])
+        self.count+=1
         
-
+    # time: O(N) 
     def getHits(self, timestamp: int) -> int:
         while self.queue and self.queue[0][0] <= timestamp - 300:
-            self.queue.popleft()
-        
-        count = [x[1] for x in self.queue]
-        return sum(count)
+            t,c = self.queue.popleft()
+            self.count -= c
+        return self.count 
+            
+
+            
 
         
 
