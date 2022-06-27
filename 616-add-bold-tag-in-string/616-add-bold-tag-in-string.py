@@ -1,34 +1,41 @@
 class Solution:
     
     def addBoldTag(self, s: str, words: List[str]) -> str:
-        """
-        aaa, aab, cb
-        
-        a a a b b c c b b 
-        T T T T F F T T F
-    <b>       </b><b> </b> 
-        """
 
         n = len(s)
-        buckets = [False] * n
+        trie = {}
+        word_key = 'isWord'
         
+        for w in words:
+            node = trie
+            for ch in w:
+                node = node.setdefault(ch, {})
+            node[word_key] = True 
+        
+        intervals = []
         for l in range(n):
-            r = 0
-            for w in words:
-                if s.startswith(w,l):
-                    r = max(r, l +len(w))
-            for i in range(l,r):
-                buckets[i] = True
+            node = trie
+            for r in range(l,n):
+                if not s[r] in node:
+                    break
+                node = node[s[r]]
+                if word_key in node:
+                    if intervals and intervals[-1][1] >= l:
+                        intervals[-1][1] = max(r+1, intervals[-1][1])
+                    else:
+                        intervals.append([l, r+1])
         
         res = ''
-        for i in range(n):
-            if buckets[i] and (i == 0 or not buckets[i-1]):
-                res += '<b>'
-            res += s[i]
-            if buckets[i] and ( i == n-1 or not buckets[i+1]):
-                res += '</b>'
-                
-        return res 
+        prev = 0
+        for start, end in intervals:
+            res += s[prev:start] + '<b>' + s[start:end] + '</b>'
+            prev = end 
+        return res + s[prev:]
+            
+            
+        
+            
+
         
         
         
