@@ -1,53 +1,109 @@
 class Solution:
+    
     def addBoldTag(self, s: str, words: List[str]) -> str:
-        word_key = 'isWord'
-        trie = {}
-        n =len(s)
-
-        for w in words:
-            node = trie
-            for ch in w:
-                node = node.setdefault(ch, {})
-            node[word_key] = w 
-  
+        
+        n = len(s)
+        buckets = [False] * n
+        
         intervals = []
-    
-        def add_interval(interval):
-            if intervals and intervals[-1][1] >= interval[0]:
-                if intervals[-1][1] < interval[1]:
-                    intervals[-1][1] = interval[1]
-            else:
-                intervals.append(interval)
-    
-        for i in range(n):
-            node = trie
+        for l in range(len(s)):
             r = 0
-            
-            for l in range(i,n):
-                if s[l] not in node:
-                    break
-                node = node[s[l]]
-                if word_key in node:
-                    r = max(r, l+1)
-            if r:
-                # add_interval([i, r])
-                # if intervals and intervals[-1][1] >= i:
-                #     if intervals[-1][1] < interval[1]:
-                #         intervals[-1][1] = interval[1]
-                # else:
-                #     intervals.append(interval)
-                if intervals and intervals[-1][1] >= i:
-                    intervals[-1][1] = max(r, intervals[-1][1])
-                else:
-                    intervals.append([i,r])
+            for w in words:
+                if s.startswith(w,l):
+                    r = max(r, l+len(w))
+            for i in range(l,r):
+                buckets[i] = True 
+        res = ''
+        for i in range(len(s)):
+            if buckets[i] and (i == 0 or not buckets[i-1]):
+                res += '<b>'
+            res += s[i]
+            if buckets[i] and (i == n-1 or not buckets[i+1]):
+                res += '</b>'
+        return res 
+                
+        
+        
+        
+        
  
-        res = ''      
-        prev = 0
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+# #     No of words = m, Length of largest word = k, Length of s = n
+
+# #     O(m*k) - trie build
+# #     O(n * k) - search & match 
+# #     O(n) - merge & put bold characters
+# #     total: O(nk + mk)
+    
+#     def addBoldTag(self, s: str, words: List[str]) -> str:
+#         word_key = 'isWord'
+#         trie = {}
+#         n =len(s)
+
+#         for w in words:
+#             node = trie
+#             for ch in w:
+#                 node = node.setdefault(ch, {})
+#             node[word_key] = True 
+  
+#         intervals = []
+#         for i in range(n):
+#             node = trie
+#             r = 0
+            
+#             for l in range(i,n):
+#                 if s[l] not in node:
+#                     break
+#                 node = node[s[l]]
+#                 if word_key in node:
+#                     # reach the end of the word, the index of the last ch in the word is l
+#                     # the range of word is [i,r)
+#                     r = max(r, l+1)
+#             # if r has been updated (find at least one word), otherwise r == 0 
+#             if r:
+#                 # if starting of new interval i is overlapping the last saved interval
+#                 # last[end] >= new[start], the last end is exclusive 
+#                 if intervals and intervals[-1][1] >= i:
+#                     intervals[-1][1] = max(r, intervals[-1][1])
+#                 else:
+#                     intervals.append([i,r])
+ 
+#         res = ''      
+#         prev = 0
         
-        for start, end in intervals:
-            res += s[prev:start] + '<b>' + s[start:end] + '</b>'
-            prev = end
-        return res + s[prev:]
+#         for start, end in intervals:
+#             res += s[prev:start] + '<b>' + s[start:end] + '</b>'
+#             prev = end
+#         return res + s[prev:]
         
         
 
@@ -76,7 +132,7 @@ class Solution:
         
         
         
-        
+# O(MNK) where M = len(s), N = len(words), K = max len of word in words       
         
 #         n = len(s)
 #         buckets = [False] * n
