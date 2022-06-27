@@ -8,20 +8,61 @@ class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         
         res = []
-        def helper(node, path):
+        stack = [[root, '']]
+        while stack:
+            node, path = stack.pop()
+            
             path += str(node.val)
             
             if not node.left and not node.right:
                 res.append(path)
-                return
+                continue
             
             if node.left:
-                helper(node.left, path+'->')
+                stack.append([node.left, path+'->'])
             if node.right:
-                helper(node.right, path+'->')
+                stack.append([node.right, path+'->'])
+                
+        return res 
         
-        helper(root, '')
         
-        return res
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = []
+#         def helper(node, path):
+#             path += str(node.val)
+            
+#             if not node.left and not node.right:
+#                 res.append(path)
+#                 return
+            
+#             if node.left:
+#                 helper(node.left, path+'->')
+#             if node.right:
+#                 helper(node.right, path+'->')
+        
+#         helper(root, '')
+        
+#         return res
                 
         
