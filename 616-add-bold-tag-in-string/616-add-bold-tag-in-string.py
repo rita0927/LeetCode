@@ -1,6 +1,7 @@
 class Solution:
     
     def addBoldTag(self, s: str, words: List[str]) -> str:
+        
         word_key = 'isWord'
         trie = {}
         
@@ -12,13 +13,13 @@ class Solution:
         
         n = len(s)
         intervals = []
-        
         for l in range(n):
             node = trie
+            
             for r in range(l,n):
                 ch = s[r]
                 if ch not in node:
-                    break
+                    break 
                 node = node[ch]
                 if word_key in node:
                     if intervals and intervals[-1][1] >= l:
@@ -31,9 +32,11 @@ class Solution:
         
         for start, end in intervals:
             res += s[prev:start] + '<b>' + s[start:end] + '</b>'
-            prev= end
+            prev = end
         
         return res + s[prev:]
+        
+
         
         
         
