@@ -5,8 +5,6 @@ class Solution:
         for name in names:
             
             modified = name 
-            
-            # if name in d:
             c = d[name]
             
             while d[modified]:  
