@@ -6,13 +6,14 @@ class Solution:
             
             modified = name 
             
-            if name in d:
-                c = d[name]
-                while d[modified]:
-                    
-                    modified = f'{name}({c})'
-                    c += 1  
-                d[name] = c
+            # if name in d:
+            c = d[name]
+            
+            while d[modified]:  
+                modified = f'{name}({c})'
+                c += 1  
+                
+            d[name] = c
             d[modified] = 1
                      
         return d.keys() 
