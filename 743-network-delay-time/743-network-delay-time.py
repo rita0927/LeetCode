@@ -4,23 +4,30 @@ class Solution:
         
         adj = defaultdict(list)
         
-        for s,e,w in times:
-            adj[s].append((e,w))
+        for u,v,w in times:
+            adj[u].append([v,w])
         
         heap = [(0,k)]
-        res = 0
         visited = set()
+        
         while heap:
-            w1,n1 = heappop(heap)
-            if n1 in visited:
-                continue 
-            visited.add(n1)
-            res = max(res, w1)
+            t1, n1 = heappop(heap)
             
-            for n2,w2 in adj[n1]:
+            if n1 in visited:
+                continue
+            visited.add(n1)
+            
+            if len(visited) == n:
+                return t1
+            
+            for n2, t2 in adj[n1]:
                 if n2 not in visited:
-                    heappush(heap, (w1+w2, n2))
-        return res if len(visited) == n else -1
+                    heappush(heap, [t1 + t2, n2])
+        
+        return -1
+            
+            
+
             
         
         
