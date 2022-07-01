@@ -3,17 +3,57 @@ class Solution:
         
         if len(trust) < n-1:
             return -1
-            
+        
         degree = [0] * (n+1)
         
-        for i, j in trust:
+        for i,j in trust:
             degree[i] -= 1
             degree[j] += 1
         
-        for i in range(1,len(degree)):
+        for i in range(1,n+1):
             if degree[i] == n-1:
                 return i
-        return -1
+        return -1 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if len(trust) < n-1:
+#             return -1
+            
+#         degree = [0] * (n+1)
+        
+#         # degree[p] -= 1 is p trusts others, degree[p] += 1 when p is trusted by others
+#         # judge has to earn all the score from others, + (n-1), and don't lose any score, - 0
+#         for i, j in trust:
+#             degree[i] -= 1
+#             degree[j] += 1
+        
+#         for i in range(1,len(degree)):
+#             if degree[i] == n-1:
+#                 return i
+#         return -1
         
         
         
