@@ -1,6 +1,41 @@
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
         
+        if len(trust) < n-1:
+            return -1
+            
+        degree = [0] * (n+1)
+        
+        for i, j in trust:
+            degree[i] -= 1
+            degree[j] += 1
+        
+        for i in range(1,len(degree)):
+            if degree[i] == n-1:
+                return i
+        return -1
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 #         # O(E) where E is the number of edges (len of trust). If N-1 > E, return right away (0(1)). Otherwise, O(N + E) don't know whether E or N is the bigger one. Since E >= N-1, E is bigger, and the final is O(max(N, E)), so it's O(E)
 #         # O(N)
         
@@ -44,20 +79,20 @@ class Solution:
         
         
         
-        if n == 1:
-            return 1
+#         if n == 1:
+#             return 1
         
-        judges  = defaultdict(int)
-        people = set()
+#         judges  = defaultdict(int)
+#         people = set()
         
-        for p, j in trust:
-            people.add(p)
-            judges[j] +=1
+#         for p, j in trust:
+#             people.add(p)
+#             judges[j] +=1
 
-        for j in range(1, n+1):
-            if judges[j] == n-1 and j not in people:
-                return j
-        return  -1 
+#         for j in range(1, n+1):
+#             if judges[j] == n-1 and j not in people:
+#                 return j
+#         return  -1 
                 
         
         
