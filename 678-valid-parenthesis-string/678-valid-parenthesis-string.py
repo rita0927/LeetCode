@@ -1,27 +1,94 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
         
-        count = []
-        stack = []
+        S = []
+        A = []
         
-        for i,p in enumerate(s):
+        for i, p in enumerate(s):
+            
             if p == '(':
-                stack.append(i)
-            elif p == ')':
-                if not stack and not count:
-                    return False
-                elif not stack:
-                    count.pop()
-                else:
-                    stack.pop()
+                S.append(i)
+            elif p == '*':
+                A.append(i)
             else:
-                count.append(i)
-                
-        while count and stack:
-            if stack.pop() > count.pop():
-                return False
+                if not S and not A:
+                    return False
+                elif not S:
+                    A.pop()
+                else:
+                    S.pop()
         
-        return not stack
+        while S and A:
+            if S.pop() > A.pop():
+                return False
+        return not S
+                    
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(n), O(n)
+        
+#         # record the index of '*'
+#         count = []
+#         # record the index of '('
+#         stack = []
+        
+#         for i,p in enumerate(s):
+#             if p == '(':
+#                 stack.append(i)
+                
+#             elif p == ')':
+                
+#                 # when there's no '*' or  '(' before the '),' impossible to form a balanced parenthesis
+#                 if not stack and not count:
+#                     return False
+                
+#                 # only '*' available, use '*' to offset ')' 
+#                 elif not stack:
+#                     count.pop()
+                    
+#                 # if stack is avaialble (regardless of count), pop stack to offset ')'
+#                 else:
+#                     stack.pop()
+                    
+#             # if p == '*'
+#             else:
+#                 count.append(i)
+                
+#         # if there're extra stack & count, '*' must be after '(' in order to offset/balance     
+#         while count and stack:
+            
+#             # if '(' is after '*', 
+#             # example **((, count = [0,1], stack = [2,3]
+#             if stack.pop() > count.pop():
+#                 return False
+            
+#         # stack must be empty, no extra '('
+#         # otherwise, there isn't emough ')' or '*' to balance the '('
+#         return not stack
                 
         
         
