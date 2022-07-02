@@ -1,23 +1,25 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        res = ''
+        if len(s) < 2:
+            return s
         
+        res = ''
         def isPalindrome(l,r):
             nonlocal res 
-            while l >=0 and r < len(s) and s[l] == s[r]:
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                res = s[l:r+1] if len(res) < (r-l+1) else res 
                 l -= 1
-                r +=1
-            if (r-l - 1) > len(res):
-                res = s[l + 1:r]
-            
-            
-            
-        for i in range(len(s)):
+                r += 1
+      
+        for i in range(len(s)-1):
             isPalindrome(i,i)
-            isPalindrome(i, i+1)
+            isPalindrome(i,i+1)
+            
         return res 
-
         
+        
+ 
+
         
         
         
