@@ -11,7 +11,7 @@ class Solution:
                 l -= 1
                 r += 1
       
-        for i in range(len(s)-1):
+        for i in range(len(s)):
             isPalindrome(i,i)
             isPalindrome(i,i+1)
             
