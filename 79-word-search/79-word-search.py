@@ -1,37 +1,36 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        
         m = len(board)
         n = len(board[0])
-        dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        visited = set()
+        dir = [[-1,0],[1,0],[0,-1],[0,1]]
         
-        def backtrack(r,c,index):
-            if index == len(word):
-                return True 
+        def backtrack(r,c,i):
+            if i == len(word):
+                return True
             
-            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[index]:
+            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[i]:
                 return False
             
-            temp = board[r][c]
+            ch = board[r][c]
             board[r][c] = '#'
-            
+            # visited.add((r,c))
             for x,y in dir:
-                nr = r + x 
+                nr = r + x
                 nc = c + y
-                if backtrack(nr,nc,index+1):
-                    return True 
-            board[r][c] = temp
-        
+                if (nr,nc) not in visited and backtrack(nr,nc,i+1):
+                    return True
+            # visited.remove((r,c))
+            board[r][c] = ch
+                    
         for r in range(m):
             for c in range(n):
                 if backtrack(r,c,0):
                     return True
         return False 
-        
+                    
 
-
-        
-        
-        
         
         
         
