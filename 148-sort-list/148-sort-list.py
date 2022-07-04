@@ -6,7 +6,7 @@
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
-        if not head or not head.next:
+        if not head or not head.next: 
             return head 
         
         def merge(l1,l2):
@@ -14,26 +14,31 @@ class Solution:
             while l1 and l2:
                 if l1.val < l2.val:
                     cur.next = ListNode(l1.val)
-                    l1 = l1.next 
+                    l1 = l1.next
                 else:
                     cur.next = ListNode(l2.val)
-                    l2 = l2.next 
+                    l2 = l2.next
                 cur = cur.next 
             cur.next = l1 if l1 else l2
             return dummy.next 
-         
-        slow = head
-        fast = head.next 
-        while fast and fast.next:
-            fast = fast.next.next 
-            slow = slow.next 
-        l2 = slow.next 
-        l1 = head 
-        slow.next = None 
+        
+        def divide(l):
+            slow = l
+            fast = l.next 
+            while fast and fast.next:
+                fast = fast.next.next 
+                slow = slow.next
+            return slow
+               
+        mid = divide(head)
+        l1 = head
+        l2 = mid.next 
+        mid.next = None 
         
         return merge(self.sortList(l1), self.sortList(l2))
         
         
+
         
         
         
