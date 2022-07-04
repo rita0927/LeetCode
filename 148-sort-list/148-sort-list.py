@@ -7,42 +7,173 @@ class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
         if not head or not head.next:
-            return head
+            return head 
         
-        left = head
-        right = self.getMid(head)
-        temp = right.next
-        right.next = None
-        right = temp
+        def merge(l1, l2):
+            dummy = cur = ListNode()
+            while l1 and l2:
+                if l1.val < l2.val:
+                    cur.next = ListNode(l1.val)
+                    l1 = l1.next 
+                else:
+                    cur.next = ListNode(l2.val)
+                    l2 = l2.next 
+                cur = cur.next 
+            cur.next = l1 if l1 else l2 
+            return dummy.next 
         
-        left = self.sortList(left)
-        right = self.sortList(right)
-        return self.mergeList(left, right)
-    
-    def getMid(self, head):
-        slow, fast = head, head.next
+        slow = head 
+        fast = head.next 
         while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        return slow
-    
-    def mergeList(self, left, right):
-        tail = dummy = ListNode()
+            fast = fast.next.next 
+            slow = slow.next 
+        l2 = slow.next 
+        l1 = head
+        slow.next = None 
         
-        while left and right:
-            if left.val < right.val:
-                tail.next = left
-                left = left.next
-            else:
-                tail.next = right
-                right = right.next
-            tail = tail.next
-        if left: 
-            tail.next = left
-        if right:
-            tail.next = right
+        return merge(self.sortList(l1), self.sortList(l2))
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if not head or not head.next:
+#             return head 
+    
+#         def getMid(head):
             
-        return dummy.next 
+#             # can't set both slow & fast as head, otherwise, the last two nodes always stick in left/head
+#             # slow refers to the last node in the left, node the starting node of right
+#             slow = head
+#             fast = head.next
+#             while fast and fast.next:
+#                 fast = fast.next.next
+#                 slow = slow.next
+#             return slow 
+          
+#         def merge(l1, l2):
+#             dummy = cur = ListNode()
+#             while l1 and l2:
+#                 if l1.val < l2.val:
+#                     cur.next = ListNode(l1.val)
+#                     l1 = l1.next 
+#                 else:
+#                     cur.next = ListNode(l2.val)
+#                     l2 = l2.next 
+#                 cur = cur.next 
+#             cur.next = l1 if l1 else l2 
+#             return dummy.next 
+        
+#         l1 = head
+#         # mid is the last node in the l1/left
+#         mid = getMid(head)
+#         # mid.next is the starting node of l2/right
+#         l2 = mid.next
+#         # cut off the link between l1 & l2 
+#         mid.next = None 
+        
+#         l1 = self.sortList(l1)
+#         l2 = self.sortList(l2)
+#         return merge(l1, l2)
+
+
+            
+        
+                
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if not head or not head.next:
+#             return head
+        
+#         left = head
+#         right = self.getMid(head)
+#         temp = right.next
+#         right.next = None
+#         right = temp
+        
+#         left = self.sortList(left)
+#         right = self.sortList(right)
+#         return self.mergeList(left, right)
+    
+#     def getMid(self, head):
+#         slow, fast = head, head.next
+#         while fast and fast.next:
+#             slow = slow.next
+#             fast = fast.next.next
+#         return slow
+    
+#     def mergeList(self, left, right):
+#         tail = dummy = ListNode()
+        
+#         while left and right:
+#             if left.val < right.val:
+#                 tail.next = left
+#                 left = left.next
+#             else:
+#                 tail.next = right
+#                 right = right.next
+#             tail = tail.next
+#         if left: 
+#             tail.next = left
+#         if right:
+#             tail.next = right
+            
+#         return dummy.next 
     
         
         
