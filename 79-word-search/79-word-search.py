@@ -19,7 +19,7 @@ class Solution:
             for x,y in dir:
                 nr = r + x
                 nc = c + y
-                if (nr,nc) not in visited and backtrack(nr,nc,i+1):
+                if backtrack(nr,nc,i+1):
                     return True
             # visited.remove((r,c))
             board[r][c] = ch
