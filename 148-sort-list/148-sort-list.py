@@ -6,38 +6,47 @@
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
-        if not head or not head.next: 
+        if not head or not head.next:
             return head 
-               
-        mid = self.divide(head)
-        l1 = head
+        
+        def getMid(l):
+            slow = l
+            fast = l.next 
+            
+            while fast and fast.next:
+                fast = fast.next.next
+                slow = slow.next 
+            return slow 
+        
+        def merge(l1, l2):
+            dummy = cur = ListNode()
+            while l1 and l2:
+                if l1.val < l2.val:
+                    cur.next = ListNode(l1.val)
+                    l1 = l1.next 
+                else:
+                    cur.next = ListNode(l2.val)
+                    l2 = l2.next 
+                cur = cur.next 
+            cur.next = l1 if l1 else l2 
+            return dummy.next 
+        
+        l1 = head 
+        mid = getMid(head)
         l2 = mid.next 
-        mid.next = None 
+        mid.next = None
         
-        l1 = self.sortList(l1)
-        l2 = self.sortList(l2)
-        return self.merge(l1,l2)
+        return merge(self.sortList(l1), self.sortList(l2))
+            
         
-    def merge(self,l1,l2):
-        dummy = cur = ListNode()
-        while l1 and l2:
-            if l1.val < l2.val:
-                cur.next = ListNode(l1.val)
-                l1 = l1.next
-            else:
-                cur.next = ListNode(l2.val)
-                l2 = l2.next
-            cur = cur.next 
-        cur.next = l1 if l1 else l2
-        return dummy.next 
 
-    def divide(self,l):
-        slow = l
-        fast = l.next 
-        while fast and fast.next:
-            fast = fast.next.next 
-            slow = slow.next
-        return slow
+        
+        
+        
+        
+        
+        
+        
         
         
         
