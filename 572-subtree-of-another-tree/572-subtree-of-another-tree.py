@@ -7,24 +7,80 @@
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         
-        def sameTree(n1, n2):
+        # Time:O(nm) for each of n nodes there is at max m computations
+        # Space: O(logn+logm) : max would be height of each tree together (recursion & stack)
+        def helper(n1, n2):
             if not n1 and not n2:
                 return True
             if not n1 or not n2 or n1.val != n2.val:
                 return False
-            return sameTree(n1.left, n2.left) and sameTree(n1.right, n2.right)
-        
-        queue = deque([root])
-        while queue:
-            node = queue.popleft()
-            if sameTree(node, subRoot):
+            return helper(n1.left, n2.left) and helper(n1.right, n2.right)
+              
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if helper(node, subRoot):
                 return True
             if node.left:
-                queue.append(node.left)
+                stack.append(node.left)
             if node.right:
-                queue.append(node.right)
+                stack.append(node.right)
+   
+        return False
         
-        return False 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         def sameTree(n1, n2):
+#             if not n1 and not n2:
+#                 return True
+#             if not n1 or not n2 or n1.val != n2.val:
+#                 return False
+#             return sameTree(n1.left, n2.left) and sameTree(n1.right, n2.right)
+        
+#         queue = deque([root])
+#         while queue:
+#             node = queue.popleft()
+#             if sameTree(node, subRoot):
+#                 return True
+#             if node.left:
+#                 queue.append(node.left)
+#             if node.right:
+#                 queue.append(node.right)
+        
+#         return False 
         
 
         
