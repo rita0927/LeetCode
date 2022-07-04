@@ -7,7 +7,6 @@ class Solution:
         dir = [[-1,0],[1,0],[0,-1],[0,1]]
         
         def backtrack(r,c,i):
-            nonlocal visited
             
             if i == len(word):
                 return True
