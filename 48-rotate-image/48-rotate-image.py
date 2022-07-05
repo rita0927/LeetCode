@@ -4,13 +4,20 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         
-        matrix.reverse()
+        n = len(matrix)
         
-        for r in range(len(matrix)):
-            for c in range(r+1,len(matrix)):
+        for r in range(n):
+            for c in range(r+1, n):
                 matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
         
+        for r in range(n):
+            mid = n//2
+            for c in range(mid):
+                matrix[r][c], matrix[r][-c-1] = matrix[r][-c-1], matrix[r][c]
+        
         return matrix 
+
+        
                 
 
 
