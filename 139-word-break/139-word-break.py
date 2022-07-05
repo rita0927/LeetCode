@@ -2,22 +2,73 @@ from functools import lru_cache
 class Solution:
     
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+#         n = len(s)
+#         words = set(wordDict)
+#         dp = [False] * (n+ 1)
+#         dp[0] = True 
         
-        
-        # O(n^3), O(n)
-        words = set(wordDict)
+#         for i in range(1,n):
+            
+#             for j in range(i):
+#                 if dp[j] and s[j:i] in words:
+#                     dp[i] = True
+#                     break
+#         return dp[len(s)]
+        word_set = set(wordDict)
+        q = deque()
         visited = set()
-        visited.add(0)
-        queue = deque([0])
-        while queue:
-            l = queue.popleft()
-            if l == len(s):
+
+        q.append(0)
+        while q:
+        
+            start = q.popleft()
+            
+            if start == len(s):
                 return True
-            for r in range(l+1, len(s)+1):
-                if r not in visited and s[l:r] in words:
-                    visited.add(r)
-                    queue.append(r)
-        return False 
+            if start in visited:
+                continue
+            visited.add(start)
+            for end in range(start + 1, len(s) + 1):
+                if s[start:end] in word_set:
+                    q.append(end)
+
+            
+        return False    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        # # O(n^3), O(n)
+        # # to avoid TLE, add the index to visited set before append to the queue
+        # words = set(wordDict)
+        # visited = set()
+        # visited.add(0)
+        # queue = deque([0])
+        # while queue:
+        #     l = queue.popleft()
+        #     if l == len(s):
+        #         return True
+        #     for r in range(l+1, len(s)+1):
+        #         if r not in visited and s[l:r] in words:
+        #             visited.add(r)
+        #             queue.append(r)
+        # return False 
 
 
         
