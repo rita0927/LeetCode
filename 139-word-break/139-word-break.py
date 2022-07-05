@@ -2,15 +2,25 @@ from functools import lru_cache
 class Solution:
     
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        d = set(wordDict)
-        dp = [False] * (len(s) + 1)
-        dp[0] = True
         
-        for i in range(1, len(s) + 1):
-            for j in range(i):
-                if dp[j] and s[j:i] in d:
-                    dp[i] = True
-        return dp[len(s)]
+        words = set(wordDict)
+        visited = set()
+        visited.add(0)
+        queue = deque([0])
+        while queue:
+            l = queue.popleft()
+            if l == len(s):
+                return True
+            for r in range(l+1, len(s)+1):
+                if r not in visited and s[l:r] in words:
+                    visited.add(r)
+                    queue.append(r)
+        return False 
+
+
+        
+        
+        
         
         
         
