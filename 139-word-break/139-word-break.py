@@ -3,6 +3,8 @@ class Solution:
     
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         
+        
+        # O(n^3), O(n)
         words = set(wordDict)
         visited = set()
         visited.add(0)
@@ -90,7 +92,7 @@ class Solution:
         
         
         
-#         # O(n^3), O(n)
+#         # TLE!!!! O(n^3), O(n)
 #         d = set(wordDict)
 #         queue = deque([0])
 #         visited = set()
