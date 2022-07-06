@@ -10,20 +10,22 @@ class Solution:
         
         queue = deque()
         for crs in range(numCourses):
-            if not indegree[crs]:
+            if indegree[crs] == 0:
                 queue.append(crs)
         
         visited = set()
         while queue:
             pre = queue.popleft()
             visited.add(pre)
+            
             for crs in adj[pre]:
                 indegree[crs] -= 1
                 
-                if indegree[crs] == 0:
+                if not indegree[crs]:
                     queue.append(crs)
-                    
         return len(visited) == numCourses
+        
+
             
             
         
