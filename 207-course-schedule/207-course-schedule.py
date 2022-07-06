@@ -2,30 +2,49 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         adj = defaultdict(list)
-        
         for crs, pre in prerequisites:
             adj[crs].append(pre)
-        
+                
         visited = set()
         
         def dfs(crs):
             
             if crs in visited:
                 return False
-            visited.add(crs)   
+            visited.add(crs)          
             for pre in adj[crs]:
                 if not dfs(pre):
-                    return False 
+                    return False
             adj[crs] = []
             visited.remove(crs)
-            return True 
+            return True
         
-        for i in range(numCourses):
-            if not dfs(i):
+        for crs in range(numCourses):
+            if not dfs(crs):
                 return False
-        return True 
+        
+        return True
             
             
+            
+            
+
+            
+        
+
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
