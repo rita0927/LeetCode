@@ -3,25 +3,27 @@ class MyStack:
     def __init__(self):
         self.q1 = deque()
         self.q2 = deque()
-        self.top = None 
+        self.last = None 
         
 
     def push(self, x: int) -> None:
         self.q1.append(x)
-        self.top = x
-
+        self.last = x
+        
 
     def pop(self) -> int:
 
-        while len(q1)> 1:
-            self.top = self.q1.popleft()
-            self.q2.append(self.top)
+        while len(self.q1)> 1:
+            self.last = self.q1.popleft()
+            self.q2.append(self.last)
             
-        return self.q1.popleft()
+        res = self.q1.popleft()
         self.q1, self.q2 = self.q2, self.q1
+        return res 
 
     def top(self) -> int:
-        return self.top
+        
+        return self.last
         
 
     def empty(self) -> bool:
@@ -43,30 +45,30 @@ class MyStack:
 
 
 
-class MyStack:
+# class MyStack:
 
-    def __init__(self):
-        self.queue = deque()
+#     def __init__(self):
+#         self.queue = deque()
         
 
-    def push(self, x: int) -> None:
-        self.queue.append(x)
+#     def push(self, x: int) -> None:
+#         self.queue.append(x)
         
-        # rotate with positive int (default is 1): move from right to left
-        self.queue.rotate(1)
+#         # rotate with positive int (default is 1): move from right to left
+#         self.queue.rotate(1)
         
-        # n = len(self.queue) 
-        # while n > 1:
-        #     self.queue.append(self.queue.popleft())
-        #     n -= 1
+#         # n = len(self.queue) 
+#         # while n > 1:
+#         #     self.queue.append(self.queue.popleft())
+#         #     n -= 1
 
-    def pop(self) -> int:
-        return self.queue.popleft()
-        
-
-    def top(self) -> int:
-        return self.queue[0]
+#     def pop(self) -> int:
+#         return self.queue.popleft()
         
 
-    def empty(self) -> bool:
-        return not self.queue
+#     def top(self) -> int:
+#         return self.queue[0]
+        
+
+#     def empty(self) -> bool:
+#         return not self.queue
