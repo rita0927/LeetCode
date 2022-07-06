@@ -2,29 +2,28 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
         adj = defaultdict(list)
-        indegree = defaultdict(int)
         
         for crs, pre in prerequisites:
-            adj[pre].append(crs)
-            indegree[crs] += 1
-        
-        queue = deque()
-        for crs in range(numCourses):
-            if indegree[crs] == 0:
-                queue.append(crs)
-        
-        visited = set()
-        while queue:
-            pre = queue.popleft()
-            visited.add(pre)
+            adj[crs].append(pre)
             
-            for crs in adj[pre]:
-                indegree[crs] -= 1
-                
-                if not indegree[crs]:
-                    queue.append(crs)
-        return len(visited) == numCourses
+        visited = set()
         
+        def backtrack(crs):
+            if crs in visited:
+                return False
+            visited.add(crs)
+            for pre in adj[crs]:
+                if not backtrack(pre):
+                    return False
+            adj[crs] = []
+            visited.remove(crs)
+            return True 
+        
+        for crs in range(numCourses):
+            if not backtrack(crs):
+                return False
+        return True 
+
 
             
             
