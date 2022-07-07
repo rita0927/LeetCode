@@ -1,23 +1,16 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        cache = {}
         
-        def helper(balance):
-            if balance < 0: return -1
-            if not balance: return 0
-            
-            if balance in cache:
-                return cache[balance]
-            
-            min_count = float('inf')
+        dp = [float('inf')] * (amount+1)
+        dp[0] = 0
+        
+        for a in range(1, amount+1):
             for c in coins:
-                count = helper(balance - c) 
-                if count == -1: continue
-                min_count = min(min_count, count + 1)
-            cache[balance] = min_count if min_count != float('inf') else -1
-            return cache[balance]
+                if a >= c:
+                    dp[a] = min(dp[a], dp[a-c]+1)
         
-        return helper(amount)
+        return dp[amount] if dp[amount] != float('inf') else -1
+
         
         
         
@@ -27,7 +20,7 @@ class Solution:
         
         
         
-        
+
         
         
         
@@ -45,6 +38,17 @@ class Solution:
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(S*n) where S is the amount, n is denomination count 
+#         # O(S)
 #         dp = [float('inf')] * (amount + 1)
 #         dp[0] = 0
         
