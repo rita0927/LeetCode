@@ -7,6 +7,7 @@
 
 
 
+
 class Codec:
 
     def serialize(self, root):
@@ -16,20 +17,12 @@ class Codec:
         :rtype: str
         """
         
-        queue = deque([root])
-        res = []
+        if not root:
+            return 'N'
+        else:
+            return f'{str(root.val)} {self.serialize(root.left)} {self.serialize(root.right)}'
         
-        while queue:
-            node = queue.popleft()
-            if not node:
-                res.append('N')
-                continue
-            res.append(str(node.val))
-            queue.append(node.left)
-            queue.append(node.right)
-        
-        return ' '.join(res)
-        
+          
         
 
     def deserialize(self, data):
@@ -39,23 +32,83 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
+
         vals = data.split()
-        if vals[0] == 'N':
-            return None
-        root = TreeNode(int(vals.pop(0)))
-        queue = deque([root])
         
-        while queue:
-            node = queue.popleft()
-            left = vals.pop(0)
-            right = vals.pop(0)
-            node.left = None if left == 'N' else TreeNode(int(left))
-            node.right = None if right == 'N' else TreeNode(int(right))
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-        return root 
+        def dfs():
+            val = vals.pop(0)
+            if val == 'N':
+                return 
+            node = TreeNode(int(val))
+            node.left = dfs()
+            node.right = dfs()
+            return node
+        return dfs()
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class Codec:
+
+#     def serialize(self, root):
+#         """Encodes a tree to a single string.
+        
+#         :type root: TreeNode
+#         :rtype: str
+#         """
+        
+#         queue = deque([root])
+#         res = []
+        
+#         while queue:
+#             node = queue.popleft()
+#             if not node:
+#                 res.append('N')
+#                 continue
+#             res.append(str(node.val))
+#             queue.append(node.left)
+#             queue.append(node.right)
+        
+#         return ' '.join(res)
+        
+        
+
+#     def deserialize(self, data):
+        
+#         """Decodes your encoded data to tree.
+        
+#         :type data: str
+#         :rtype: TreeNode
+#         """
+#         vals = data.split()
+#         if vals[0] == 'N':
+#             return None
+#         root = TreeNode(int(vals.pop(0)))
+#         queue = deque([root])
+        
+#         while queue:
+#             node = queue.popleft()
+#             left = vals.pop(0)
+#             right = vals.pop(0)
+#             node.left = None if left == 'N' else TreeNode(int(left))
+#             node.right = None if right == 'N' else TreeNode(int(right))
+#             if node.left:
+#                 queue.append(node.left)
+#             if node.right:
+#                 queue.append(node.right)
+#         return root 
             
            
             
