@@ -45,7 +45,7 @@ class Codec:
         root = TreeNode(int(vals.pop(0)))
         queue = deque([root])
         
-        while queue and vals:
+        while queue:
             node = queue.popleft()
             left = vals.pop(0)
             right = vals.pop(0)
