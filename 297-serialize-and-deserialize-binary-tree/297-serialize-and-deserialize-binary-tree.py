@@ -13,11 +13,24 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        if not root:
-            return 'N'
-        else:
-            return f'{root.val} {self.serialize(root.left)} {self.serialize(root.right)}'
+        # if not root:
+        #     return 'N'
+        # else:
+        #     return f'{root.val} {self.serialize(root.left)} {self.serialize(root.right)}'
 
+        stack = [root]
+        res = []
+        
+        while stack:
+            node = stack.pop()
+            if not node:
+                res.append('N')
+                continue 
+            res.append(str(node.val))
+            stack.append(node.right)
+            stack.append(node.left)
+        return ' '.join(res) 
+            
         
         
         
