@@ -1,17 +1,71 @@
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
-
-        l = 0 
-        r = len(arr) - k
         
-        while l< r:
+        if k == len(arr):
+            return arr
+        
+        l = -1 
+        r = len(arr)
+        
+        while l + 1 != r:
             mid = (l+r)//2
-            if x-arr[mid] <= arr[mid+k] - x:
-                r = mid
+            
+            if x >= arr[mid]:
+                l = mid
             else:
-                l = mid + 1
+                r = mid
+        
+        while r-l-1 < k:
+            if l == -1:
+                r += 1
+                continue 
+            if r  == len(arr):
+                l -= 1
+                continue 
+            
+            if abs(x - arr[l]) <= abs(arr[r]-x):
+                l -= 1
+            else:
+                r += 1
+        return arr[l+1:r]
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+#         l = 0 
+#         r = len(arr) - k
+        
+#         while l< r:
+#             mid = (l+r)//2
+#             if x-arr[mid] <= arr[mid+k] - x:
+#                 r = mid
+#             else:
+#                 l = mid + 1
    
-        return arr[l:l+k]
+#         return arr[l:l+k]
         
         
         
@@ -21,16 +75,7 @@ class Solution:
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+     
         
         
         
