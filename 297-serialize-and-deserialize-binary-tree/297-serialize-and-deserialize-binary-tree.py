@@ -32,14 +32,12 @@ class Codec:
         """
         
         data = data.split()
-        i = -1
         
         def dfs():
-            nonlocal i
-            i += 1
-            if data[i] == 'N':
+            val = data.pop(0)
+            if val == 'N':
                 return None
-            node = TreeNode(int(data[i]))
+            node = TreeNode(int(val))
             node.left = dfs()
             node.right = dfs()
             return node 
