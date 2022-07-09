@@ -1,23 +1,65 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
-        res = []
         count = Counter(nums)
+        res = []
         
-        def dfs(perm):
+        def backtrack(perm):
             if len(perm) == len(nums):
                 res.append(perm.copy())
-                return
-            
+                return 
+                
             for n in count:
                 if count[n]:
                     perm.append(n)
                     count[n] -= 1
-                    dfs(perm)
-                    count[n] += 1
+                    backtrack(perm)
                     perm.pop()
-        dfs([])
+                    count[n] += 1
+        backtrack([])
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = []
+#         count = Counter(nums)
+        
+#         def dfs(perm):
+#             if len(perm) == len(nums):
+#                 res.append(perm.copy())
+#                 return
+            
+#             for n in count:
+#                 if count[n]:
+#                     perm.append(n)
+#                     count[n] -= 1
+#                     dfs(perm)
+#                     count[n] += 1
+#                     perm.pop()
+#         dfs([])
+#         return res 
             
         
 
