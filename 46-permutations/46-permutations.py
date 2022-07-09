@@ -1,6 +1,6 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        
+       
         res = []
         
         if len(nums) == 1:
@@ -12,10 +12,66 @@ class Solution:
             
             for perm in perms:
                 perm.append(n)
-                
+            
             res.extend(perms)
             nums.append(n)
         return res 
+            
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = []
+#         n = len(nums)
+
+#         def backtrack(start):
+#             if start == n:
+#                 res.append(nums.copy())
+#                 return 
+            
+#             for i in range(start, n):
+#                 nums[start], nums[i] = nums[i], nums[start]
+#                 backtrack(start+1)
+#                 nums[start], nums[i] = nums[i], nums[start]
+#         backtrack(0)
+#         return res 
+            
+                
             
             
             
