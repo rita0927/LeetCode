@@ -2,30 +2,90 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
         res = []
-        visited = set()
+        count = Counter(nums)
         
-        if len(nums) == 1:
-            return [nums.copy()]
-        
-        for _ in range(len(nums)):
-            n = nums.pop(0)
+        def dfs(perm):
+            if len(perm) == len(nums):
+                res.append(perm.copy())
+                return
             
-            if n not in visited:
-                visited.add(n)
-                perms = self.permuteUnique(nums)
-                
-                for perm in perms:
+            for n in count:
+                if count[n]:
                     perm.append(n)
-                res.extend(perms)
-            nums.append(n)
-              
+                    count[n] -= 1
+                    dfs(perm)
+                    count[n] += 1
+                    perm.pop()
+        dfs([])
         return res 
+            
+        
+
+            
+        
+
         
         
         
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = []
+#         visited = set()
+        
+#         if len(nums) == 1:
+#             return [nums.copy()]
+        
+#         for _ in range(len(nums)):
+#             n = nums.pop(0)
+            
+#             if n not in visited:
+#                 visited.add(n)
+#                 perms = self.permuteUnique(nums)
+                
+#                 for perm in perms:
+#                     perm.append(n)
+#                 res.extend(perms)
+#             nums.append(n)
+              
+#         return res 
+        
+        
+       
         
         
         
