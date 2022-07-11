@@ -4,20 +4,38 @@ class Solution:
         count = Counter(nums)
         res = []
         
-        def backtrack(perm):
-            if len(perm) == len(nums):
-                res.append(perm.copy())
+        def backtrack(temp):
+            if len(temp) == len(nums):
+                res.append(temp.copy())
                 return 
-                
+            
             for n in count:
                 if count[n]:
-                    perm.append(n)
+                    temp.append(n)
                     count[n] -= 1
-                    backtrack(perm)
-                    perm.pop()
+                    backtrack(temp)
+                    temp.pop()
                     count[n] += 1
+        
         backtrack([])
         return res 
+                    
+            
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
