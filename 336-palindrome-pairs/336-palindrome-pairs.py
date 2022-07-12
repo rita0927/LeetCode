@@ -6,16 +6,18 @@ class Solution:
         def isPalindrome(s):
             return s == s[::-1]
         
-        res = []
-        
+        res = []    
         
         for i, w in enumerate(words):
             for j in range(len(w) + 1):
                 left = w[:j]
                 right = w[j:]
                 
+                # check right[::-1] != w if w is palindrome, ex: words = ['aba'] and j == 0 
                 if isPalindrome(left) and right[::-1] in d and right[::-1] != w:
                     res.append([d[right[::-1]], i])
+                
+                # j = len(w) means left = w and right = ''. This combination has been checked/appended when j == 0, the reversed w exists in the d
                 if j != len(w) and isPalindrome(right) and left[::-1] in d and left[::-1] != w:
                     res.append([i, d[left[::-1]]])
         return res 
