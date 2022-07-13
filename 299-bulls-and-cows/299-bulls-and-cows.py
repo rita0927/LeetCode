@@ -1,21 +1,34 @@
 class Solution:
     def getHint(self, secret: str, guess: str) -> str:
+        bulls = 0
+        cows = 0
+        count = [0] * 10
         
-        bull = 0
-        cow = 0
-        d = defaultdict(int)
-        
-        for i in range(len(guess)):
-            s = secret[i]
-            g = guess[i]
+        for i in range(len(secret)):
+            s = int(secret[i])
+            g = int(guess[i])
             
             if s == g:
-                bull += 1
+                bulls += 1
             else:
-                cow += int(d[s] < 0) + int(d[g] > 0)
-                d[s] += 1
-                d[g] -= 1
-        return f'{bull}A{cow}B'
+                cows += int(count[g] < 0) + int(count[s] > 0)
+
+                count[s] -= 1
+                count[g] += 1
+        
+        return f'{bulls}A{cows}B'
+                
+                
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
