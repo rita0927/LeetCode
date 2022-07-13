@@ -1,27 +1,74 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
         
-        star = []
-        left = []
+        min_count = 0
+        max_count = 0
         
-        for i, p in enumerate(s):
-            if p == '*':
-                star.append(i)
-            elif p == '(':
-                left.append(i)
+        for i in s:
+            if i == '(':
+                min_count += 1
+                max_count += 1
+            elif i == ')':
+                min_count -= 1
+                max_count -= 1
             else:
-                if not star and not left:
-                    return False
-                elif left:
-                    left.pop()
-                else:
-                    star.pop()
-        
-        while left and star:
-            if star.pop() < left.pop():
-                return False
+                min_count -= 1
+                max_count += 1
             
-        return not left 
+            min_count = max(min_count, 0)
+            if max_count < 0:
+                return False
+        
+        return min_count == 0
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         star = []
+#         left = []
+        
+#         for i, p in enumerate(s):
+#             if p == '*':
+#                 star.append(i)
+#             elif p == '(':
+#                 left.append(i)
+#             else:
+#                 if not star and not left:
+#                     return False
+#                 elif left:
+#                     left.pop()
+#                 else:
+#                     star.pop()
+        
+#         while left and star:
+#             if star.pop() < left.pop():
+#                 return False
+            
+#         return not left 
         
         
 
