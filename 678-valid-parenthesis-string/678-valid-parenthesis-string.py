@@ -1,28 +1,43 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
         
-        S = []
-        A = []
+        star = []
+        left = []
         
         for i, p in enumerate(s):
-            
-            if p == '(':
-                S.append(i)
-            elif p == '*':
-                A.append(i)
+            if p == '*':
+                star.append(i)
+            elif p == '(':
+                left.append(i)
             else:
-                if not S and not A:
+                if not star and not left:
                     return False
-                elif not S:
-                    A.pop()
+                elif left:
+                    left.pop()
                 else:
-                    S.pop()
+                    star.pop()
         
-        while S and A:
-            if S.pop() > A.pop():
+        while left and star:
+            if star.pop() < left.pop():
                 return False
-        return not S
+            
+        return not left 
+        
+        
+
                     
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
         
         
