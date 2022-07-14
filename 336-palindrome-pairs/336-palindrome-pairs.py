@@ -2,22 +2,36 @@ class Solution:
     def palindromePairs(self, words: List[str]) -> List[List[int]]:
         
         d = {word:i for i, word in enumerate(words)}
+        
         res = []
         
-        for i, w in enumerate(words):
+        for i,w in enumerate(words):
             for j in range(len(w) + 1):
                 
-                left = w[:j]
-                right = w[j:]
+                l = w[:j]
+                r = w[j:]
                 
-                if left == left[::-1] and right[::-1] in d and right[::-1] != w:
-                    res.append([d[right[::-1]], i])
+                if l == l[::-1] and r[::-1] in d and r[::-1] != w:
+                    res.append([d[r[::-1]], i])
                 
-                if j != len(w) and right == right[::-1] and left[::-1] in d and left[::-1] != w:
-                    res.append([i, d[left[::-1]]])
-                    
+                if j != len(w) and r == r[::-1] and l[::-1] in d:
+                    res.append([i, d[l[::-1]]])
         return res 
+        
+
                     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
