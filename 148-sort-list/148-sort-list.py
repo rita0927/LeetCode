@@ -9,15 +9,6 @@ class Solution:
         if not head or not head.next:
             return head 
         
-        def getMid(l):
-            slow = l
-            fast = l.next 
-            
-            while fast and fast.next:
-                fast = fast.next.next
-                slow = slow.next 
-            return slow 
-        
         def merge(l1, l2):
             dummy = cur = ListNode()
             while l1 and l2:
@@ -31,15 +22,29 @@ class Solution:
             cur.next = l1 if l1 else l2 
             return dummy.next 
         
-        l1 = head 
-        mid = getMid(head)
-        l2 = mid.next 
-        mid.next = None
+        slow = head
+        fast = head.next 
         
-        return merge(self.sortList(l1), self.sortList(l2))
+        while fast and fast.next:
+            slow = slow.next 
+            fast = fast.next.next 
+        
+        left = head
+        right = slow.next 
+        slow.next = None 
+        
+        return merge(self.sortList(left), self.sortList(right))
+    
+    
             
+                
         
 
+        
+        
+        
+        
+        
         
         
         
