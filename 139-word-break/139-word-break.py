@@ -6,14 +6,12 @@ class Solution:
         words = set(wordDict)
         
         dp = [False] * (len(s) + 1)
-        
         dp[0] = True
         
-
-        for i in range(1, len(s)+1):
-            for j in range(i):
-                if s[j:i] in words and dp[j]:
-                    dp[i] = True
+        for r in range(1, len(s) + 1):
+            for l in range(r):
+                if s[l:r] in words and dp[l]:
+                    dp[r] = True
                     break
         return dp[-1]
         
