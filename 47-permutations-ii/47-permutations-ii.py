@@ -2,8 +2,8 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
         count = Counter(nums)
-        res = []
         
+        res = []
         def backtrack(temp):
             if len(temp) == len(nums):
                 res.append(temp.copy())
@@ -11,15 +11,17 @@ class Solution:
             
             for n in count:
                 if count[n]:
-                    temp.append(n)
                     count[n] -= 1
+                    temp.append(n)
                     backtrack(temp)
                     temp.pop()
                     count[n] += 1
-        
         backtrack([])
         return res 
-                    
+        
+        
+        
+
             
         
 
