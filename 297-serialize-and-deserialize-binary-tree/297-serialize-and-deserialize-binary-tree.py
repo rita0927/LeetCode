@@ -19,10 +19,9 @@ class Codec:
         
         if not root:
             return 'N'
-        else:
-            return f'{str(root.val)} {self.serialize(root.left)} {self.serialize(root.right)}'
         
-        
+        return f'{str(root.val)} {self.serialize(root.left)} {self.serialize(root.right)}'
+
 
     def deserialize(self, data):
         
@@ -32,19 +31,21 @@ class Codec:
         :rtype: TreeNode
         """
 
-        vals = data.split()
+        values = data.split()
         def dfs():
-            val = vals.pop(0)
+            val = values.pop(0)
+            
             if val == 'N':
-                return
+                return None 
+            
             node = TreeNode(int(val))
             node.left = dfs()
             node.right = dfs()
             return node 
+        
         return dfs()
-
             
-
+            
 
 
 
