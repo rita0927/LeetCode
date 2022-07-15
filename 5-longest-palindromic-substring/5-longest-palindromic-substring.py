@@ -1,21 +1,21 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         
-        res = ''
+        res = ""
         
-        def helper(l,r):
+        def isPalindrome(l,r):
             nonlocal res 
-            
             while l >= 0 and r < len(s) and s[l] == s[r]:
-                res = s[l:r+1] if len((res)) < (r-l+1) else res 
+                res = s[l:r+1] if len(res) < (r-l+1) else res 
                 l -= 1
-                r += 1        
+                r += 1
+                
         
         for i in range(len(s)):
-            helper(i,i)
-            helper(i,i+1)
+            isPalindrome(i,i)
+            isPalindrome(i, i+1)
+        
         return res 
-
 
         
         
