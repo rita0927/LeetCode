@@ -5,16 +5,23 @@ class Solution:
         
         words = set(wordDict)
         
-        dp = [False] * (len(s) + 1)
-        dp[0] = True
+        @lru_cache
+        def backtrack(start):
+            if start == len(s):
+                return True
+            
+            for end in range(start+1, len(s)+1):
+                if s[start:end] in words and backtrack(end):
+                    return True
+            return False
+        return backtrack(0)
+                
+                
         
-        for r in range(1, len(s) + 1):
-            for l in range(r):
-                if s[l:r] in words and dp[l]:
-                    dp[r] = True
-                    break
-        return dp[-1]
+
+            
         
+
         
 
         
