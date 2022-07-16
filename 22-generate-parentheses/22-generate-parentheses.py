@@ -2,32 +2,30 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         
         res = []
-        left = 0
-        right = 0
+        temp = []
+
         
-        def backtrack(temp):
-            nonlocal left
-            nonlocal right
+        def backtrack(l,r):
             
-            if left == n and right == n:
+            if l == n and r == n:
                 res.append(('').join(temp))
                 return
             
-            if left < n:
-                left += 1
+            if l < n:
+                l += 1
                 temp.append('(')
-                backtrack(temp)
+                backtrack(l,r)
                 temp.pop()
-                left -= 1
+                l -= 1
             
-            if right < left:
-                right += 1
+            if r < l:
+                r += 1
                 temp.append(')')
-                backtrack(temp)
+                backtrack(l,r)
                 temp.pop()
-                right -= 1
+                r -= 1
                 
-        backtrack([])
+        backtrack(0,0)
         return res 
             
         
