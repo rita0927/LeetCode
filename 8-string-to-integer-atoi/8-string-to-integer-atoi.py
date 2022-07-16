@@ -1,27 +1,77 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
+        
         s = s.strip()
         if not s:
             return 0
-
+        
+        res = 0
         i = 0
-        isPositive = True 
+        isPositive = True
         if s[i] == '+' or s[i] == '-':
-            isPositive = False if s[i] == '-' else True 
+            if s[i] == '-':
+                isPositive = False
             i += 1
-            
-        res = 0    
         while i < len(s):
             if not s[i].isdigit():
                 break
-            res = res *10 + int(s[i])
+            res = res * 10 + int(s[i])
+            
             if isPositive and res > 2**31 - 1:
                 return 2**31 - 1
-            if not isPositive and res > 2 **31:
-                return -2**31 
-            i+=1
-        
+            if not isPositive and res > 2**31:
+                return -2**31
+            i+=1 
         return res if isPositive else -res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         s = s.strip()
+#         if not s:
+#             return 0
+
+#         i = 0
+#         isPositive = True 
+#         if s[i] == '+' or s[i] == '-':
+#             isPositive = False if s[i] == '-' else True 
+#             i += 1
+            
+#         res = 0    
+#         while i < len(s):
+#             if not s[i].isdigit():
+#                 break
+#             res = res *10 + int(s[i])
+#             if isPositive and res > 2**31 - 1:
+#                 return 2**31 - 1
+#             if not isPositive and res > 2 **31:
+#                 return -2**31 
+#             i+=1
+        
+#         return res if isPositive else -res 
             
         
 
