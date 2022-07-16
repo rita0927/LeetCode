@@ -4,22 +4,60 @@ class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         
         words = set(wordDict)
-        visited = set()
-        queue = deque([0])
-        while queue:
-            start = queue.popleft()
+        
+        dp = [False] * (len(s) +1)
+        
+        dp[0] = True
+        
+        for i in range(1, len(s)+1):
+            for j in range(i):
+                if dp[j] and s[j:i] in words:
+                    dp[i] = True
+        
+        return dp[len(s)]
             
-            if start in visited:
-                continue
-            visited.add(start)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         words = set(wordDict)
+#         visited = set()
+#         queue = deque([0])
+#         while queue:
+#             start = queue.popleft()
             
-            for end in range(start+1, len(s)+1):
-                if s[start:end] in words:
-                    queue.append(end)
+#             if start in visited:
+#                 continue
+#             visited.add(start)
+            
+#             for end in range(start+1, len(s)+1):
+#                 if s[start:end] in words:
+#                     queue.append(end)
                     
-                    if end ==len(s):
-                        return True
-        return False 
+#                     if end ==len(s):
+#                         return True
+#         return False 
             
         
 
