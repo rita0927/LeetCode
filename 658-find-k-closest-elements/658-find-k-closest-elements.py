@@ -1,8 +1,6 @@
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
-
-     
-        
+  
         l = -1
         r = len(arr) - k 
         
@@ -12,9 +10,17 @@ class Solution:
                 r= mid
             else:
                 l = mid   
-        return arr[l+1:l+k+1]
+                
+        return arr[r:r+k]
         
-        
+     
+    
+    
+    
+    
+    
+    
+    
         
         
         
