@@ -21,7 +21,6 @@ class Solution:
             if not s[i].isdigit():
                 break
             res = res * 10 + int(s[i])
-            print(res)
             if isPos and res > 2**31 - 1:
                 return 2**31 - 1
             
