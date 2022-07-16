@@ -4,17 +4,62 @@ class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         
         words = set(wordDict)
-        
-        @lru_cache
-        def backtrack(start):
-            if start == len(s):
-                return True
+        visited = set()
+        queue = deque([0])
+        while queue:
+            start = queue.popleft()
+            
+            if start in visited:
+                continue
+            visited.add(start)
             
             for end in range(start+1, len(s)+1):
-                if s[start:end] in words and backtrack(end):
-                    return True
-            return False
-        return backtrack(0)
+                if s[start:end] in words:
+                    queue.append(end)
+                    
+                    if end ==len(s):
+                        return True
+        return False 
+            
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         words = set(wordDict)
+        
+#         @lru_cache
+#         def helper(start):
+#             if start == len(s):
+#                 return True
+            
+#             for end in range(start+1, len(s)+1):
+#                 if s[start:end] in words and helper(end):
+#                     return True
+#             return False
+#         return helper(0)
                 
                 
         
