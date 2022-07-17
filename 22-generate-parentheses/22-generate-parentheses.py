@@ -2,33 +2,33 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         
         res = []
-        temp = []
-
         
-        def backtrack(l,r):
-            
-            if l == n and r == n:
-                res.append(('').join(temp))
-                return
+        def backtrack(l,r,path):
+            if len(path) == 2 * n:
+                res.append(''.join(path))
+                return 
             
             if l < n:
-                l += 1
-                temp.append('(')
-                backtrack(l,r)
-                temp.pop()
+                path.append('(')
+                l+=1
+                backtrack(l,r,path)
+                path.pop()
                 l -= 1
             
             if r < l:
+                path.append(')')
                 r += 1
-                temp.append(')')
-                backtrack(l,r)
-                temp.pop()
+                backtrack(l,r,path)
+                path.pop()
                 r -= 1
-                
-        backtrack(0,0)
+        backtrack(0,0,[])
         return res 
             
+            
         
+        
+
+
 
         
         
