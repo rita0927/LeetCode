@@ -1,34 +1,38 @@
 class MyStack:
 
     def __init__(self):
-        self.q1 = deque()
-        self.q2 = deque()
-        self.last = None 
-        
+        self.queue = deque()
+
 
     def push(self, x: int) -> None:
-        self.q1.append(x)
-        self.last = x
+        self.queue.append(x)
+        # self.queue.rotate(1)
         
-
+        for i in range(len(self.queue) - 1):
+            n = self.queue.popleft()
+            self.queue.append(n)
+        
     def pop(self) -> int:
+        return self.queue.popleft()
 
-        while len(self.q1)> 1:
-            self.last = self.q1.popleft()
-            self.q2.append(self.last)
-            
-        res = self.q1.popleft()
-        self.q1, self.q2 = self.q2, self.q1
-        return res 
+
 
     def top(self) -> int:
-        
-        return self.last
+        return self.queue[0]
+
         
 
     def empty(self) -> bool:
-        return not self.q1
-        
+        return not self.queue 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -72,3 +76,41 @@ class MyStack:
 
 #     def empty(self) -> bool:
 #         return not self.queue
+
+
+
+
+
+
+
+# class MyStack:
+
+#     def __init__(self):
+#         self.q1 = deque()
+#         self.q2 = deque()
+#         self.last = None 
+        
+
+#     def push(self, x: int) -> None:
+#         self.q1.append(x)
+#         self.last = x
+        
+
+#     def pop(self) -> int:
+
+#         while len(self.q1)> 1:
+#             self.last = self.q1.popleft()
+#             self.q2.append(self.last)
+            
+#         res = self.q1.popleft()
+#         self.q1, self.q2 = self.q2, self.q1
+#         return res 
+
+#     def top(self) -> int:
+        
+#         return self.last
+        
+
+#     def empty(self) -> bool:
+#         return not self.q1
+        
