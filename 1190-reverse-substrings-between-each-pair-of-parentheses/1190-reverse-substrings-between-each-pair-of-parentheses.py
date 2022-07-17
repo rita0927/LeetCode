@@ -1,20 +1,80 @@
 class Solution:
     def reverseParentheses(self, s: str) -> str:
-        open = []
-        i = 0
-        while i < len(s):
-            if s[i] == "(":
-                open.append(i)
-                i+=1
-            elif s[i] == ")":
-                start = open.pop()
-                temp = s[start+1:i]
-                temp = temp[::-1]
-                s = s[:start] + temp + s[i+1:]
-                i-=1
+        
+        stack = []
+        
+        for i in range(len(s)):
+            if s[i] != ')':
+                stack.append(s[i])
             else:
-                i+=1
-        return s
+                temp = []
+                while stack and stack[-1] != '(':
+                    temp.append(stack.pop())
+                
+                stack.pop()
+                stack.extend(temp)
+                
+        return ''.join(stack)
+
+
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(n ^ 2), O(n)
+        
+#         stack = []
+        
+#         for i in range(len(s)):
+            
+#             if s[i] != ")":
+#                 stack.append(s[i])
+#             else:
+#                 temp = []
+                
+#                 while stack[-1] != "(":
+#                     temp.append(stack.pop())
+                
+#                 stack.pop()
+#                 stack.extend(temp)
+#         return "".join(stack)
+                
+        
+        
+
+            
+
         
         
         
