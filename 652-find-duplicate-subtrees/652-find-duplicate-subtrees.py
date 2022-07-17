@@ -6,23 +6,23 @@
 #         self.right = right
 class Solution:
     def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
-
-        seen = defaultdict(int)
-        res = []
         
+        res = []
+        d = defaultdict(int)
         def dfs(node):
             if not node:
                 return 'N'
             
             path = f'{str(node.val)} {dfs(node.left)} {dfs(node.right)}'
-            
-            seen[path]+=1
-            if seen[path]==2:
+            d[path] += 1
+            if d[path] == 2:
                 res.append(node)
             return path 
         
         dfs(root)
         return res 
+
+
 
 
         
