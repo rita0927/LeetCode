@@ -6,16 +6,17 @@ class Solution:
         def isPalindrome(l,r):
             nonlocal res 
             while l >= 0 and r < len(s) and s[l] == s[r]:
-                res = s[l:r+1] if len(res) < (r-l+1) else res 
+                res = s[l:r+1] if (r-l+1) > len(res) else res 
                 l -= 1
                 r += 1
-                
         
         for i in range(len(s)):
             isPalindrome(i,i)
-            isPalindrome(i, i+1)
+            isPalindrome(i,i+1)
         
         return res 
+                
+
 
         
         
