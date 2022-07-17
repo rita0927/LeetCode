@@ -1,12 +1,12 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        count = Counter(nums)
+        
+        count =Counter(nums)
         res = []
         
         def backtrack(temp):
             if len(temp) == len(nums):
                 res.append(temp.copy())
-                return
             
             for n in count:
                 if count[n]:
@@ -17,6 +17,7 @@ class Solution:
                     count[n] += 1
         backtrack([])
         return res 
+
                     
                     
         
