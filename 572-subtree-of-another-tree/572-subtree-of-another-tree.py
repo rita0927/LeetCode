@@ -11,7 +11,7 @@ class Solution:
             if not n1 and not n2:
                 return True
             if not n1 or not n2 or n1.val != n2.val:
-                return False 
+                return False
             
             return helper(n1.left, n2.left) and helper(n1.right, n2.right)
         
@@ -25,6 +25,7 @@ class Solution:
             queue.append(node.left)
             queue.append(node.right)
         return False 
+        
 
         
         
