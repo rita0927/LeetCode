@@ -2,16 +2,105 @@ class Solution:
     def isHappy(self, n: int) -> bool:
         seen = set()
         
-        while n != 1 and n not in seen:
+        while n not in seen:
             seen.add(n)
-            temp = 0
-            
+            cur = 0
             while n:
-                n, rem = divmod(n,10)
-                temp += rem ** 2
-            n = temp 
-            
+                n,remainder = divmod(n, 10)
+                cur += remainder ** 2
+            n = cur
+        
         return n == 1 
+        
+        
+            
+                
+                
+                
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         seen = set()
+        
+#         remainder = n
+        
+#         while remainder not in seen:
+#             seen.add(remainder)
+#             cur = 0
+#             while remainder:
+#                 remainder, temp = divmod(remainder, 10)
+#                 cur += temp ** 2
+#             remainder = cur 
+        
+#         return remainder == 1 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+#         seen = set()
+        
+#         while n != 1 and n not in seen:
+#             seen.add(n)
+#             temp = 0
+            
+#             while n:
+#                 n, rem = divmod(n,10)
+#                 temp += rem ** 2
+#             n = temp 
+            
+#         return n == 1 
 
             
         
