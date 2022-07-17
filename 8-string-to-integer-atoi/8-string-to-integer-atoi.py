@@ -5,24 +5,42 @@ class Solution:
         if not s:
             return 0
         
-        res = 0
         i = 0
-        isPositive = True
-        if s[i] == '+' or s[i] == '-':
-            if s[i] == '-':
-                isPositive = False
-            i += 1
+        res = 0
+        isPos = True
+        
+        if s[i] in '+-':
+            if s[i] =='-':
+                isPos = False 
+            i+=1
+        
         while i < len(s):
             if not s[i].isdigit():
                 break
+
             res = res * 10 + int(s[i])
+
+            if isPos and res > 2 ** 31 - 1:
+                return 2 ** 31 - 1
             
-            if isPositive and res > 2**31 - 1:
-                return 2**31 - 1
-            if not isPositive and res > 2**31:
-                return -2**31
-            i+=1 
-        return res if isPositive else -res 
+            if not isPos and res > 2 ** 31:
+                return -2 ** 31
+            
+            i+= 1
+            
+        return res if isPos else -res 
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
