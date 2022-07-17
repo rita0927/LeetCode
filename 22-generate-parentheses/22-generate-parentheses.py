@@ -2,8 +2,12 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         
         res = []
+        l = 0
+        r = 0
         
-        def backtrack(l,r,path):
+        def backtrack(path):
+            nonlocal l,r
+            
             if len(path) == 2 * n:
                 res.append(''.join(path))
                 return 
@@ -11,17 +15,17 @@ class Solution:
             if l < n:
                 path.append('(')
                 l+=1
-                backtrack(l,r,path)
+                backtrack(path)
                 path.pop()
                 l -= 1
             
             if r < l:
                 path.append(')')
                 r += 1
-                backtrack(l,r,path)
+                backtrack(path)
                 path.pop()
                 r -= 1
-        backtrack(0,0,[])
+        backtrack([])
         return res 
             
             
