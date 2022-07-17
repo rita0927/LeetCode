@@ -1,23 +1,29 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
+        res = []
         
-        def backtrack(temp):
-            res = []
-            if len(temp) == 1:
-                return [temp.copy()]
+        if len(nums) == 1:
+            return [nums.copy()]
+        
+        for _ in range(len(nums)):
+            n = nums.pop(0)
+            perms = self.permute(nums)
             
-            for _ in range(len(temp)):
-                n = temp.pop(0)
-                perms = backtrack(temp)
-                
-                for perm in perms:
-                    perm.append(n)
-                res.extend(perms)
-                temp.append(n)
-            return res 
+            for perm in perms:
+                perm.append(n)
+            res.extend(perms)
+            nums.append(n)
+        return res 
         
-        return backtrack(nums)
+        
+    
+
+
+            
+            
+        
+
 
         
         
