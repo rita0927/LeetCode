@@ -4,16 +4,13 @@ class Solution:
         buy = float('inf')
         profit = 0
         
-        for price in prices:
-            buy = min(price, buy)
-            profit = max(price - buy, profit)
+        for p in prices:
+            buy = min(buy, p)
+            profit = max(profit, p - buy)
         
         return profit 
         
 
-        
-        
-        
 
         
         
