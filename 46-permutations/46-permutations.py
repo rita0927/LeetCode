@@ -12,9 +12,15 @@ class Solution:
             
             for perm in perms:
                 perm.append(n)
+            
             res.extend(perms)
             nums.append(n)
+        
         return res 
+    
+        
+
+
         
         
     
