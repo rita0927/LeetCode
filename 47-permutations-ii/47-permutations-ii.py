@@ -1,22 +1,26 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         
-        count =Counter(nums)
+        count = Counter(nums)
         res = []
         
-        def backtrack(temp):
+        def dfs(temp):
             if len(temp) == len(nums):
                 res.append(temp.copy())
+                return
             
             for n in count:
                 if count[n]:
                     temp.append(n)
                     count[n] -= 1
-                    backtrack(temp)
+                    dfs(temp)
                     temp.pop()
                     count[n] += 1
-        backtrack([])
+        dfs([])
         return res 
+            
+        
+
 
                     
                     
