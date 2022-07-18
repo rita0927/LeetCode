@@ -11,17 +11,19 @@ class Solution:
         if not root or root == p or root == q:
             return root 
         
-        l = self.lowestCommonAncestor(root.left, p, q)
-        r = self.lowestCommonAncestor(root.right, p, q)
+        l = self.lowestCommonAncestor(root.left, p,q)
+        r = self.lowestCommonAncestor(root.right,p,q)
         
         if l and r:
             return root
         elif l:
             return l
-        else:
-            return r 
+        elif r:
+            return r
         
         
+        
+
 
   
         
