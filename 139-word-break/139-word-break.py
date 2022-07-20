@@ -3,17 +3,20 @@ class Solution:
     
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         
-        dp = [False] * (len(s) + 1)
-        dp[0] = True
         words = set(wordDict)
         
-        for i in range(1,len(s)+1):
-            for j in range(i):
-                if s[j:i] in words and dp[j]:
-                    dp[i] = True
-                    break
-        return dp[len(s)]
+        @lru_cache 
+        def backtrack(i):
+            if i == len(s):
+                return True
             
+            for j in range(i+1, len(s) + 1):
+                if s[i:j] in words and backtrack(j):
+                    return True 
+        return backtrack(0)
+            
+        
+
             
         
         
