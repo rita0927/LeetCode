@@ -9,47 +9,43 @@ class Solution:
         if not head or not head.next:
             return head 
         
+        
         def merge(l1, l2):
             dummy = cur = ListNode()
             
             while l1 and l2:
                 if l1.val < l2.val:
                     cur.next = ListNode(l1.val)
-                    l1 = l1.next
+                    l1 = l1.next 
                 else:
                     cur.next = ListNode(l2.val)
-                    l2 = l2.next 
+                    l2 = l2.next
                 cur = cur.next 
+            
             cur.next = l1 if l1 else l2
             return dummy.next 
         
-        slow = head
-        fast = head.next
+        slow = head 
+        fast = head.next 
+        
         while fast and fast.next:
-            slow = slow.next
+            slow = slow.next 
             fast = fast.next.next 
             
-        l = head
-        r = slow.next 
-        slow.next = None
+        left = head 
+        right = slow.next 
+        slow.next = None 
         
-        return merge(self.sortList(l), self.sortList(r))
-        
-        
-        
-
-            
+        return merge(self.sortList(left), self.sortList(right))
+                    
         
         
-
         
-            
-
-
-            
-                
+        
         
 
+        
+ 
         
         
         
