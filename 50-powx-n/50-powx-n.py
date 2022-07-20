@@ -4,15 +4,72 @@ class Solution:
         if x == 0:
             return 0
         
+        
+        
         def helper(num, power):
             if not power:
                 return 1
             
-            temp = helper(num, power//2) 
-            temp = temp * temp
-            return temp * num if power%2 else temp
-        res = helper(x,abs(n))
-        return  res if n > 0 else 1/helper(x, abs(n))
+            res = helper(num, power//2)
+            res = res * res 
+            return res if not power%2 else res * num
+        
+        if n >= 0:
+            return helper(x,n)
+        else:
+            return 1/helper(x,abs(n))
+        
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if x == 0:
+#             return 0
+        
+#         def helper(num, power):
+#             if not power:
+#                 return 1
+            
+#             temp = helper(num, power//2) 
+#             temp = temp * temp
+#             return temp * num if power%2 else temp
+#         res = helper(x,abs(n))
+#         return  res if n > 0 else 1/helper(x, abs(n))
         
         
         
