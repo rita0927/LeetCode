@@ -9,23 +9,23 @@ class Solution:
         
         def helper(n1, n2):
             if not n1 and not n2:
-                return True
-            if not n1 or not n2 or n1.val != n2.val:
-                return False
-            
+                return True 
+            elif not n1 or not n2 or n1.val != n2.val:
+                return False 
             return helper(n1.left, n2.left) and helper(n1.right, n2.right)
         
         queue = deque([root])
         while queue:
             node = queue.popleft()
-            if not node:
-                continue 
             if helper(node, subRoot):
                 return True
-            queue.append(node.left)
-            queue.append(node.right)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
         return False 
         
+
 
         
         
