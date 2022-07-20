@@ -3,27 +3,28 @@ class Solution:
         
         peak = 0
         
-        for i in range(len(height)):
-            peak = i if height[i] > height[peak] else peak 
-          
+        for i, h in enumerate(height):
+            if h > height[peak]:
+                peak = i
+        
         res = 0
-        l = height[0]
-        
+        l = 0
         for i in range(peak):
-            if height[i] < l:
-                res += l - height[i]
+            if height[i] > height[l]:
+                l = i
             else:
-                l = height[i]
+                res += height[l] - height[i]
         
-        r = height[-1]
+        r = len(height)-1
         for i in range(len(height)-1, peak, -1):
-            if height[i] < r:
-                res += r - height[i]
+            if height[i] > height[r]:
+                r = i
             else:
-                r = height[i]
+                res += height[r] - height[i]
         return res 
         
         
+
         
 
 
