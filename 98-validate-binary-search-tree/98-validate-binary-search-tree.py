@@ -7,17 +7,21 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         
-        def helper(node,l,h):
-            if node.val <= l or node.val >= h:
+        def helper(node, l,r):
+            if not node:
+                return True
+            
+            if node.val <= l or node.val >= r:
                 return False
             
-            left = helper(node.left, l, node.val) if node.left else True
-            right = helper(node.right, node.val, h) if node.right else True
-            
+            left = helper(node.left, l, node.val)
+            right = helper(node.right, node.val, r)
             return left and right
         
         return helper(root, float('-inf'), float('inf'))
                 
+        
+
         
 
 
