@@ -7,6 +7,7 @@ class Solution:
         for n in nums:
             local_max = max(local_max + n, n)
             global_max = max(local_max, global_max)
+            
         return global_max 
         
 
