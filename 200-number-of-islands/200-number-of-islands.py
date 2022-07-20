@@ -4,22 +4,23 @@ class Solution:
         m = len(grid)
         n = len(grid[0])
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        visited = set()
         
         def dfs(r,c):
             
-            grid[r][c] = '0'
+            visited.add((r,c))
             
             for x,y in dir:
                 nr = r + x
                 nc = c + y
                 
-                if 0<= nr < m and 0 <= nc < n and grid[nr][nc] == '1':
+                if 0<= nr < m and 0 <= nc < n and grid[nr][nc] == '1' and (nr,nc) not in visited:
                     dfs(nr,nc)
         
         count = 0
         for r in range(m):
             for c in range(n):
-                if grid[r][c] == '1':
+                if grid[r][c] == '1' and (r,c) not in visited:
                     dfs(r,c)
                     count += 1
         return count 
