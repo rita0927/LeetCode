@@ -1,8 +1,9 @@
 class Solution:
     def numberToWords(self, num: int) -> str:
-        if num == 0:
+        if not num:
             return 'Zero'
         
+        res = []
         d = {
             1000000000: "Billion",
             1000000: "Million",
@@ -39,34 +40,44 @@ class Solution:
         }
         
         def helper(n):
+            
             if n <= 20:
                 return d[n]
             elif n < 100:
                 return d[n//10*10] + ' ' + d[n%10] if n%10 else d[n//10*10]
             elif n < 1000:
                 return d[n//100] + ' Hundred ' + helper(n%100) if n%100 else d[n//100] + ' Hundred'
-        
-        res = []
+            
         
         if num >= 1000000000:
-            c,num = divmod(num, 1000000000) 
+            c,num = divmod(num, 1000000000)
             res.append(d[c])
             res.append(d[1000000000])
-        
+            
         if num >= 1000000:
-            c,num = divmod(num, 1000000)
+            c, num = divmod(num, 1000000)
             res.append(helper(c))
             res.append(d[1000000])
-            
+        
         if num >= 1000:
             c,num = divmod(num, 1000)
             res.append(helper(c))
             res.append(d[1000])
         
-        if num >0:
+        if num > 0:
             res.append(helper(num))
+        
         return ' '.join(res)
             
+        
+        
+        
+        
+        
+        
+        
+        
+
 
         
         
