@@ -1,14 +1,14 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
         
-        l = 0 
+        l = 0
         count = 1
         
-        for r in range(1,len(chars)):
+        for r in range(1, len(chars)):
             if chars[r] != chars[l]:
                 if count > 1:
                     for digit in str(count):
-                        l+=1
+                        l += 1
                         chars[l] = digit
                 l+=1
                 chars[l] = chars[r]
@@ -20,6 +20,53 @@ class Solution:
                 l += 1
                 chars[l] = digit
         return l+1
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         l = 0 
+#         count = 1
+        
+#         for r in range(1,len(chars)):
+#             if chars[r] != chars[l]:
+#                 if count > 1:
+#                     for digit in str(count):
+#                         l+=1
+#                         chars[l] = digit
+#                 l+=1
+#                 chars[l] = chars[r]
+#                 count = 1
+#             else:
+#                 count += 1
+#         if count > 1:
+#             for digit in str(count):
+#                 l += 1
+#                 chars[l] = digit
+#         return l+1
 
                     
                     
