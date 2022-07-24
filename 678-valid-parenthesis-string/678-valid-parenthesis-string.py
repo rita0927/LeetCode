@@ -2,28 +2,28 @@ class Solution:
     def checkValidString(self, s: str) -> bool:
         
         star = []
-        left = []
+        l = []
         
         for i, p in enumerate(s):
             if p == '(':
-                left.append(i)
-                
+                l.append(i)
             elif p == '*':
                 star.append(i)
             else:
-                if not star and not left:
+                if not l and not star:
                     return False
-                if left:
-                    left.pop()
+                if l:
+                    l.pop()
                 elif star:
                     star.pop()
         
-        while left and star:
-            if left.pop() > star.pop():
+        while l and star:
+            if l.pop() > star.pop():
                 return False
-            
-        return not left 
+        return not l
+                
         
+
 
 
         
