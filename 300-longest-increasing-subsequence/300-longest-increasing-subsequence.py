@@ -1,17 +1,59 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         
-        dp = []
+        N = len(nums)
+        dp = [1] * N
         
-        for n in nums:
-            i = bisect_left(dp, n)
+        for i in range(1, N):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    dp[i] = max(dp[i], dp[j]+1)
+        return max(dp)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(NlogN) due to the binary search, O(N)
+        
+#         # use dp to store the min ending num at that subsequence length 
+#         dp = []
+        
+#         for n in nums:
+#             # find the leftmost position in the dp
+#             i = bisect_left(dp, n)
             
-            if i == len(dp):
-                dp.append(n)
-            else:
-                dp[i] = n
+#             # if n is greater than all the nums in the dp, need to append to the dp (increase the subsequence length)
+#             if i == len(dp):
+#                 dp.append(n)
+#             # if found a position in current dp length, substitude the current element
+#             # update the min ending element at that subsequence length 
+#             else:
+#                 dp[i] = n
         
-        return len(dp)
+#         return len(dp)
         
 
         
