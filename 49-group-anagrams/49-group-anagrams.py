@@ -5,11 +5,15 @@ class Solution:
         
         for w in strs:
             count = [0] * 26
-            for ch in w:
-                count[ord(ch)-ord('a')]+=1 
-            res[tuple(count)].append(w)
             
+            for ch in w:
+                count[ord(ch)-ord('a')]+=1
+            
+            res[tuple(count)].append(w)
+        
         return res.values()
+        
+
         
         
         
