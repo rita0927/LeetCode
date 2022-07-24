@@ -5,14 +5,15 @@ class Solution:
         left = []
         
         for i, p in enumerate(s):
-            if p == '*':
-                star.append(i)
-            elif p == '(':
+            if p == '(':
                 left.append(i)
+                
+            elif p == '*':
+                star.append(i)
             else:
                 if not star and not left:
                     return False
-                elif left:
+                if left:
                     left.pop()
                 elif star:
                     star.pop()
@@ -20,9 +21,11 @@ class Solution:
         while left and star:
             if left.pop() > star.pop():
                 return False
+            
+        return not left 
         
-        return not left
-        
+
+
         
         
 
