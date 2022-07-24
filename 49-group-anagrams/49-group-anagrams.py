@@ -1,56 +1,55 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+        seen = defaultdict(list)
+        
+        for w in strs:
+            sorted_word = sorted(w)
+            seen[''.join(sorted_word)].append(w)
+        return seen.values()
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(NKlogK) where N is the length of strs and K is the maximum length of individual string. The outer loop has complexity O(N). We sort each string in O(KlogK) time.
 
-        res = defaultdict(list)
-        
-        for word in strs:
-            lst = [0] * 26
-            for ch in word:
-                i = ord(ch) - ord('a')
-                lst[i] +=1
-            res[tuple(lst)].append(word)
-        
-        return res.values()
-                
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-#         # O(NKlogK) where N is the length of strs and K is the maximum length of individual string
+#        # space O(NK)
         
 #         res = defaultdict(list)
         
@@ -76,7 +75,7 @@ class Solution:
         
         
         
-        
+#          # O(Nk), O(Nk)       
         
 #         res = defaultdict(list)
 #         for word in strs:
