@@ -1,12 +1,15 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         
-        seen = defaultdict(list)
+        res = defaultdict(list)
         
         for w in strs:
-            sorted_word = sorted(w)
-            seen[''.join(sorted_word)].append(w)
-        return seen.values()
+            count = [0] * 26
+            for ch in w:
+                count[ord(ch)-ord('a')]+=1 
+            res[tuple(count)].append(w)
+            
+        return res.values()
         
         
         
@@ -29,21 +32,15 @@ class Solution:
         
         
         
+#         seen = defaultdict(list)
+        
+#         for w in strs:
+#             sorted_word = sorted(w)
+#             seen[''.join(sorted_word)].append(w)
+#         return seen.values()
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+ 
         
         
         
