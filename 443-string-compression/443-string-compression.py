@@ -1,29 +1,89 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
-           
-        l = 0
-        count = 1 
-        for r in range(1, len(chars)):
-            
+        
+        l = 0 
+        count = 1
+        
+        for r in range(1,len(chars)):
             if chars[r] != chars[l]:
-                if count != 1:
+                if count > 1:
                     for digit in str(count):
                         l+=1
                         chars[l] = digit
-                l +=1
+                l+=1
+                chars[l] = chars[r]
                 count = 1
-                chars[l] = chars[r] 
-
             else:
                 count += 1
+        if count > 1:
+            for digit in str(count):
+                l += 1
+                chars[l] = digit
+        return l+1
+
+                    
+                    
+                    
+                    
+            
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+           
+#         l = 0
+#         count = 1 
+#         for r in range(1, len(chars)):
+            
+#             if chars[r] != chars[l]:
+#                 if count != 1:
+#                     for digit in str(count):
+#                         l+=1
+#                         chars[l] = digit
+#                 l +=1
+#                 count = 1
+#                 chars[l] = chars[r] 
+
+#             else:
+#                 count += 1
                 
-            if r == len(chars) - 1 and count != 1:
-                for digit in str(count):
-                    l+=1
-                    chars[l] = digit
+#             if r == len(chars) - 1 and count != 1:
+#                 for digit in str(count):
+#                     l+=1
+#                     chars[l] = digit
                 
 
-        return l + 1
+#         return l + 1
                 
                 
             
