@@ -2,19 +2,21 @@ from functools import lru_cache
 class Solution:
     
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        
         words = set(wordDict)
+        n = len(s)
+        dp=[False] * (n+1)
+        dp[0] = True
         
-        @lru_cache 
-        def backtrack(i):
-            if i == len(s):
-                return True
+        for r in range(1, n+1):
+            for l in range(r):
+                if dp[l] and s[l:r] in words:
+                    dp[r] = True 
+        return dp[n]
+
+             
             
-            for j in range(i+1, len(s) + 1):
-                if s[i:j] in words and backtrack(j):
-                    return True 
-        return backtrack(0)
-            
+        
+
         
 
             
