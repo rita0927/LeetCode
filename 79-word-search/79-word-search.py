@@ -3,24 +3,39 @@ class Solution:
         
         m = len(board)
         n = len(board[0])
+        
+        if len(word) > m*n:
+            return False 
+        
+        word_count = Counter(word)
+        board_count = defaultdict(int)
+        
+        for r in range(m):
+            for c in range(n):
+                board_count[board[r][c]] +=1
+                
+        for ch in word_count:
+            if word_count[ch] > board_count[ch]:
+                return False 
+        
         dir = [[-1,0], [1,0], [0,-1], [0,1]]
+        visited = set()
         
         def dfs(r,c,i):
             if i == len(word):
                 return True
             
-            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[i]:
+            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[i] or (r,c) in visited:
                 return False
             
-            ch = board[r][c]
-            board[r][c] = '#'
+            visited.add((r,c))
             
             for x,y in dir:
                 nr = r + x
                 nc = c + y
                 if dfs(nr,nc,i+1):
                     return True 
-            board[r][c] = ch
+            visited.remove((r,c))
             return False 
         
         for r in range(m):
