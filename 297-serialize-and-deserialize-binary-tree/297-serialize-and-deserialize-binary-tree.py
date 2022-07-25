@@ -16,10 +16,8 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        
         if not root:
             return 'N'
-        
         return f'{str(root.val)} {self.serialize(root.left)} {self.serialize(root.right)}'
         
 
@@ -36,9 +34,8 @@ class Codec:
         
         def dfs():
             val = values.pop(0)
-            
             if val == 'N':
-                return None
+                return 
             
             node = TreeNode(val)
             node.left = dfs()
@@ -46,6 +43,10 @@ class Codec:
             return node 
         
         return dfs()
+            
+            
+        
+
             
         
 
