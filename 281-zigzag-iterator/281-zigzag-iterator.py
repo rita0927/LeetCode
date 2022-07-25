@@ -1,25 +1,21 @@
 class ZigzagIterator:
     
     def __init__(self, v1: List[int], v2: List[int]):
-        self.v = [v1,v2]
-        self.queue= deque()
-        for i, l in enumerate(self.v):
-            if l:
-                self.queue.append([i,0])
-                
-        
-        
+        self.v = [v1, v2]
+        self.queue = deque()
+        for i, v in enumerate(self.v):
+            if v:
+                self.queue.append([i, 0])
         
     def next(self) -> int:
-        i, v_index = self.queue.popleft()
-        if v_index < len(self.v[i])-1:
-            self.queue.append([i,v_index+1])
-        return self.v[i][v_index]
-
+        v_index, el_index = self.queue.popleft()
+        if el_index < len(self.v[v_index])-1:
+            self.queue.append([v_index, el_index+1])
+        return self.v[v_index][el_index]
 
     def hasNext(self) -> bool:
         return self.queue
-       
+    
       
     
        
