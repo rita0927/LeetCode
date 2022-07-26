@@ -7,27 +7,28 @@
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         
-        def helper(n1, n2):
+        def isSameTree(n1, n2):
             if not n1 and not n2:
                 return True 
-            elif not n1 or not n2 or n1.val != n2.val:
-                return False 
-            return helper(n1.left, n2.left) and helper(n1.right, n2.right)
+            if not n1 or not n2 or n1.val != n2.val:
+                return False
+            return isSameTree(n1.left, n2.left) and isSameTree(n1.right, n2.right)
         
         queue = deque([root])
+        
         while queue:
             node = queue.popleft()
-            if helper(node, subRoot):
+            if isSameTree(node, subRoot):
                 return True
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
         return False 
-        
-
 
         
+        
+
         
         
         
