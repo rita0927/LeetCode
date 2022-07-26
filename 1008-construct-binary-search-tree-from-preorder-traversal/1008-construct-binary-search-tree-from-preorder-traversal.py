@@ -7,20 +7,98 @@
 class Solution:
     def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
         
-        def buildBST(node, val):
-            if not node:
-                return TreeNode(val)
+        def helper(max_val):
+            if not preorder:
+                return None 
             
-            if val < node.val:
-                node.left = buildBST(node.left, val)
-            else:
-                node.right = buildBST(node.right, val)
+            if preorder[0] > max_val:
+                return None 
+            
+            val = preorder.pop(0)
+            node = TreeNode(val)
+            node.left = helper(val)
+            node.right = helper(max_val)
+            
             return node 
+        return helper(float("inf"))
+            
         
-        root = None
-        for val in preorder:
-            root = buildBST(root, val)
-        return root 
+                                                               
+                                                               
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         def helper(max_val):
+#             # if all elements from preorder are used
+#             # the tree is constructed
+#             if not preorder: return None
+#             if preorder[0] >= max_val: return None
+            
+#             val = preorder.pop(0)
+#             node = TreeNode(val)
+#             node.left = helper(val)
+#             node.right = helper(max_val)
+#             return node
+        
+#         # going left first by default tree traversal pattern (preorder),  guaranteed to have placed the least element first. only need to check the upper limit.
+
+#         return helper(float('inf'))
+            
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(N^2)
+#         def buildBST(node, val):
+#             if not node:
+#                 return TreeNode(val)
+            
+#             if val < node.val:
+#                 node.left = buildBST(node.left, val)
+#             else:
+#                 node.right = buildBST(node.right, val)
+#             return node 
+        
+#         root = None
+#         for val in preorder:
+#             root = buildBST(root, val)
+#         return root 
         
         
         
