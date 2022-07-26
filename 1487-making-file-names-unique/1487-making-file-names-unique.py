@@ -1,6 +1,5 @@
 class Solution:
     def getFolderNames(self, names: List[str]) -> List[str]:
-        
         d = defaultdict(int)
         
         for n in names:
@@ -10,10 +9,23 @@ class Solution:
             while d[modified]:
                 modified = f'{n}({c})'
                 c += 1
+            
             d[n] = c
-            d[modified] = 1
+            d[modified] = 1 
         
         return d.keys()
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
