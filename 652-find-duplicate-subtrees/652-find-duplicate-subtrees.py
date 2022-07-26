@@ -7,21 +7,26 @@
 class Solution:
     def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
         
-        count = defaultdict(int)
+        d = defaultdict(int)
         res = []
-        
         def dfs(node):
             if not node:
                 return 'N'
-            
             path = f'{str(node.val)} {dfs(node.left)} {dfs(node.right)}'
             
-            count[path] += 1
-            if count[path] == 2:
+            d[path] += 1
+            if d[path] == 2:
                 res.append(node)
+            
             return path 
         dfs(root)
         return res 
+            
+            
+            
+
+        
+
         
 
 
