@@ -2,38 +2,39 @@ class DoubleLinkedList:
     def __init__(self, val):
         self.val = val
         self.prev = None
-        self.next = None
-
-
+        self.next = None 
+        
 
 class BrowserHistory:
 
     def __init__(self, homepage: str):
-        self.cur = DoubleLinkedList(homepage)
+        self.node = DoubleLinkedList(homepage)
+
         
 
     def visit(self, url: str) -> None:
         node = DoubleLinkedList(url)
-        node.prev = self.cur
-        self.cur.next = node 
-        self.cur = self.cur.next 
+        self.node.next = node
+        node.prev = self.node
+        self.node = node 
+        
 
-
+                
     def back(self, steps: int) -> str:
-        while steps >0 and self.cur.prev:
+        while self.node.prev and steps:
+            self.node = self.node.prev
             steps -= 1
-            self.cur = self.cur.prev
-        return self.cur.val
+        return self.node.val
 
 
     def forward(self, steps: int) -> str:
-        while steps > 0 and self.cur.next:
-            steps -= 1
-            self.cur = self.cur.next 
-        return self.cur.val 
-   
+        while self.node.next and steps:
+            self.node = self.node.next
+            steps -= 1   
+        return self.node.val 
         
-        
+
+
         
         
         
