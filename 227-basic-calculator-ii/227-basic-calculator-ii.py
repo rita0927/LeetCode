@@ -1,35 +1,88 @@
 class Solution:
-    def calculate(self, s: str) -> int:
-        
-        if not s:
-            return 0
-        
+    def calculate(self, s: str) -> int: 
+        operator = '+'
         cur = 0
         prev = 0
         res = 0
-        operators = '+-*/'
-        operator = '+'
         
         for i, ch in enumerate(s):
             if ch.isdigit():
                 cur = cur * 10 + int(ch)
-                
-            if ch in operators or i == len(s)-1:
-                if operator in '+-':
-                    res += prev 
-                    prev = cur if operator == '+' else -cur
+            
+            if ch in '+-*/' or i == len(s)-1:
+                if operator == '+' or operator == '-':
+                    res += prev
+                    prev = cur if operator == '+' else -cur 
                 elif operator == '*':
-                    prev *= cur
+                    prev *= cur 
                 elif operator == '/':
                     if prev > 0:
-                        prev //= cur
+                        prev //= cur 
                     else:
-                        prev= -(-prev//cur)
+                        prev = -(-prev//cur)
+                cur = 0 
                 operator = ch 
-                cur = 0
-        
-        res += prev 
+        res += prev
         return res 
+                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if not s:
+#             return 0
+        
+#         cur = 0
+#         prev = 0
+#         res = 0
+#         operators = '+-*/'
+#         operator = '+'
+        
+#         for i, ch in enumerate(s):
+#             if ch.isdigit():
+#                 cur = cur * 10 + int(ch)
+                
+#             if ch in operators or i == len(s)-1:
+#                 if operator in '+-':
+#                     res += prev 
+#                     prev = cur if operator == '+' else -cur
+#                 elif operator == '*':
+#                     prev *= cur
+#                 elif operator == '/':
+#                     if prev > 0:
+#                         prev //= cur
+#                     else:
+#                         prev= -(-prev//cur)
+#                 operator = ch 
+#                 cur = 0
+        
+#         res += prev 
+#         return res 
                 
         
         
