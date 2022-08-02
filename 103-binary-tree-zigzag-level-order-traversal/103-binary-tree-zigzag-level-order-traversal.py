@@ -11,27 +11,79 @@ class Solution:
             return []
         
         res = []
-        queue = deque([(root, 0)])
         
-        while queue:
-            level_size = len(queue)
-            temp = deque()
-            for _ in range(level_size):
-                node, level = queue.popleft()
-                
-                if level%2:
-                    temp.appendleft(node.val)
-                else:
-                    temp.append(node.val)
-                    
-                if node.left:
-                    queue.append((node.left, level + 1))
-                if node.right:
-                    queue.append((node.right, level + 1))
-                
-            res.append(temp)
+        def helper(node, level):
+            if len(res) == level:
+                res.append([])
+            if level%2:
+                res[level] = [node.val] + res[level]
+            else:
+                res[level].append(node.val)
+            
+            if node.left:
+                helper(node.left, level+1)
+            if node.right:
+                helper(node.right, level+1)
+        
+        helper(root, 0)
         return res 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         # O(N), O(N)       
+        
+#         if not root:
+#             return []
+        
+#         res = []
+#         queue = deque([(root, 0)])
+        
+#         while queue:
+#             level_size = len(queue)
+#             temp = deque()
+#             for _ in range(level_size):
+#                 node, level = queue.popleft()
                 
+#                 if level % 2:
+#                     temp.appendleft(node.val)
+#                 else:
+#                     temp.append(node.val)
+                
+#                 if node.left:
+#                     queue.append((node.left, level+ 1))
+#                 if node.right:
+#                     queue.append((node.right, level + 1))
+#             res.append(temp)
+#         return res 
+        
+        
             
             
         
