@@ -12,22 +12,32 @@ class Solution:
         
         res = []
         
-        def helper(node, level):
+        queue = deque()
+        queue.append([root, 0])
+        
+        while queue:
+            node, level = queue.popleft()
+
             if len(res) == level:
-                res.append([])
+                res.append(deque())
+            
             if level%2:
-                res[level] = [node.val] + res[level]
+                res[level].appendleft(node.val)
             else:
                 res[level].append(node.val)
             
             if node.left:
-                helper(node.left, level+1)
+                queue.append([node.left, level+1])
             if node.right:
-                helper(node.right, level+1)
-        
-        helper(root, 0)
+                queue.append([node.right, level+1])
         return res 
+                
+
+            
+            
+            
         
+
         
         
         
