@@ -1,26 +1,30 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         dictS = defaultdict(int)
-        l = 0
-        res = ''
-        count = 0
         dictT = Counter(t)
+        l = 0
+        count = 0
+        res = ''
         
         for r, ch in enumerate(s):
+            
             if dictT[ch]:
-                dictS[ch]+=1 
+                dictS[ch] += 1
                 
                 if dictT[ch] >= dictS[ch]:
-                    count +=1 
+                    count += 1
             
             if count == len(t):
                 while dictT[s[l]] < dictS[s[l]] or s[l] not in dictT:
                     if dictT[s[l]] < dictS[s[l]]:
                         dictS[s[l]] -= 1
                     l += 1
+                
                 if not res or len(res) > r-l+1:
                     res = s[l:r+1]
         return res 
+                
+
                 
         
         
