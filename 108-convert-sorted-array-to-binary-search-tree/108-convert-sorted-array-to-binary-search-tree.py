@@ -7,19 +7,119 @@
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         
-        def helper(left, right):
+        def helper(l,r):
+            if l > r:
+                return 
             
-            if left > right:
-                return None
+            mid = (l+r)//2
+            node = TreeNode(nums[mid])
+            node.left = helper(l,mid-1)
+            node.right = helper(mid+1, r)
+            return node 
+        
+        return helper(0, len(nums)-1)
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         def helper(l,r):
             
-            mid = (left + right)//2
-            root = TreeNode(nums[mid])
-            root.left = helper(left, mid - 1)
-            root.right = helper(mid + 1, right)
+#             if l > r:
+#                 return None
             
-            return root 
+#             mid = (l + r)//2
+#             node = TreeNode(nums[mid])
+            
+#             node.left = helper(l, mid - 1)
+#             node.right = helper(mid + 1, r)
+            
+#             return node
+        
+#         return helper(0, len(nums) - 1)
+            
+        
+        
+        
+        
+            
+            
+            
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         def helper(left, right):
+            
+#             if left > right:
+#                 return None
+            
+#             mid = (left + right)//2
+#             root = TreeNode(nums[mid])
+#             root.left = helper(left, mid - 1)
+#             root.right = helper(mid + 1, right)
+            
+#             return root 
     
-        return helper(0, len(nums) - 1)
+#         return helper(0, len(nums) - 1)
         
         
         
