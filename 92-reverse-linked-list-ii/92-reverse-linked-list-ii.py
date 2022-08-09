@@ -6,32 +6,76 @@
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
         
-#         if left == right:
-#             return head 
-        
         dummy = prev = ListNode(0, head)
         cur = head 
         pos = 1
         
         while pos < left:
-            prev = cur
+            prev = cur 
             cur = cur.next 
             pos += 1
             
         l = prev 
-        
-        while pos - 1 < right:
+        while pos -1 < right:
             nxt = cur.next 
-            cur.next = prev
-            prev = cur
-            cur = nxt    
+            cur.next = prev 
+            prev = cur 
+            cur = nxt 
             pos += 1
-        
         nxt = l.next 
-        l.next = prev
+        l.next = prev 
         nxt.next = cur 
         
         return dummy.next 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+# #         if left == right:
+# #             return head 
+        
+#         dummy = prev = ListNode(0, head)
+#         cur = head 
+#         pos = 1
+        
+#         while pos < left:
+#             prev = cur
+#             cur = cur.next 
+#             pos += 1
+            
+#         l = prev 
+        
+#         while pos - 1 < right:
+#             nxt = cur.next 
+#             cur.next = prev
+#             prev = cur
+#             cur = nxt    
+#             pos += 1
+        
+#         nxt = l.next 
+#         l.next = prev
+#         nxt.next = cur 
+        
+#         return dummy.next 
         
         
         
