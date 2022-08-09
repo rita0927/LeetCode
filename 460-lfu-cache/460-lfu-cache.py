@@ -3,23 +3,23 @@ class ListNode:
         self.key = key
         self.val = val
         self.prev = None
-        self.next = None
+        self.next = None 
         self.freq = 1
-        
+
 class DoubleLinkedList:
     def __init__(self):
         self.head = ListNode()
         self.tail = ListNode()
-        self.head.next = self.tail 
+        self.head.next = self.tail
         self.tail.prev = self.head 
         self.size = 0
-    
+        
     def addNode(self, node):
         node.prev = self.head 
         node.next = self.head.next 
         self.head.next.prev = node
         self.head.next = node
-        self.size +=1 
+        self.size +=1
     
     def removeNode(self, node):
         node.prev.next = node.next 
@@ -32,8 +32,6 @@ class DoubleLinkedList:
         return tail 
     
 
-    
-
 class LFUCache:
 
     def __init__(self, capacity: int):
@@ -42,6 +40,17 @@ class LFUCache:
         self.counter = defaultdict(DoubleLinkedList)
         self.min_freq = 0
         
+    def update(self, key, val):
+        node = self.cache[key]
+        freq = node.freq
+        self.counter[freq].removeNode(node)
+        
+        node.val = val
+        node.freq += 1
+        self.counter[node.freq].addNode(node)
+        if freq == self.min_freq and self.counter[self.min_freq].size == 0:
+            self.min_freq = node.freq 
+            
 
     def get(self, key: int) -> int:
         if key not in self.cache:
@@ -49,13 +58,12 @@ class LFUCache:
         else:
             node = self.cache[key]
             self.update(key, node.val)
-            return node.val
-        
+            return node.val 
+
 
     def put(self, key: int, value: int) -> None:
         if self.capacity == 0:
             return 
-        
         if key in self.cache:
             self.update(key, value)
         else:
@@ -63,24 +71,22 @@ class LFUCache:
                 lfu_node = self.counter[self.min_freq].removeTail()
                 del self.cache[lfu_node.key]
             
+            self.min_freq = 1
             node = ListNode(key, value)
             self.cache[key] = node
-            self.min_freq = 1
             self.counter[self.min_freq].addNode(node)
             
-    def update(self, key, val):
-        node = self.cache[key]
-        prev_freq = node.freq
-        self.counter[prev_freq].removeNode(node)
-        node.val = val
-        node.freq += 1
-        self.counter[node.freq].addNode(node)
-        if prev_freq == self.min_freq and self.counter[self.min_freq].size == 0:
-            del self.counter[self.min_freq]
-            self.min_freq += 1
         
-                
-            
+
+
+        
+        
+        
+        
+        
+        
+        
+        
         
 
 
@@ -88,6 +94,14 @@ class LFUCache:
 # obj = LFUCache(capacity)
 # param_1 = obj.get(key)
 # obj.put(key,value)
+
+
+
+
+
+
+
+
 
 
 
