@@ -6,8 +6,8 @@
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
         
-        if left == right:
-            return head 
+#         if left == right:
+#             return head 
         
         dummy = prev = ListNode(0, head)
         cur = head 
