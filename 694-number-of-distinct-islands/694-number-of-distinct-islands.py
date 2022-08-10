@@ -5,13 +5,12 @@ class Solution:
         n = len(grid[0])
         res = set()
         dirs = [('u', -1, 0 ), ('d', 1, 0), ('l', 0, -1), ('r', 0, 1)]
-        visited = set()
         
         def dfs(r,c,path):
-            if r < 0 or r >= m or c < 0 or c >= n or (r,c) in visited or grid[r][c] != 1:
+            if r < 0 or r >= m or c < 0 or c >= n or grid[r][c] != 1:
                 return 'e'
             
-            visited.add((r,c))
+            grid[r][c] = 0
             for dir, x, y in dirs:
                 nr = x + r
                 nc = y + c
@@ -21,7 +20,7 @@ class Solution:
         
         for r in range(m):
             for c in range(n):
-                if grid[r][c] == 1 and (r,c) not in visited:
+                if grid[r][c] == 1:
                     res.add(dfs(r,c,'s'))
                     
         return len(res)
