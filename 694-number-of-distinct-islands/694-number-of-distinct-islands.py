@@ -9,13 +9,12 @@ class Solution:
         def dfs(r,c,path):
             if r < 0 or r >= m or c < 0 or c >= n or grid[r][c] != 1:
                 return 'e'
-            
             grid[r][c] = 0
-            for dir, x, y in dirs:
-                nr = x + r
-                nc = y + c
-                path += dfs(nr, nc, dir)
             
+            for dir, x,y in dirs:
+                nr = r + x
+                nc = c + y 
+                path += dfs(nr,nc,dir)
             return path 
         
         for r in range(m):
@@ -23,8 +22,10 @@ class Solution:
                 if grid[r][c] == 1:
                     res.add(dfs(r,c,'s'))
                     
-        return len(res)
+        return len(res )
                 
+        
+
             
             
             
