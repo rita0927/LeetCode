@@ -3,14 +3,14 @@ class Solution:
         m = len(grid)
         n = len(grid[0])
         res = 0
-        visited = set()
         dir = [(0,1), (0,-1), (1,0), (-1,0)]
         
         for r in range(m):
             for c in range(n):
-                if grid[r][c] == '1' and (r,c) not in visited:
+                if grid[r][c] == '1':
                     queue = deque([(r,c)])
-                    visited.add((r,c))
+                    grid[r][c] = '0'
+
                     res += 1
                     
                     while queue:
@@ -20,8 +20,8 @@ class Solution:
                             nr = row + x
                             nc = col + y
                             
-                            if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == '1' and (nr,nc) not in visited:
-                                visited.add((nr,nc))
+                            if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == '1':
+                                grid[nr][nc] = '0'
                                 queue.append((nr,nc))
         return res 
                                 
