@@ -1,33 +1,104 @@
 class Solution:
     def numDistinctIslands(self, grid: List[List[int]]) -> int:
+        
         m = len(grid)
         n = len(grid[0])
         res = set()
-        directions = [('u',-1, 0), ('d',1,0), ('l',0,-1), ('r',0,1)]
+        dirs = [('u', -1, 0 ), ('d', 1, 0), ('l', 0, -1), ('r', 0, 1)]
+        visited = set()
         
-        def bfs(r,c, path):
-            queue = deque([(r,c)])
-            grid[r][c] = 0
+        def dfs(r,c,path):
+            if r < 0 or r >= m or c < 0 or c >= n or (r,c) in visited or grid[r][c] != 1:
+                return 'e'
             
-            while queue:
-                r,c = queue.popleft()
-                for dir, x, y in directions:
-                    nr = x + r
-                    nc = y + c
-                    
-                    if 0<=nr<m and 0<=nc<n and grid[nr][nc] == 1:
-                        queue.append((nr, nc))
-                        grid[nr][nc] = 0
-                        path += dir
-                    else:
-                        path += 'e'
-            return path
-
+            visited.add((r,c))
+            for dir, x, y in dirs:
+                nr = x + r
+                nc = y + c
+                path += dfs(nr, nc, dir)
+            
+            return path 
+        
         for r in range(m):
             for c in range(n):
-                if grid[r][c] == 1:
-                    res.add(bfs(r,c,'s'))
+                if grid[r][c] == 1 and (r,c) not in visited:
+                    res.add(dfs(r,c,'s'))
+                    
         return len(res)
+                
+            
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         m = len(grid)
+#         n = len(grid[0])
+#         res = set()
+#         directions = [('u',-1, 0), ('d',1,0), ('l',0,-1), ('r',0,1)]
+        
+#         def bfs(r,c, path):
+#             queue = deque([(r,c)])
+#             grid[r][c] = 0
+            
+#             while queue:
+#                 r,c = queue.popleft()
+#                 for dir, x, y in directions:
+#                     nr = x + r
+#                     nc = y + c
+                    
+#                     if 0<=nr<m and 0<=nc<n and grid[nr][nc] == 1:
+#                         queue.append((nr, nc))
+#                         grid[nr][nc] = 0
+#                         path += dir
+#                     else:
+#                         path += 'e'
+#             return path
+
+#         for r in range(m):
+#             for c in range(n):
+#                 if grid[r][c] == 1:
+#                     res.add(bfs(r,c,'s'))
+#         return len(res)
                     
 
         
