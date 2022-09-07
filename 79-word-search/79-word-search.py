@@ -4,15 +4,29 @@ class Solution:
         m = len(board)
         n = len(board[0])
         dir = [[0,1], [0,-1], [1,0], [-1,0]]
+        visited = set()
+        
+        if (m*n) < len(word):
+            return False
+        
+        count = Counter(word)
+        d = defaultdict(int)
+        for r in range(m):
+            for c in range(n):
+                d[board[r][c]]+=1 
+                
+        for ch in count:
+            if count[ch] > d[ch]:
+                return False 
+        
         
         def backtrack(r,c, i):
             if i == len(word):
                 return True
-            if r < 0 or r >=m or c < 0 or c >= n or board[r][c] != word[i]:
+            if r < 0 or r >=m or c < 0 or c >= n or board[r][c] != word[i] or (r,c) in visited:
                 return False
             
-            ch = board[r][c]
-            board[r][c] = '#'
+            visited.add((r,c))
             
             for x,y in dir:
                 nr = r + x
@@ -21,7 +35,7 @@ class Solution:
                 if backtrack(nr,nc, i+1):
                     return True
             
-            board[r][c] = ch 
+            visited.remove((r,c))
             return False 
         
         for r in range(m):
