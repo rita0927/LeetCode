@@ -3,38 +3,40 @@ class Solution:
         
         m = len(board)
         n = len(board[0])
-        dir = [[0,1], [0,-1], [1,0], [-1,0]]
+        dir = [[-1,0], [1,0], [0,-1], [0,1]]
         visited = set()
         
-        if (m*n) < len(word):
+        
+        if len(word) > m*n:
             return False
         
-        count = Counter(word)
-        d = defaultdict(int)
+        w_count = Counter(word)
+        b_count = defaultdict(int)
         for r in range(m):
             for c in range(n):
-                d[board[r][c]]+=1 
+                b_count[board[r][c]] +=1
                 
-        for ch in count:
-            if count[ch] > d[ch]:
+        for ch in w_count:
+            if w_count[ch] > b_count[ch]:
                 return False 
         
         
-        def backtrack(r,c, i):
+        
+        def backtrack(r,c,i):
             if i == len(word):
-                return True
-            if r < 0 or r >=m or c < 0 or c >= n or board[r][c] != word[i] or (r,c) in visited:
-                return False
+                return True 
+            
+            if r < 0 or r >= m or c < 0 or c >= n or board[r][c] != word[i] or (r,c) in visited:
+                return False 
             
             visited.add((r,c))
             
             for x,y in dir:
-                nr = r + x
-                nc = c + y
+                nr = x + r
+                nc = y + c
                 
-                if backtrack(nr,nc, i+1):
-                    return True
-            
+                if backtrack(nr, nc, i+1):
+                    return True 
             visited.remove((r,c))
             return False 
         
@@ -43,31 +45,12 @@ class Solution:
                 if backtrack(r,c,0):
                     return True
         return False 
+                    
+
         
         
         
 
-            
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
