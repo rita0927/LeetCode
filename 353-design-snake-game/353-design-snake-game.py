@@ -1,41 +1,57 @@
+# class SnakeGame:
+
+
+#     def __init__(self, width: int, height: int, food: List[List[int]]):
+        
+
+        
+
+#     def move(self, direction: str) -> int:
+        
+
+
+
 class SnakeGame:
-
-
+    
     def __init__(self, width: int, height: int, food: List[List[int]]):
-        self.width = width
-        self.height = height
-        self.snake = [[0,0]]
+        self.snake = deque([(0,0)])
+        self.snake_set = set([(0,0)])
+        self.m = height
+        self.n = width 
         self.r = 0
         self.c = 0
+        self.food = food
         self.score = 0
-        self.food = food 
-        self.dir = {'R': [0,1], 'L': [0,-1], 'U': [-1,0], 'D': [1,0]}
+    
+    def move(self, direction: str):
         
-
-    def move(self, direction: str) -> int:
-        
-        self.r += self.dir[direction][0]
-        self.c += self.dir[direction][1]
-        
-        if self.r < 0 or self.r >= self.height or self.c < 0 or self.c >= self.width:
-            return -1
-        
-        if [self.r,self.c] in self.snake and [self.r, self.c] != self.snake[0]:
-            return -1
-        self.snake.append([self.r, self.c])
-        
-        if self.food and [self.r, self.c] == self.food[0]:
-            self.food.pop(0)
-            self.score += 1
+        if direction == 'R':
+            self.c += 1
+        elif direction == 'L':
+            self.c -= 1
+        elif direction == 'U':
+            self.r -= 1
         else:
-            self.snake.pop(0)
+            self.r += 1
         
+        
+        if self.r < 0 or self.r >= self.m or self.c < 0 or self.c >= self.n:
+            return -1
+        if (self.r, self.c) in self.snake_set and (self.r, self.c) != self.snake[0]:
+            return -1
+        
+        if self.food and self.food[0] == [self.r, self.c]:
+            self.score += 1
+            self.food.pop(0)
+        else:
+            tail = self.snake.popleft()
+            self.snake_set.remove(tail)
+        
+        self.snake.append((self.r, self.c))
+        self.snake_set.add((self.r, self.c))
         return self.score 
+        
             
-        
-        
-        
-        
         
         
         
