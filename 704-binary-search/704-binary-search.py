@@ -4,16 +4,20 @@ class Solution:
         l = -1
         r = len(nums)
         
-        while l+1 !=r:
+        while l+1!=r:
             mid = (l+r)//2
             
-            if nums[mid] <= target:
-                l = mid
+            if nums[mid]<=target:
+                l=mid
             else:
-                r = mid
-        return l if nums[l] == target else -1
-                
-            
+                r=mid
+        return l if nums[l]==target else -1
+        
+
+
+    
+        
+
 
         
         
