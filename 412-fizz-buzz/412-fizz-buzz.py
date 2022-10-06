@@ -1,13 +1,18 @@
 class Solution:
     def fizzBuzz(self, n: int) -> List[str]:
         res = []
+        
         for i in range(1,n+1):
-            if not i%3 and not i%5:
+            divisible_by_3=(i%3==0)
+            divisible_by_5=(i%5==0)
+            
+            if divisible_by_3 and divisible_by_5:
                 res.append('FizzBuzz')
-            elif not i%3:
+            elif divisible_by_3:
                 res.append('Fizz')
-            elif not i%5:
+            elif divisible_by_5:
                 res.append('Buzz')
             else:
                 res.append(str(i))
         return res 
+        
