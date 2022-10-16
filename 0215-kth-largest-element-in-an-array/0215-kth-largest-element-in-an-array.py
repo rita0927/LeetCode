@@ -4,15 +4,16 @@ class Solution:
         
         def quickSelect(l,r):
             if l==r:
-                return 
-            pivot_index = random.randint(l,r)
+                return
+            
+            pivot_index=random.randint(l,r)
             pivot=nums[pivot_index]
-            nums[pivot_index], nums[r]=nums[r], nums[pivot_index]
+            nums[pivot_index], nums[r]=nums[r],nums[pivot_index]
             
             p=l
             for i in range(l,r):
                 if nums[i]<pivot:
-                    nums[i],nums[p]=nums[p],nums[i]
+                    nums[p],nums[i]=nums[i],nums[p]
                     p+=1
             nums[p],nums[r]=nums[r],nums[p]
             
@@ -20,11 +21,14 @@ class Solution:
                 return quickSelect(l,p-1)
             elif k>p:
                 return quickSelect(p+1,r)
-            return 
-        
-        quickSelect(0,len(nums)-1)
+            else:
+                return
+    
+        quickSelect(0, len(nums)-1)
         return nums[k]
-                
+        
+        
+
             
         
         
