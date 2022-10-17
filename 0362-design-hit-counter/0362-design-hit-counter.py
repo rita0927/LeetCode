@@ -13,8 +13,8 @@
 class HitCounter:
     def __init__(self):
         self.hits=[]
-    
-    def hit(self,timestamp):
+        
+    def hit(self, timestamp):
         if self.hits and self.hits[-1][0]==timestamp:
             self.hits[-1][1]+=1
         else:
@@ -26,16 +26,12 @@ class HitCounter:
         
         while l+1!=r:
             mid=(l+r)//2
-            
             if timestamp-300>=self.hits[mid][0]:
                 l=mid
             else:
                 r=mid
-                
         self.hits=self.hits[r:]
         return sum(x[1] for x in self.hits)
-            
-        
         
         
         
