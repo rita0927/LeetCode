@@ -11,16 +11,22 @@
 
 class Solution:
     def crawl(self, startUrl: str, htmlParser: 'HtmlParser') -> List[str]:
+        
         hostname='http://'+startUrl.split('/',3)[2]
         res=set([startUrl])
-        stack=[startUrl]
-        while stack:
-            url=stack.pop()
-            for sub_url in htmlParser.getUrls(url):
-                if hostname in sub_url and sub_url not in res:
-                    res.add(sub_url)
-                    stack.append(sub_url)
-        return res
+        q=[startUrl]
+        
+        while q:
+            url=q.pop()
+            for next_url in htmlParser.getUrls(url):
+                if next_url not in res and hostname in next_url:
+                    q.append(next_url)
+                    res.add(next_url)
+        
+        return res 
+        
+        
+
         
         
         
