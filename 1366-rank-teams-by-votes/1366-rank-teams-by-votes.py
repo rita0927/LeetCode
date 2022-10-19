@@ -3,13 +3,49 @@ class Solution:
         d=defaultdict(list)
         
         for vote in votes:
-            for i, char in enumerate(vote):
-                if char not in d:
-                    d[char]=[0]*len(vote)
-                d[char][i]+=1
+            for i, team in enumerate(vote):
+                if team not in d:
+                    d[team]=[0]*len(vote)
+                d[team][i]+=1
+        teams=sorted(d.keys())
+        return ''.join(sorted(teams, key=d.get, reverse=True))
         
-        names=sorted(votes[0])
-        return ''.join(sorted(names, key=d.get, reverse=True))
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         d=defaultdict(list)
+        
+#         for vote in votes:
+#             for i, char in enumerate(vote):
+#                 if char not in d:
+#                     d[char]=[0]*len(vote)
+#                 d[char][i]+=1
+        
+#         names=sorted(votes[0])
+#         return ''.join(sorted(names, key=d.get, reverse=True))
         
      
         
