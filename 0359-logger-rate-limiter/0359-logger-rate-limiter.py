@@ -2,12 +2,13 @@ class Logger:
     
     
     def __init__(self):
-        self.set = set()
-        self.queue = deque()
+        self.set=set()
+        self.queue=deque()
+
         
     def shouldPrintMessage(self, timestamp, message):
-        while self.queue and timestamp - self.queue[0][1] >= 10:
-            msg, time = self.queue.popleft()
+        while self.queue and timestamp-self.queue[0][1]>=10:
+            msg, time=self.queue.popleft()
             self.set.remove(msg)
         
         if message in self.set:
@@ -15,7 +16,43 @@ class Logger:
         else:
             self.set.add(message)
             self.queue.append((message, timestamp))
-            return True 
+            return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# class Logger:
+    
+    
+#     def __init__(self):
+#         self.set = set()
+#         self.queue = deque()
+        
+#     def shouldPrintMessage(self, timestamp, message):
+#         while self.queue and timestamp - self.queue[0][1] >= 10:
+#             msg, time = self.queue.popleft()
+#             self.set.remove(msg)
+        
+#         if message in self.set:
+#             return False
+#         else:
+#             self.set.add(message)
+#             self.queue.append((message, timestamp))
+#             return True 
             
 
 
